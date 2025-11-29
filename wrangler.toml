@@ -1,0 +1,7 @@
+name = "solomon"
+main = "src/main.tsx"
+compatibility_date = "2025-11-29"
+type = "javascript"
+
+[build]
+command = "yarn build"
