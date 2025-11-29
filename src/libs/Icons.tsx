@@ -1,7 +1,11 @@
 import Tooltip from "@components/Tooltip";
 import styled from "@emotion/styled";
 import { ThemeContext } from "@libs/Context";
-import React, { useContext, type MouseEventHandler } from "react";
+import React, {
+  useContext,
+  type CSSProperties,
+  type MouseEventHandler,
+} from "react";
 
 // export const DefaultIcon = styled.img<{ hover?: boolean }>`
 //   cursor: ${({ hover }) => (hover ? "pointer" : "default")};
@@ -29,6 +33,7 @@ export const DefaultIcon: React.FC<{
   onClick?: () => void;
   hover?: boolean;
   className?: string;
+  style?: CSSProperties;
 }> = ({
   src,
   width,
@@ -38,6 +43,7 @@ export const DefaultIcon: React.FC<{
   onClick,
   hover = true,
   className,
+  style,
 }) => {
   const { theme } = useContext(ThemeContext);
 
@@ -51,6 +57,7 @@ export const DefaultIcon: React.FC<{
       onMouseLeave={onMouseLeave}
       onClick={onClick}
       hover={hover}
+      style={style}
     >
       <use xlinkHref={src} href={src} width={width} height={height ?? 11} />
     </StyledSVG>
@@ -98,7 +105,16 @@ export const MediumIcon: React.FC<{
   onClick?: () => void;
   hover?: boolean;
   className?: string;
-}> = ({ src, onMouseEnter, onMouseLeave, onClick, hover, className }) => (
+  style?: CSSProperties;
+}> = ({
+  src,
+  onMouseEnter,
+  onMouseLeave,
+  onClick,
+  hover,
+  className,
+  style,
+}) => (
   <DefaultIcon
     src={src}
     height={11}
@@ -108,6 +124,7 @@ export const MediumIcon: React.FC<{
     onClick={onClick}
     hover={hover}
     className={className}
+    style={style}
   />
 );
 export const LargeIcon: React.FC<{
@@ -122,25 +139,6 @@ export const LargeIcon: React.FC<{
     src={src}
     height={20}
     width={20}
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-    onClick={onClick}
-    hover={hover}
-    className={className}
-  />
-);
-export const LargestIcon: React.FC<{
-  src: string;
-  onMouseEnter?: MouseEventHandler<SVGSVGElement>;
-  onMouseLeave?: MouseEventHandler<SVGSVGElement>;
-  onClick?: () => void;
-  hover?: boolean;
-  className?: string;
-}> = ({ src, onMouseEnter, onMouseLeave, onClick, hover, className }) => (
-  <DefaultIcon
-    src={src}
-    height={35}
-    width={35}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
     onClick={onClick}
@@ -166,16 +164,17 @@ const Container = styled.div`
   position: relative;
 `;
 // TODO: The size here may need to change
-export const IconWithTooltip: React.FC<{ icon: string; text: string }> = ({
-  icon,
-  text,
-}) => {
+export const IconWithTooltip: React.FC<{
+  icon: string;
+  text: string;
+  onClick?: () => void;
+}> = ({ icon, text, onClick }) => {
   const [visible, setVisible] = React.useState<boolean>(false);
   return (
-    <Container>
+    <Container onClick={onClick}>
       <Tooltip text={text} visible={visible} />
       <LargeIcon
-        src={`src/assets/icons/${icon}`}
+        src={`/src/assets/icons/${icon}`}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
       />

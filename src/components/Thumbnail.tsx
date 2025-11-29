@@ -11,6 +11,7 @@ const ThumbnailContainer = styled.div`
 `;
 const ThumbnailImage = styled.img<{ large?: boolean }>`
   width: ${({ large }) => (large ? `175` : `100`)}px;
+  float: right;
   height: auto;
   border-radius: ${({ large }) => (large ? `8` : `3`)}px;
   cursor: pointer;
@@ -47,7 +48,7 @@ const Thumbnail: React.FC<{
       </div>
       <a href={link}>
         <ThumbnailImage
-          src={`src/assets/mocks/${image}`}
+          src={`/src/assets/mocks/${image}`}
           alt="thumbnail"
           large={large}
         />

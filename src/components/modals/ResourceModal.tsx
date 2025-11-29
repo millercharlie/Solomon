@@ -7,17 +7,28 @@ import { colorMap } from "@database/colorMap";
 import styled from "@emotion/styled";
 import { ThemeContext } from "@libs/Context";
 import { noOp } from "@libs/functions";
-import type { ResourceInfo } from "@libs/Types";
+import { breakpoints } from "@libs/globals";
+import { AccountStatus, type ResourceInfo } from "@libs/Types";
 import * as Typography from "@libs/Typography";
 import React from "react";
 
-const ResourceContent = styled.div`
+const ContentContainer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 30px;
   align-items: baseline;
   margin-top: 15px;
+
+  @media (max-width: ${breakpoints.md}px) {
+    display: block;
+  }
 `;
+const ResourceContent = styled.div`
+  @media (max-width: ${breakpoints.md}px) {
+    padding-bottom: 20px;
+  }
+`;
+
 const LargeControlButtons = styled(ControlButtons)`
   position: absolute;
   top: 30px;
@@ -30,49 +41,50 @@ const ResourceModal: React.FC<{
     React.SetStateAction<ResourceInfo | null>
   >;
   visible: boolean;
-  setVisible?: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ resource, setSelectedResource, visible }) => {
   const { theme } = React.useContext(ThemeContext);
 
   return (
     <Modal visible={visible} backgroundColor={colorMap[resource.type]}>
-      <Typography.Title style={{ marginBottom: 0 }}>
+      <Typography.Title style={{ marginBottom: 10 }}>
         {resource.name}
       </Typography.Title>
       <Typography.Description
         fontSize="32px"
         italic={true}
-        style={{ marginTop: 0 }}
+        style={{ marginTop: 0, marginBottom: 30 }}
       >
         {resource.shortDescription}
       </Typography.Description>
-      <Typography.Description fontSize="16px" style={{ marginBottom: 20 }}>
+      <Typography.Description fontSize="16px" style={{ marginBottom: 50 }}>
         {resource.longDescription}
       </Typography.Description>
-      <ResourceContent>
-        <div id="recent-content">
-          <Typography.Subtitle style={{ marginBottom: 0 }}>
-            Recent Content
-          </Typography.Subtitle>
-          {resource.recentContent?.map((item, index) => (
-            <>
-              <Thumbnail
-                key={index}
-                title={item.title}
-                image={item.thumbnail}
-                link={item.link}
-                badges={item.badges}
-                description={item.description}
-                large={true}
-              />
-              {index < resource.recentContent!.length - 1 && (
-                <HorizontalRow color={theme.secondaryRow} />
-              )}
-            </>
-          ))}
-        </div>
+      <ContentContainer>
+        {resource.recentContent && (
+          <ResourceContent>
+            <Typography.Subtitle style={{ marginBottom: 0 }}>
+              Recent Content
+            </Typography.Subtitle>
+            {resource.recentContent?.map((item, index) => (
+              <>
+                <Thumbnail
+                  key={index}
+                  title={item.title}
+                  image={item.thumbnail}
+                  link={item.link}
+                  badges={item.badges}
+                  description={item.description}
+                  large={true}
+                />
+                {index < resource.recentContent!.length - 1 && (
+                  <HorizontalRow color={theme.secondaryRow} />
+                )}
+              </>
+            ))}
+          </ResourceContent>
+        )}
         {resource.recommendedContent && (
-          <div id="recommended-content">
+          <ResourceContent>
             <Typography.Subtitle style={{ marginBottom: 0 }}>
               Recommended Content
             </Typography.Subtitle>
@@ -92,9 +104,9 @@ const ResourceModal: React.FC<{
                 )}
               </>
             ))}
-          </div>
+          </ResourceContent>
         )}
-        {resource.links && (
+        {resource.links && resource.links.length > 0 && (
           <div id="all-links">
             <Typography.Subtitle style={{ paddingBottom: 10 }}>
               Links
@@ -104,16 +116,19 @@ const ResourceModal: React.FC<{
             ))}
           </div>
         )}
-      </ResourceContent>
-      <LargeControlButtons
-        resource={resource}
-        favorite={resource.favorite}
-        setSelectedResource={setSelectedResource}
-        fullscreen={resource.fullscreen} // TODO: The icon should change here assuming fullscreen mode is active
-        dropdownActive={false}
-        setDropdownActive={noOp}
-        large={true}
-      />
+      </ContentContainer>
+      {resource.controls && (
+        <LargeControlButtons
+          resource={resource}
+          favorite={resource.favorite || false}
+          setSelectedResource={setSelectedResource}
+          controls={resource.controls}
+          dropdownActive={false}
+          setDropdownActive={noOp}
+          large={true}
+          accountStatus={AccountStatus.GUEST} // TODO: This will almost certainly be calculated with Context
+        />
+      )}
     </Modal>
   );
 };

@@ -4,8 +4,8 @@ import * as Typography from "@libs/Typography";
 
 import { MediumIcon as Icon } from "@libs/Icons";
 import React from "react";
-import { Colors } from "@libs/globals";
 import { ThemeContext } from "@libs/Context";
+import Tooltip from "@components/Tooltip";
 
 const Container = styled.li<{ link?: boolean }>`
   padding-bottom: 5px;
@@ -21,6 +21,7 @@ const Container = styled.li<{ link?: boolean }>`
 
 const Link: React.FC<{ item: ResourceLink }> = ({ item }) => {
   const { theme } = React.useContext(ThemeContext);
+  const [tooltipVisible, setTooltipVisible] = React.useState<boolean>(false);
   return (
     <Container
       link={item.link !== undefined && item.link !== null && item.link !== ""}
@@ -28,14 +29,24 @@ const Link: React.FC<{ item: ResourceLink }> = ({ item }) => {
       {item.icon && (
         <svg color={theme.text} width={11} height={11}>
           <use
-            xlinkHref={`src/assets/icons/platforms/${item.icon}`}
-            href={`src/assets/icons/platforms/${item.icon}`}
+            xlinkHref={`/src/assets/icons/platforms/${item.icon}`}
+            href={`/src/assets/icons/platforms/${item.icon}`}
             width={11}
             height={11}
           ></use>
         </svg>
       )}
-      <Typography.SidebarLink href={item.link} target="_blank" id="item-text">
+      <Typography.SidebarLink
+        href={item.link}
+        target="_blank"
+        id="item-text"
+        style={{ position: "relative" }}
+        onMouseEnter={() => setTooltipVisible(true)}
+        onMouseLeave={() => setTooltipVisible(false)}
+      >
+        {item.tooltip && (
+          <Tooltip text={item.tooltip} visible={tooltipVisible} />
+        )}
         {item.displayText.includes("\u2013")
           ? item.displayText
               .split("\u2013")
@@ -49,7 +60,7 @@ const Link: React.FC<{ item: ResourceLink }> = ({ item }) => {
           : item.displayText}
       </Typography.SidebarLink>
       {item.link !== undefined && item.link !== null && item.link !== "" && (
-        <Icon src="src/assets/arrows/squarrow.svg" />
+        <Icon src="/src/assets/arrows/squarrow.svg" />
       )}
     </Container>
   );

@@ -1,15 +1,19 @@
 import * as Typography from "@libs/Typography";
-import { MediumIcon as Icon } from "@libs/Icons";
+import { MediumIcon as Icon, IconWithTooltip } from "@libs/Icons";
 import styled from "@emotion/styled";
 import type { ResourceLink, SidebarLink } from "@libs/Types";
 import { HorizontalRow } from "@components/HorizontalRow";
 import Link from "@components/Link";
 import React from "react";
-import { ThemeContext } from "@libs/Context";
+import { sidebarKey, ThemeContext } from "@libs/Context";
+import { useViewportSize } from "@mantine/hooks";
+import { breakpoints } from "@libs/globals";
 
-const Container = styled.div`
-  width: 100%;
+const Container = styled.div<{ open: boolean }>`
+  width: ${({ open }) => (open ? "100%" : 0)};
   margin-right: 30px;
+  display: flex;
+  gap: 20px;
 `;
 const TitleWrapper = styled.div`
   display: flex;
@@ -22,6 +26,10 @@ const UnorderedList = styled.ul`
   padding: 0 0 0 12px;
   list-style-position: inside;
   /* list-style-type: circle; */
+`;
+
+const ContentContainer = styled.div<{ open: boolean }>`
+  display: ${({ open }) => (open ? "block" : "none")};
 `;
 
 const SidebarItem = ({
@@ -37,7 +45,7 @@ const SidebarItem = ({
 }) => (
   <div>
     <TitleWrapper>
-      <Icon src={`src/assets/icons/${icon}`} hover={false} />
+      <Icon src={`/src/assets/icons/${icon}`} hover={false} />
       <Typography.Subtitle id="title-text">{title}</Typography.Subtitle>
     </TitleWrapper>
     <HorizontalRow color={rowColor} />
@@ -49,20 +57,52 @@ const SidebarItem = ({
   </div>
 );
 
-const Sidebar = ({ contents }: { contents: SidebarLink[] }) => {
+const Sidebar: React.FC<{
+  contents: SidebarLink[];
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ contents, open, setOpen }) => {
   const { theme } = React.useContext(ThemeContext);
-  return (
-    <Container>
-      {contents.map((content, index) => (
-        <SidebarItem
-          title={content.title}
-          icon={content.icon}
-          items={content.items}
-          key={index}
-          rowColor={theme.primaryRow}
-        />
-      ))}
+  const { width } = useViewportSize();
+
+  const [mobile, setMobile] = React.useState<boolean>(
+    width <= breakpoints.md && width !== 0
+  );
+
+  React.useEffect(() => {
+    if (width <= breakpoints.md && width !== 0) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  }, [width]);
+
+  const handleClick = React.useCallback(() => {
+    window.localStorage.setItem(sidebarKey, !open ? "true" : "false");
+    setOpen(!open);
+  }, [open, setOpen]);
+
+  return !mobile ? (
+    <Container open={open}>
+      <IconWithTooltip
+        icon={open ? "close_sidebar.svg" : "open_sidebar.svg"}
+        text={`${open ? "Close" : "Open"} Sidebar`}
+        onClick={handleClick}
+      />
+      <ContentContainer open={open}>
+        {...contents.map((content, index) => (
+          <SidebarItem
+            title={content.title}
+            icon={content.icon}
+            items={content.items}
+            key={index}
+            rowColor={theme.primaryRow}
+          />
+        ))}
+      </ContentContainer>
     </Container>
+  ) : (
+    <></>
   );
 };
 

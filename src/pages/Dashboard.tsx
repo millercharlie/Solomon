@@ -2,57 +2,30 @@ import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
 import logogram from "@assets/logos/logogram.svg";
 import { sidebarData } from "@database/mockData";
-import NavigationBar from "@components/NavigationBar";
 import Sidebar from "@components/Sidebar";
 
-import { Card } from "@components/Cards";
-import {
-  Theme,
-  type ColorTheme,
-  type DashboardData,
-  type ResourceInfo,
-} from "@libs/Types";
+import { Card, ClassDemoCard } from "@components/Cards";
+import { PageType, type DashboardData, type ResourceInfo } from "@libs/Types";
 import * as theme from "@libs/globals";
-import React, { useContext } from "react";
+import React from "react";
 import ResourceModal from "@components/modals/ResourceModal";
-import { ThemeContext } from "@libs/Context";
-import { Colors } from "@libs/globals";
+import { dummyResource } from "@libs/globals";
 import { DefaultIcon } from "@libs/Icons";
+import PageTemplate from "@pages/PageTemplate";
+import { sidebarKey } from "@libs/Context";
 
-const Background = styled.div<{ theme: ColorTheme }>`
-  background-color: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.text};
-  width: 100%;
-  height: 100%;
-  background-image: url("src/assets/background_gradient.svg"); // TODO: Eventually, this should be calculated dynamically
-  background-size: 150%;
-  background-attachment: fixed;
-  background-position: center;
-`;
-const BackgroundGradient = styled.img`
-  // TODO: This is for the future ^
-  width: 100vw;
-  height: 100vw;
-  position: absolute;
-  top: 0;
-  user-select: none;
-  z-index: 0;
-`;
-
-const ContentBackground = styled.div`
+const ContentBackground = styled.div<{ sidebarOpen: boolean }>`
   margin-top: 30px;
   padding-left: 45px;
   padding-right: 45px;
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: ${({ sidebarOpen }) =>
+    sidebarOpen ? "3fr 1fr" : "1000fr 1fr"};
   gap: 20px;
   z-index: 1;
 `;
 const Heading = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  gap: 60px;
 `;
 const Content = styled.div`
   /* width: 70vw; */
@@ -72,16 +45,16 @@ const TitleContainer = styled.div`
 const Row = styled.div`
   margin-bottom: 30px;
 `;
-const CardRow = styled.div`
+const CardRow = styled.div<{ columns: number }>`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${({ columns }) => `repeat(${columns}, 1fr)`};
   gap: 30px;
 
   @media screen and (max-width: ${theme.breakpoints.md}px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media screen and (max-width: ${theme.breakpoints.sm}px) {
-    // TODO: Mobile-mode carousel
+    grid-template-columns: repeat(
+      1,
+      1fr
+    ); // TODO: This is okay for now, but will immediately break once more resources are added
   }
 `;
 
@@ -94,87 +67,78 @@ const CardRow = styled.div`
 const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
   const [selectedResource, setSelectedResource] =
     React.useState<ResourceInfo | null>(null);
-  const [theme, setTheme] = React.useState(Colors[Theme.DARK]);
 
+  const [sidebarOpen, setSidebarOpen] = React.useState<boolean>(
+    window.localStorage.getItem(sidebarKey) === "true" ? true : false
+  );
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      <Background theme={theme}>
-        <NavigationBar
-          highlighted="dashboard"
-          theme={theme}
-          setTheme={setTheme}
+    <PageTemplate pageType={PageType.DASHBOARD}>
+      <ContentBackground sidebarOpen={sidebarOpen}>
+        <Content>
+          <Heading>
+            <TitleContainer>
+              <Typography.RowHeading style={{ marginBottom: -20 }}>
+                Welcome to
+              </Typography.RowHeading>
+              <Logogram src={logogram} width={300} height={130} hover={false} />
+            </TitleContainer>
+            <Typography.LargeParagraph id="description">
+              Solomon is a convenient platform with resources on apologetics,
+              theology, and Bible commentaries. We hope you can use this
+              platform to discover new resources, engage with theologians, and
+              dive deeper into your faith!
+              <br />
+              <br />
+              Below, you will find curated introductory resources to apologetics
+              and theology, but feel free to explore and find your own
+              resources!
+              <br />
+              <br />
+              If you wish for additional functionality (such as recommendations,
+              favorites) be sure to create an account with us!
+            </Typography.LargeParagraph>
+          </Heading>
+          <MainContent>
+            {data.rows.map((row, i) => (
+              <Row key={i}>
+                <Typography.RowHeading>{row.name}</Typography.RowHeading>
+                <CardRow id={row._id} columns={sidebarOpen ? 3 : 4}>
+                  {row.content.slice(0, sidebarOpen ? 3 : 4).map(
+                    (
+                      item, // TODO: This needs to be more dynamic - only the cards can fit on the page should be displayed
+                      j
+                    ) => (
+                      <ClassDemoCard
+                        resource={item}
+                        key={j}
+                        setSelectedResource={setSelectedResource}
+                      />
+                    )
+                  )}
+                </CardRow>
+              </Row>
+            ))}
+          </MainContent>
+        </Content>
+        <Sidebar
+          contents={sidebarData}
+          open={sidebarOpen}
+          setOpen={setSidebarOpen}
         />
-        <ContentBackground>
-          <Content>
-            <Heading>
-              <TitleContainer>
-                <Typography.RowHeading style={{ marginBottom: -20 }}>
-                  Welcome to
-                </Typography.RowHeading>
-                <Logogram
-                  src={logogram}
-                  width={300}
-                  height={130}
-                  hover={false}
-                />
-              </TitleContainer>
-              <Typography.LargeParagraph id="description">
-                Solomon is a convenient platform with resources on apologetics,
-                theology, and Bible commentaries. We hope you can use this
-                platform to discover new resources, engage with theologians, and
-                dive deeper into your faith!
-                <br />
-                <br />
-                Below, you will find curated introductory resources to
-                apologetics and theology, but feel free to explore and find your
-                own resources!
-                <br />
-                <br />
-                If you wish for additional functionality (such as
-                recommendations, favorites) be sure to create an account with
-                us!
-              </Typography.LargeParagraph>
-            </Heading>
-            <MainContent>
-              {data.rows.map((row, i) => (
-                <Row key={i}>
-                  <Typography.RowHeading>{row.name}</Typography.RowHeading>
-                  <CardRow id={row.id}>
-                    {row.content.map(
-                      (
-                        item, // TODO: This needs to be more dynamic - only the cards can fit on the page should be displayed
-                        j
-                      ) => (
-                        <Card
-                          resource={item}
-                          key={j}
-                          setSelectedResource={setSelectedResource}
-                        />
-                      )
-                    )}
-                  </CardRow>
-                </Row>
-              ))}
-            </MainContent>
-          </Content>
-          <Sidebar contents={sidebarData} />
-        </ContentBackground>
-        {/*
+      </ContentBackground>
+      {/*
       <BackgroundGradient
         src={backgroundGradient}
         alt="background-gradient"
         draggable="false"
       />
       */}
-        {selectedResource !== null && (
-          <ResourceModal
-            visible={selectedResource !== null}
-            resource={selectedResource!}
-            setSelectedResource={setSelectedResource}
-          />
-        )}
-      </Background>
-    </ThemeContext.Provider>
+      <ResourceModal
+        resource={selectedResource || dummyResource}
+        setSelectedResource={setSelectedResource}
+        visible={selectedResource !== null}
+      />
+    </PageTemplate>
   );
 };
 

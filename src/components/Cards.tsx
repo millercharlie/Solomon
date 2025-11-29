@@ -7,7 +7,12 @@ import * as Typography from "@libs/Typography";
 import resourceIcons from "@database/resourceIcons.json";
 import { hexToRGB } from "@libs/functions";
 
-import type { ColorTheme, ResourceInfo, ResourceType } from "@libs/Types";
+import {
+  AccountStatus,
+  type ColorTheme,
+  type ResourceInfo,
+  type ResourceType,
+} from "@libs/Types";
 import { HorizontalRow } from "@components/HorizontalRow";
 import ControlButtons from "@components/ControlButtons";
 import { colorMap } from "@database/colorMap";
@@ -29,6 +34,7 @@ const Container = styled.div<{ backgroundColor?: string; theme: ColorTheme }>`
   }
 `;
 const VisibleContent = styled.div`
+  position: relative;
   display: flex;
 `;
 const TitleRow = styled.div`
@@ -37,7 +43,6 @@ const TitleRow = styled.div`
   gap: 9px;
 `;
 const MainContent = styled.div`
-  width: 95%;
   transition: all 0.2s;
 `;
 const BadgeRow = styled.div`
@@ -49,8 +54,108 @@ const BadgeRow = styled.div`
   gap: 9px;
 `;
 
-// TODO: `fullscreen` and `dropdown` variables might need to be more descriptive lol
-// TODO: This also doesnt' account for mobile devices
+const StyledControls = styled(ControlButtons)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 4;
+`;
+
+const ClassDemoContainer = styled.div`
+  height: fit-content;
+  border-radius: 10px;
+  transition: all 0.2s;
+  :hover {
+    transform: translateY(-10px);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  }
+`;
+const StyledImage = styled.img`
+  width: 100%;
+  border-radius: 12px;
+`;
+
+/**
+ * Represents a Card, to be displayed on the Dashboard and various other pages. This card handles its
+ * own state when the dropdown or fullscreen versions are activated by the user.
+ * @param resource Resource information
+ * @param setSelectedResource sets the current resource that is displayed in the fullscreen modal
+ * @returns Card component that can be expanded if clicked
+ */
+export const ClassDemoCard: React.FC<{
+  resource: ResourceInfo;
+  setSelectedResource: React.Dispatch<
+    React.SetStateAction<ResourceInfo | null>
+  >;
+}> = ({ resource, setSelectedResource }) => {
+  const [dropdownActive, setDropdownActive] = React.useState<boolean>(false);
+
+  const { theme } = React.useContext(ThemeContext);
+
+  const icon = React.useMemo(() => {
+    const curIcon = resourceIcons.find(
+      (item) => resource.type === (item.type as unknown as ResourceType)
+    );
+    if (!curIcon) {
+      throw new Error("Resource Icon Not Found");
+    } else return curIcon.icon;
+  }, [resource.type]);
+
+  return (
+    <ClassDemoContainer id={resource._id}>
+      <VisibleContent>
+        <MainContent>
+          <a href={resource.solomon_link}>
+            <StyledImage
+              src={`/src/assets/images/${resource.image}`}
+              alt={resource._id}
+            />
+          </a>
+          <Typography.Subtitle>{resource.name}</Typography.Subtitle>
+          <Typography.Paragraph>
+            {resource.shortDescription}
+          </Typography.Paragraph>
+          <BadgeRow>
+            {resource.badges?.map((id, index) => (
+              <Badge id={id} key={index} />
+            ))}
+          </BadgeRow>
+        </MainContent>
+        {resource.controls && (
+          <StyledControls
+            resource={resource}
+            setSelectedResource={setSelectedResource}
+            dropdownActive={dropdownActive}
+            setDropdownActive={setDropdownActive}
+            accountStatus={AccountStatus.GUEST}
+            controls={resource.controls}
+            favorite={false}
+          />
+        )}
+      </VisibleContent>
+      {dropdownActive && resource.recentContent && (
+        <div id="expanded-content">
+          <Typography.DropdownTitle>Recent Content</Typography.DropdownTitle>
+          {resource.recentContent.map((contentItem, index) => (
+            <>
+              <Thumbnail
+                title={contentItem.title}
+                image={contentItem.thumbnail}
+                link={""}
+                description={contentItem.description}
+                badges={contentItem.badges}
+              />
+              {index < resource.recentContent!.length - 1 && (
+                <HorizontalRow color={theme.secondaryRow} />
+              )}
+            </>
+          ))}
+        </div>
+      )}
+    </ClassDemoContainer>
+  );
+};
+
 // TODO: Likely add a `setFavorite()` state function
 /**
  * Represents a Card, to be displayed on the Dashboard and various other pages. This card handles its
@@ -83,7 +188,7 @@ export const Card: React.FC<{
 
   return (
     <Container
-      id={resource.id}
+      id={resource._id}
       backgroundColor={translucentBackgroundColor}
       theme={theme}
     >
@@ -108,15 +213,17 @@ export const Card: React.FC<{
             ))}
           </BadgeRow>
         </MainContent>
-        <ControlButtons
-          resource={resource}
-          favorite={resource.favorite}
-          dropdown={resource.dropdown}
-          fullscreen={resource.fullscreen}
-          setSelectedResource={setSelectedResource}
-          dropdownActive={dropdownActive}
-          setDropdownActive={setDropdownActive}
-        />
+        {resource.controls && (
+          <ControlButtons
+            resource={resource}
+            setSelectedResource={setSelectedResource}
+            dropdownActive={dropdownActive}
+            setDropdownActive={setDropdownActive}
+            accountStatus={AccountStatus.GUEST} // TODO: This will almost certainly be calculated with Context
+            controls={resource.controls}
+            favorite={false} // TODO: This depends on the account
+          />
+        )}
       </VisibleContent>
       {dropdownActive && resource.recentContent && (
         <div id="expanded-content">

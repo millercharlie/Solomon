@@ -55,6 +55,7 @@ export const LargeParagraph = styled.p`
   font-size: 14px;
   font-weight: 400;
   font-style: normal;
+  white-space: pre-line;
 `;
 /**
  * General paragraph text.
@@ -87,6 +88,16 @@ export const TooltipText = styled.p`
   font-style: normal;
   margin-top: 0;
   margin-bottom: 0;
+`;
+
+/**
+ * Text inside of a button
+ */
+export const ButtonText = styled.p`
+  font-family: "avenir", sans-serif;
+  font-size: 20pt;
+  font-weight: bolder;
+  font-style: normal;
 `;
 
 export const DropdownTitle = styled.p`

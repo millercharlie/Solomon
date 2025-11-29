@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { hexToRGB } from "@libs/functions";
-import { Colors } from "@libs/globals";
 import type { ReactNode } from "react";
 import React from "react";
 import { breakpoints } from "@libs/globals";
@@ -24,9 +23,9 @@ const Background = styled.div<{ visible: boolean; theme: ColorTheme }>`
       `${hexToRGB(theme.text).r}, ${hexToRGB(theme.text).g}, ${
         hexToRGB(theme.text).b
       }, 0.8`};
-  z-index: 5;
+  z-index: ${({ visible }) => (visible ? 5 : -1)};
 `;
-const Container = styled.div<{ backgroundColor: string }>`
+const Container = styled.div<{ backgroundColor: string; theme: ColorTheme }>`
   width: 80%;
   min-height: 70%;
   max-height: 85%;
@@ -39,16 +38,16 @@ const Container = styled.div<{ backgroundColor: string }>`
   background-color: ${({ backgroundColor }) =>
     backgroundColor}; // TODO: This should not be hardcoded
   border-radius: 30px;
-  outline: 3px solid ${Colors.dark.text};
+  outline: 5px solid ${({ theme }) => theme.text};
   padding: 30px;
 
-  // TODO: This is not working lol
-  @media (max-width: 900px) {
-    width: 100%;
-    max-height: 100%;
-    height: 100%;
+  @media (max-width: ${breakpoints.md}px) {
+    width: 100vw;
+    max-height: 100vh;
+    height: 100vh;
     outline: none;
-    padding: 30px;
+    border-radius: 0;
+    box-sizing: border-box;
   }
 `;
 
@@ -79,12 +78,14 @@ const Modal: React.FC<{
     }
   }, [visible]);
 
-  return (
+  return visible ? (
     <Background visible={visible} theme={theme}>
-      <Container backgroundColor={translucentBackgroundColor}>
+      <Container backgroundColor={translucentBackgroundColor} theme={theme}>
         {children}
       </Container>
     </Background>
+  ) : (
+    <></>
   );
 };
 

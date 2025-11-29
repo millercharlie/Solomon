@@ -1,4 +1,4 @@
-# <img src="src/assets/logos/logo_colored.svg" width="25px"/> Welcome to Solomon
+# <img src="/src/assets/logos/logo_colored.svg" width="25px"/> Welcome to Solomon
 
 #### _Solomon is a Christian resource aggregator where trustworthy, accessible, and reliable resources are gathered together in one convenient, accessible platform._
 

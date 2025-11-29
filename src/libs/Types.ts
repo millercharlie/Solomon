@@ -8,15 +8,6 @@ export type SidebarLink = {
 };
 
 /**
- * Account Status
- */
-export enum AccountStatus {
-  GUEST,
-  USER,
-  ADMIN,
-}
-
-/**
  * All data required for displaying a badge.
  */
 export type BadgeAttributes = {
@@ -26,29 +17,13 @@ export type BadgeAttributes = {
   textColor: string;
 };
 
-/**
- * Type of resource (ex: "scholar")
- */
-export enum ResourceType {
-  SCHOLAR = "scholar",
-  CREATOR = "creator",
-  MINISTRY = "ministry",
-  BOOK = "book",
-  TOPIC = "topic",
-  QUESTION = "question",
-}
 export type ResourceIcon = {
   type: ResourceType;
   icon: string;
 };
 
-export enum Theme {
-  LIGHT = "light",
-  DARK = "dark",
-}
-
 export type ColorTheme = {
-  id: Theme;
+  _id: Theme;
   primary: string;
   secondary: string;
   text: string;
@@ -72,10 +47,11 @@ export type ResourceLink = {
   displayText: string;
   icon?: string;
   priority?: boolean;
+  tooltip?: string;
 };
 
 type Content = {
-  id: string;
+  _id: string;
   title: string;
   description?: string;
   thumbnail: string;
@@ -83,35 +59,95 @@ type Content = {
   link: string;
 };
 
+type ListContent = {
+  title: string;
+  content: ResourceInfo[];
+};
 /**
  * All data required for displaying a resource.
  */
 export type ResourceInfo = {
-  id: string;
+  _id: string;
   name: string;
+  image?: string;
+  solomon_link?: string;
   ministry?: string;
   type: ResourceType;
-  shortDescription: string;
+  shortDescription?: string;
   longDescription?: string;
   recentContent?: Content[];
   recommendedContent?: Content[]; // TODO: This will change as more functionality is added (eg: user recommendations)
-  favorite: boolean;
-  fullscreen?: boolean;
-  dropdown?: boolean;
+  favorite?: boolean;
+  controls?: Controls[];
   badges: string[];
-  mediaType: string[];
+  mediaType?: string[]; // TODO: This might not be needed except for topics which can map through them
   links: ResourceLink[];
 };
 
 // TODO: Clean up these types
 
-export type DashboardRowData = {
-  id: string;
-  name: string;
+export type RowData = {
+  _id: string;
+  type: RowType;
+  name?: string;
   content: ResourceInfo[];
 };
 
 export interface DashboardData {
   accountStatus: AccountStatus;
-  rows: DashboardRowData[];
+  rows: RowData[];
+}
+
+export type PageData = {
+  title: string;
+  pageType: PageType;
+  description?: string;
+  accountStatus: AccountStatus;
+  rows: RowData[];
+  sidebar: SidebarLink[];
+  needsHelp: boolean;
+};
+
+// Varius Enumerations
+
+export enum Controls {
+  FULLSCREEN = "fullscreen",
+  OPEN_PAGE = "open_page",
+  DROPDOWN = "dropdown",
+}
+/**
+ * Account Status
+ */
+export enum AccountStatus {
+  GUEST,
+  USER,
+  ADMIN,
+}
+export enum RowType {
+  CARD = "card",
+  LIST = "list",
+}
+export enum PageType {
+  DASHBOARD = "dashboard",
+  APOLOGETICS = "apologetics",
+  THEOLOGY = "theology",
+  COMMENTARY = "commentary",
+  TOPIC = "topic",
+  GLOSSARY = "glossary",
+  NOTFOUND = "404",
+}
+export enum Theme {
+  LIGHT = "light",
+  DARK = "dark",
+}
+/**
+ * Type of resource (ex: "scholar")
+ */
+export enum ResourceType {
+  SCHOLAR = "scholar",
+  CREATOR = "creator",
+  MINISTRY = "ministry",
+  BOOK = "book",
+  TOPIC = "topic",
+  QUESTION = "question",
 }
