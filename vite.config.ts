@@ -1,9 +1,9 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
 
-// https://vite.dev/config/
 export default defineConfig({
+  base: "./",
   plugins: [react()],
   resolve: {
     alias: {
@@ -14,4 +14,13 @@ export default defineConfig({
       "@database": path.resolve(__dirname, "src/database"),
     },
   },
-})
+  build: {
+    outDir: "dist",
+    rollupOptions: {
+      // Treat SVGs and other assets correctly
+      output: {
+        assetFileNames: "[name].[ext]",
+      },
+    },
+  },
+});

@@ -1,8 +1,7 @@
 name = "solomon"
-main = "src/main.tsx"
 compatibility_date = "2025-11-29"
-type = "javascript"
+main = "workers-site/index.js"
 
-[build]
-command = "yarn build"
-upload = { format = "service-worker", dir = "dist" }
+# Specify the built assets directory
+[site]
+bucket = "./dist"
