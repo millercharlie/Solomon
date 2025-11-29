@@ -1,6 +1,2 @@
 name = "solomon"
 compatibility_date = "2025-11-29"
-
-# Specify the built assets directory
-[site]
-bucket = "./dist"
