@@ -5,3 +5,4 @@ type = "javascript"
 
 [build]
 command = "yarn build"
+upload = { format = "service-worker", dir = "dist" }
