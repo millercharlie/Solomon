@@ -1,6 +1,5 @@
 name = "solomon"
 compatibility_date = "2025-11-29"
-main = "src/main.tsx"
 
 [assets]
 directory = "./dist"
