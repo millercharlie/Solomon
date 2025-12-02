@@ -6,6 +6,7 @@ const Theology: React.FC = () => {
   return (
     <StandardPage
       data={{
+        _id: "theology_page",
         title: "Theology",
         pageType: PageType.THEOLOGY,
         description: theologyData.description,

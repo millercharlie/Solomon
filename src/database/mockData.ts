@@ -393,7 +393,7 @@ export const gavinOrtlund: ResourceInfo = {
       _id: "go_v2",
       title: "Should Christians use Profanity?",
       description:
-        "In this video, Gavin Ortlund explores what it means that Jesus ‘descended to hell’.",
+        'In this video, Gavin Ortlund explores what it means that Jesus "descended to hell".',
       thumbnail: "go_v2.png",
       badges: ["question"],
       link: "",
@@ -402,7 +402,7 @@ export const gavinOrtlund: ResourceInfo = {
       _id: "go_v3",
       title: "Craig and Ortlund Clash on the Eucharist",
       description:
-        "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
+        "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
       thumbnail: "go_v3.png",
       badges: ["theology"],
       link: "",
@@ -413,7 +413,7 @@ export const gavinOrtlund: ResourceInfo = {
       _id: "go_v2",
       title: "Should Christians use Profanity?",
       description:
-        "In this video, Gavin Ortlund explores what it means that Jesus ‘descended to hell’.",
+        "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
       thumbnail: "go_v2.png",
       badges: ["question"],
       link: "",
@@ -422,7 +422,7 @@ export const gavinOrtlund: ResourceInfo = {
       _id: "go_v1",
       title: "Did Jesus Descend into Hell?",
       description:
-        "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
+        'In this video, Gavin Ortlund explores what it means that Jesus "descended to hell".',
       thumbnail: "go_v1.png",
       badges: ["question"],
       link: "",

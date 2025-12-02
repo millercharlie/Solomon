@@ -132,7 +132,7 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
                           <Typography.Paragraph style={{ marginTop: 10 }}>
                             {item.shortDescription}
                           </Typography.Paragraph>
-                          {item.links.map((item) => (
+                          {item.links!.map((item) => (
                             <Link item={item} />
                           ))}
                         </div>

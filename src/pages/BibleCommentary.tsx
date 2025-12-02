@@ -6,6 +6,7 @@ const BibleCommentary: React.FC = () => {
   return (
     <StandardPage
       data={{
+        _id: "commentary_page",
         title: "Bible Commentary",
         pageType: PageType.COMMENTARY,
         description: undefined,

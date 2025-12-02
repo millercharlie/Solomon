@@ -285,6 +285,7 @@ const row3: RowData = {
 };
 
 export const commentaryData: PageData = {
+  _id: "commentary_page",
   title: "Bible Commentary",
   pageType: PageType.COMMENTARY,
   accountStatus: AccountStatus.GUEST,

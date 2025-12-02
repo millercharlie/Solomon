@@ -84,7 +84,7 @@ const Glossary: React.FC = () => {
                     <Link
                       item={{
                         platform: resource.type,
-                        link: resource.links[0].link, // TODO: This needds to be modified to support an onClick() for the expanded card
+                        link: resource.links![0].link, // TODO: This needds to be modified to support an onClick() for the expanded card
                         displayText: resource.name,
                         icon: resource.type,
                       }}
@@ -106,7 +106,7 @@ const Glossary: React.FC = () => {
                   <Link
                     item={{
                       platform: topic.type,
-                      link: topic.links[0].link,
+                      link: topic.links![0].link,
                       displayText: topic.name,
                       icon: topic.type,
                     }}

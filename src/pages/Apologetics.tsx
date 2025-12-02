@@ -9,6 +9,7 @@ const Apologetics: React.FC = () => {
   return (
     <StandardPage
       data={{
+        _id: "apologetics_page",
         title: "Apologetics",
         pageType: PageType.APOLOGETICS,
         description:
