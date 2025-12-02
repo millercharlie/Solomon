@@ -104,7 +104,7 @@ export const NavigationBar: React.FC<{
     const newTheme = theme._id === Theme.DARK ? Theme.LIGHT : Theme.DARK;
     setTheme(Colors[newTheme]);
     window.localStorage.setItem(themeKey, newTheme);
-  }, [theme]);
+  }, [setTheme, theme._id]);
 
   React.useEffect(() => {
     if (width <= breakpoints.md && width !== 0) {
@@ -153,7 +153,12 @@ export const NavigationBar: React.FC<{
           height={24}
           onClick={() => handleThemeToggle()}
         />
-        <Button text="Log In" theme={theme} />
+        {
+          !mobile && (
+            <Button text="Log In" theme={theme} />
+          ) /* // TODO: This mobile
+        config is temporary */
+        }
         {mobile && (
           <DarkModeToggle
             src="../assets/icons/hamburger_menu.svg"
