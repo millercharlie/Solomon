@@ -61,16 +61,16 @@ const Glossary: React.FC = () => {
       ) as ResourceInfo[],
     []
   );
-  const findAllTopicsFromLetter = React.useCallback<
-    (letter: string) => ResourceInfo[]
-  >(
-    (letter) =>
-      topics.filter(
-        (item) =>
-          item._id!.charAt(0).toLocaleLowerCase() === letter.toLocaleLowerCase()
-      ) as ResourceInfo[],
-    []
-  );
+  // const findAllTopicsFromLetter = React.useCallback<
+  //   (letter: string) => ResourceInfo[]
+  // >(
+  //   (letter) =>
+  //     topics.filter(
+  //       (item) =>
+  //         item._id!.charAt(0).toLocaleLowerCase() === letter.toLocaleLowerCase()
+  //     ) as ResourceInfo[],
+  //   []
+  // );
 
   return (
     <PageTemplate pageType={PageType.GLOSSARY}>
@@ -115,7 +115,7 @@ const Glossary: React.FC = () => {
             All Topics
           </Typography.RowHeading>
           <TopicsContainer>
-            {topics.map((topic: ResourceInfo) => (
+            {topics.map((topic) => (
               <Link
                 item={{
                   platform: topic.type,
