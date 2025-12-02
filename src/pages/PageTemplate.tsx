@@ -13,7 +13,7 @@ const Background = styled.div<{ theme: ColorTheme; pageType: PageType }>`
   width: 100%;
   height: 100%;
   background-image: ${({ pageType }) =>
-    `url(/src/assets/gradients/${gradientMap[pageType]}.svg)`};
+    `url(../assets/gradients/${gradientMap[pageType]}.svg)`};
   background-size: 150%;
   background-attachment: fixed;
   background-position: center;

@@ -29,8 +29,8 @@ const Link: React.FC<{ item: ResourceLink }> = ({ item }) => {
       {item.icon && (
         <svg color={theme.text} width={11} height={11}>
           <use
-            xlinkHref={`/src/assets/icons/platforms/${item.icon}`}
-            href={`/src/assets/icons/platforms/${item.icon}`}
+            xlinkHref={`../assets/icons/platforms/${item.icon}`}
+            href={`../assets/icons/platforms/${item.icon}`}
             width={11}
             height={11}
           ></use>

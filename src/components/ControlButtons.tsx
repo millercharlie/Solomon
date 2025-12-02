@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { LargeIcon, MediumIcon } from "@libs/Icons";
-import dropdownArrow from "@assets/arrows/up_down_arrow.svg";
 import { AccountStatus, type ResourceInfo, Controls } from "@libs/Types";
 
 const Container = styled.div`
@@ -103,7 +102,7 @@ const ControlButtons: React.FC<{
             ) : (
               resource.recentContent && ( // TODO: This is temporary until all data is filled(
                 <ActionButton
-                  src={dropdownArrow}
+                  src="../assets/arrows/up_down_arrow.svg"
                   onClick={() => setDropdownActive(!dropdownActive)}
                   active={dropdownActive}
                 />

@@ -2,21 +2,15 @@ import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
 
 import { ClassDemoCard } from "@components/Cards";
-import {
-  RowType,
-  type ColorTheme,
-  type PageData,
-  type ResourceInfo,
-} from "@libs/Types";
+import { RowType, type PageData, type ResourceInfo } from "@libs/Types";
 import * as theme from "@libs/globals";
 import React from "react";
 import ResourceModal from "@components/modals/ResourceModal";
 import { dummyResource } from "@libs/globals";
 import Link from "@components/Link";
-import Button from "@components/Button";
 import Sidebar from "@components/Sidebar";
 import PageTemplate from "@pages/PageTemplate";
-import { SidebarContext, sidebarKey, ThemeContext } from "@libs/Context";
+import { SidebarContext, sidebarKey } from "@libs/Context";
 
 const ContentBackground = styled.div<{ sidebarOpen: boolean }>`
   margin-top: 30px;
@@ -56,18 +50,13 @@ const CardRow = styled.div<{ columns: number }>`
     // TODO: This should be centered
   }
 `;
+const ListRow = styled.div<{ columns: number }>`
+  display: grid;
+  grid-template-columns: ${({ columns }) => `repeat(${columns}, 1fr)`};
+  gap: 30px;
 
-const HelpButton = styled(Button)`
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-`;
-const Anchor = styled.a<{ theme: ColorTheme }>`
-  text-decoration: none;
-  color: ${({ theme }) => theme.text};
-  transition: all 0.2s;
-  :hover {
-    text-decoration: underline;
+  @media screen and (max-width: ${theme.breakpoints.md}px) {
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
 
@@ -84,7 +73,11 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
     window.localStorage.getItem(sidebarKey) === "true" ? true : false
   );
 
-  const { theme } = React.useContext(ThemeContext);
+  React.useEffect(() => {
+    if (data.sidebar.length === 0) {
+      setSidebarOpen(false);
+    }
+  }, [data.sidebar.length]);
 
   return (
     <SidebarContext.Provider
@@ -121,15 +114,20 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
                       )}
                     </CardRow>
                   ) : (
-                    <CardRow id={row._id} columns={sidebarOpen ? 3 : 4}>
+                    <ListRow id={row._id} columns={sidebarOpen ? 3 : 4}>
                       {row.content.map((item) => (
-                        <div id="all-links">
-                          <Anchor href={item.solomonLink} theme={theme}>
-                            <Typography.RowHeading style={{ marginBottom: 0 }}>
-                              {item.name}
-                            </Typography.RowHeading>
-                          </Anchor>
-                          <Typography.Paragraph style={{ marginTop: 10 }}>
+                        <div
+                          id="all-links"
+                          style={{
+                            gridColumn: item.doubleWidth ? "span 2" : "span 1",
+                          }}
+                        >
+                          <Typography.RowHeading style={{ marginBottom: 0 }}>
+                            {item.name}
+                          </Typography.RowHeading>
+                          <Typography.Paragraph
+                            style={{ marginTop: 5, marginBottom: 10 }}
+                          >
                             {item.shortDescription}
                           </Typography.Paragraph>
                           {item.links!.map((item) => (
@@ -137,7 +135,7 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
                           ))}
                         </div>
                       ))}
-                    </CardRow>
+                    </ListRow>
                   )}
                 </Row>
               ))}

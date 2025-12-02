@@ -73,7 +73,7 @@
   },
   "church": {
     "text": "Church",
-    "icon": "church.svg",
+    "icon": "badges/church.svg",
     "backgroundColor": "#83D615",
     "textColor": "#292929"
   },

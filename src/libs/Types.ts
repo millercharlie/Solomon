@@ -66,6 +66,7 @@ export type ResourceInfo = {
   _id: string;
   name: string;
   image?: string;
+  doubleWidth?: boolean;
   solomonLink?: string;
   ministry?: string;
   mainLink?: string; // TODO: Add this functionality with the new "EXTERNAL" Control

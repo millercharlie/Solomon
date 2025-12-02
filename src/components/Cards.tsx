@@ -19,7 +19,11 @@ import { colorMap } from "@database/colorMap";
 import { ThemeContext } from "@libs/Context";
 import Thumbnail from "@components/Thumbnail";
 
-const Container = styled.div<{ backgroundColor?: string; theme: ColorTheme }>`
+const Container = styled.div<{
+  backgroundColor?: string;
+  theme: ColorTheme;
+  doubleWidth?: boolean;
+}>`
   /* width: 300px; */
   height: fit-content;
   padding: 10px;
@@ -28,6 +32,7 @@ const Container = styled.div<{ backgroundColor?: string; theme: ColorTheme }>`
   background-color: ${({ backgroundColor }) => backgroundColor ?? "#717171"};
   backdrop-filter: blur(40%);
   transition: all 0.2s;
+  grid-column: span ${({ doubleWidth }) => (doubleWidth ? "2" : "1")};
   :hover {
     transform: translateY(-10px);
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
@@ -61,8 +66,9 @@ const StyledControls = styled(ControlButtons)`
   z-index: 4;
 `;
 
-const ClassDemoContainer = styled.div`
+const ClassDemoContainer = styled.div<{ doubleWidth?: boolean }>`
   height: fit-content;
+  grid-column: span ${({ doubleWidth }) => (doubleWidth ? "2" : "1")};
   border-radius: 10px;
   transition: all 0.2s;
   :hover {
@@ -102,7 +108,7 @@ export const ClassDemoCard: React.FC<{
   }, [resource.type]);
 
   return (
-    <ClassDemoContainer id={resource._id}>
+    <ClassDemoContainer id={resource._id} doubleWidth={resource.doubleWidth}>
       <VisibleContent>
         <MainContent>
           <a href={resource.solomonLink}>
@@ -193,6 +199,7 @@ export const Card: React.FC<{
       id={resource._id}
       backgroundColor={translucentBackgroundColor}
       theme={theme}
+      doubleWidth={resource.doubleWidth}
     >
       <VisibleContent>
         <MainContent>

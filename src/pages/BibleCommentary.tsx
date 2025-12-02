@@ -9,7 +9,7 @@ const BibleCommentary: React.FC = () => {
         _id: "commentary_page",
         title: "Bible Commentary",
         pageType: PageType.COMMENTARY,
-        description: undefined,
+        description: commentaryData.description,
         accountStatus: AccountStatus.GUEST,
         rows: commentaryData.rows,
         sidebar: [],
