@@ -4,19 +4,25 @@ import NavigationBar from "@components/NavigationBar";
 import { PageType, Theme, type ColorTheme } from "@libs/Types";
 import React, { type ReactNode } from "react";
 import { themeKey, ThemeContext } from "@libs/Context";
-import { Colors } from "@libs/globals";
+import { breakpoints, Colors } from "@libs/globals";
 import { gradientMap } from "@database/gradientMap";
+import { useViewportSize } from "@mantine/hooks";
 
-const Background = styled.div<{ theme: ColorTheme; pageType: PageType }>`
+const Background = styled.div<{
+  theme: ColorTheme;
+  pageType: PageType;
+  mobile: boolean;
+}>`
   background-color: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.text};
   width: 100%;
   height: 100%;
   background-image: ${({ pageType }) =>
     `url(../assets/gradients/${gradientMap[pageType]}.svg)`};
-  background-size: 150%;
+  background-size: ${({ mobile }) => (mobile ? "150vh" : "150%")};
   background-attachment: fixed;
   background-position: center;
+  background-repeat: no-repeat;
 `;
 // const BackgroundGradient = styled.img`
 //   // TODO: This is for the future ^
@@ -43,10 +49,23 @@ const PageTemplate: React.FC<{ pageType: PageType; children: ReactNode }> = ({
       ? Colors[Theme.LIGHT]
       : Colors[Theme.DARK]
   );
+  const { width } = useViewportSize();
+
+  const [mobile, setMobile] = React.useState<boolean>(
+    width <= breakpoints.md && width !== 0
+  );
+
+  React.useEffect(() => {
+    if (width <= breakpoints.md && width !== 0) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  }, [width]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <Background theme={theme} pageType={pageType}>
+      <Background theme={theme} pageType={pageType} mobile={mobile}>
         <NavigationBar // TODO: Likely extrapolate the nav bar into a more general Component - this is fine for now though
           highlighted={pageType}
           theme={theme}
