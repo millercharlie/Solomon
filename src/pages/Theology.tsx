@@ -2,7 +2,7 @@ import { theologyData } from "@database/theologyData";
 import { AccountStatus, PageType } from "@libs/Types";
 import StandardPage from "@pages/StandardPage";
 
-const Theology: React.FC<any> = () => {
+const Theology: React.FC = () => {
   return (
     <StandardPage
       data={{

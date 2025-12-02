@@ -1,36 +1,35 @@
-import { loggedOutApologeticsData } from "@database/mockData";
-import { AccountStatus, PageType, type PageData } from "@libs/Types";
+import { allTopicPages } from "@database/mockTopics";
+import { AccountStatus, PageType } from "@libs/Types";
 import StandardPage from "@pages/StandardPage";
 import React from "react";
 import { useParams } from "react-router";
 
-const Topic: React.FC<any> = () => {
+/**
+ * Single Topic Page
+ * @returns {JSX.Element}
+ */
+const Topic: React.FC = () => {
   const params = useParams();
 
-  const data: PageData = {
-    title: "The Resurrection of Jesus",
-    description:
-      'Over 2,000 years ago, Jesus claimed to be the Messiah (Christ) of the world and the Son of God. There is a unanimous consensus among all scholars, Christian and not, that Jesus lived and claimed these titles.\n\nChristianity is unique among world religions in leveraging its founding basis entirely on a single historical event - the Resurrection of Jesus of Nazareth. Paul even writes in 1 Corinthians 14:15 that "if Christ has not been raised, our preaching is useless and so is [our] faith" \n\nBut, is this claim of the Resurrection true? Did Jesus really rise from the dead and conquer sin?',
-    pageType: PageType.TOPIC,
-    accountStatus: AccountStatus.GUEST,
-    rows: [],
-    sidebar: [],
-    needsHelp: false,
-  };
-
-  // TODO: The "topicName" will extract the data from the database. For now, it just uses mock data
-  React.useEffect(() => {
-    console.log(params);
-  }, [params]);
+  const data = React.useMemo(() => {
+    const topic = allTopicPages.find(
+      (topic) => topic.solomonLink === `topics/${params.topicName}` // TODO: Likely switch this to just 'topic/...'
+    );
+    if (!topic) {
+      throw new Error("Topic not found");
+    }
+    return topic;
+  }, [params.topicName]);
 
   return (
     <StandardPage
       data={{
+        _id: data._id,
         title: data.title,
         pageType: PageType.TOPIC,
         description: data.description,
         accountStatus: AccountStatus.GUEST,
-        rows: loggedOutApologeticsData.rows, // TODO: This is very temporary
+        rows: data.rows,
         sidebar: data.sidebar,
         needsHelp: data.needsHelp,
       }}

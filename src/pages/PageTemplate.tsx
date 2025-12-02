@@ -18,15 +18,15 @@ const Background = styled.div<{ theme: ColorTheme; pageType: PageType }>`
   background-attachment: fixed;
   background-position: center;
 `;
-const BackgroundGradient = styled.img`
-  // TODO: This is for the future ^
-  width: 100vw;
-  height: 100vw;
-  position: absolute;
-  top: 0;
-  user-select: none;
-  z-index: 0;
-`;
+// const BackgroundGradient = styled.img`
+//   // TODO: This is for the future ^
+//   width: 100vw;
+//   height: 100vw;
+//   position: absolute;
+//   top: 0;
+//   user-select: none;
+//   z-index: 0;
+// `;
 
 // TODO: Background Gradient should NOT be an SVG - it should be dynamically calculated
 

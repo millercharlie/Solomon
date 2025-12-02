@@ -105,14 +105,16 @@ export const ClassDemoCard: React.FC<{
     <ClassDemoContainer id={resource._id}>
       <VisibleContent>
         <MainContent>
-          <a href={resource.solomon_link}>
+          <a href={resource.solomonLink}>
             <StyledImage
               src={`/src/assets/images/${resource.image}`}
               alt={resource._id}
             />
           </a>
-          <Typography.Subtitle>{resource.name}</Typography.Subtitle>
-          <Typography.Paragraph>
+          <Typography.Subtitle style={{ marginTop: 2 }}>
+            {resource.name}
+          </Typography.Subtitle>
+          <Typography.Paragraph style={{ marginTop: 7 }}>
             {resource.shortDescription}
           </Typography.Paragraph>
           <BadgeRow>

@@ -4,7 +4,7 @@ import logogram from "@assets/logos/logogram.svg";
 import { sidebarData } from "@database/mockData";
 import Sidebar from "@components/Sidebar";
 
-import { Card, ClassDemoCard } from "@components/Cards";
+import { ClassDemoCard } from "@components/Cards";
 import { PageType, type DashboardData, type ResourceInfo } from "@libs/Types";
 import * as theme from "@libs/globals";
 import React from "react";

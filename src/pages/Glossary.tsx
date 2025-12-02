@@ -34,7 +34,7 @@ const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
  * Desktop Dashboard when the user is logged out.
  * @returns Desktop Dashboard
  */
-const Glossary: React.FC<any> = () => {
+const Glossary: React.FC = () => {
   const [selectedResource, setSelectedResource] =
     React.useState<ResourceInfo | null>(null);
 
@@ -49,7 +49,7 @@ const Glossary: React.FC<any> = () => {
         (item) =>
           item._id!.charAt(0).toLocaleLowerCase() === letter.toLocaleLowerCase()
       ) as ResourceInfo[],
-    [data]
+    []
   );
   const findAllTopicsFromLetter = React.useCallback<
     (letter: string) => ResourceInfo[]
@@ -59,7 +59,7 @@ const Glossary: React.FC<any> = () => {
         (item) =>
           item._id!.charAt(0).toLocaleLowerCase() === letter.toLocaleLowerCase()
       ) as ResourceInfo[],
-    [topics]
+    []
   );
 
   return (

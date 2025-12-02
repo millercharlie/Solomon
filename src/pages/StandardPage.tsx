@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
 
-import { Card, ClassDemoCard } from "@components/Cards";
+import { ClassDemoCard } from "@components/Cards";
 import {
   RowType,
   type ColorTheme,
@@ -23,6 +23,7 @@ const ContentBackground = styled.div<{ sidebarOpen: boolean }>`
   padding-left: 45px;
   padding-right: 45px;
   display: grid;
+  min-height: 100vh;
   grid-template-columns: ${({ sidebarOpen }) =>
     sidebarOpen ? "3fr 1fr" : "1000fr 1fr"};
   gap: 20px;
@@ -52,6 +53,7 @@ const CardRow = styled.div<{ columns: number }>`
       1,
       1fr
     ); // TODO: This is okay for now, but will immediately break once more resources are added
+    // TODO: This should be centered
   }
 `;
 
@@ -122,7 +124,7 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
                     <CardRow id={row._id} columns={sidebarOpen ? 3 : 4}>
                       {row.content.map((item) => (
                         <div id="all-links">
-                          <Anchor href={item.solomon_link} theme={theme}>
+                          <Anchor href={item.solomonLink} theme={theme}>
                             <Typography.RowHeading style={{ marginBottom: 0 }}>
                               {item.name}
                             </Typography.RowHeading>

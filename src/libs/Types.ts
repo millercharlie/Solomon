@@ -59,10 +59,6 @@ type Content = {
   link: string;
 };
 
-type ListContent = {
-  title: string;
-  content: ResourceInfo[];
-};
 /**
  * All data required for displaying a resource.
  */
@@ -70,8 +66,9 @@ export type ResourceInfo = {
   _id: string;
   name: string;
   image?: string;
-  solomon_link?: string;
+  solomonLink?: string;
   ministry?: string;
+  mainLink?: string; // TODO: Add this functionality with the new "EXTERNAL" Control
   type: ResourceType;
   shortDescription?: string;
   longDescription?: string;
@@ -81,7 +78,7 @@ export type ResourceInfo = {
   controls?: Controls[];
   badges: string[];
   mediaType?: string[]; // TODO: This might not be needed except for topics which can map through them
-  links: ResourceLink[];
+  links?: ResourceLink[];
 };
 
 // TODO: Clean up these types
@@ -99,7 +96,9 @@ export interface DashboardData {
 }
 
 export type PageData = {
+  _id: string;
   title: string;
+  solomonLink?: string; // TODO: This is likely temporary
   pageType: PageType;
   description?: string;
   accountStatus: AccountStatus;
@@ -114,6 +113,7 @@ export enum Controls {
   FULLSCREEN = "fullscreen",
   OPEN_PAGE = "open_page",
   DROPDOWN = "dropdown",
+  EXTERNAL_LINK = "EXTERNAL_LINK",
 }
 /**
  * Account Status

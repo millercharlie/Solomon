@@ -3,6 +3,7 @@
     "_id": "jesus_resurrection",
     "name": "The Resurrection of Jesus",
     "type": "topic",
+    "solomonLink": "topics/resurrection",
     "shortDescription": "Did Jesus really rise from the dead?",
     "longDescription": "Jesus of Nazareth is the most important figure in human history. He claimed to be the unique Son of God and the Messiah of the world. The Bible records accounts of his triumphant resurrection. But can a man really rise from the dead? Are the claims about Jesus's resurrection true?",
     "controls": ["open_page"],
@@ -36,6 +37,7 @@
   {
     "_id": "paul_the_apostle",
     "name": "Who was Paul the Apostle",
+    "solomonLink": "topics/paul",
     "type": "question",
     "shortDescription": "Describes the life and ministry of Saul of Tarsus (later Paul)",
     "longDescription": "Many claims have been made about the man Saul of Tarsus. Some hold that he was the \"inventor\" of Christianity, while others believe him to have been a secret Roman spy. But who was Saul of Tarsus really? Did he really have a miraculous conversion at Damascus? What did he (now Paul) actually write about?",
@@ -66,6 +68,7 @@
   {
     "_id": "synoptic_gospels",
     "name": "The Synoptic Gospels",
+    "solomonLink": "topics/synoptic_gospels",
     "type": "topic",
     "shortDescription": "Dives into the reliability and truth of Matthew, Mark, and Luke",
     "longDescription": "The Synoptic Gospels (Matthew, Mark, and Luke) are 1st century accounts that describe the life and ministry of Jesus of Nazareth. Some skeptical scholars question the truthfullness of the synoptics, largely from presuppositions about the Resurrection being false. But do their claims have any merit? Are there contradictions in the Synoptic Gospels? Were they really written by Matthew, Mark, and Luke?",
@@ -116,6 +119,7 @@
   {
     "_id": "daniel_prophecies",
     "name": "The Prophecies of Daniel",
+    "solomonLink": "topics/daniel_prophecies",
     "type": "topic",
     "shortDescription": "Dives into the reliability and truth of Matthew, Mark, and Luke",
     "longDescription": "The Synoptic Gospels (Matthew, Mark, and Luke) are 1st century accounts that describe the life and ministry of Jesus of Nazareth. Some skeptical scholars question the truthfullness of the synoptics, largely from presuppositions about the Resurrection being false. But do their claims have any merit? Are there contradictions in the Synoptic Gospels? Were they really written by Matthew, Mark, and Luke?",
@@ -164,8 +168,9 @@
     ]
   },
   {
-    "_id": "synoptic_gospels",
-    "name": "Whow as John the Apostle?",
+    "_id": "john_apostle",
+    "name": "Who was John the Apostle?",
+    "solomonLink": "topics/john_apostle",
     "type": "topic",
     "shortDescription": "Dives into the reliability and truth of Matthew, Mark, and Luke",
     "longDescription": "The Synoptic Gospels (Matthew, Mark, and Luke) are 1st century accounts that describe the life and ministry of Jesus of Nazareth. Some skeptical scholars question the truthfullness of the synoptics, largely from presuppositions about the Resurrection being false. But do their claims have any merit? Are there contradictions in the Synoptic Gospels? Were they really written by Matthew, Mark, and Luke?",
@@ -189,8 +194,9 @@
     ]
   },
   {
-    "_id": "synoptic_gospels",
+    "_id": "revelation",
     "name": "The Revelation",
+    "solomonLink": "topics/revelation",
     "type": "topic",
     "shortDescription": "Dives into the reliability and truth of Matthew, Mark, and Luke",
     "longDescription": "The Synoptic Gospels (Matthew, Mark, and Luke) are 1st century accounts that describe the life and ministry of Jesus of Nazareth. Some skeptical scholars question the truthfullness of the synoptics, largely from presuppositions about the Resurrection being false. But do their claims have any merit? Are there contradictions in the Synoptic Gospels? Were they really written by Matthew, Mark, and Luke?",
@@ -214,33 +220,9 @@
     ]
   },
   {
-    "_id": "synoptic_gospels",
+    "_id": "paul_letters",
     "name": "The Letters of Paul",
-    "type": "topic",
-    "shortDescription": "Dives into the reliability and truth of Matthew, Mark, and Luke",
-    "longDescription": "The Synoptic Gospels (Matthew, Mark, and Luke) are 1st century accounts that describe the life and ministry of Jesus of Nazareth. Some skeptical scholars question the truthfullness of the synoptics, largely from presuppositions about the Resurrection being false. But do their claims have any merit? Are there contradictions in the Synoptic Gospels? Were they really written by Matthew, Mark, and Luke?",
-    "controls": ["open_page"],
-    "badges": [
-      "topic",
-      "video",
-      "scholarly_article",
-      "article",
-      "book",
-      "apologetics",
-      "theology"
-    ],
-    "links": [
-      {
-        "platform": "YouTube",
-        "link": "https://youtube.com/playlist?list=PL1mr9ZTZb3TUDsgjzdyFz8f38YxV3QdX0&si=Cu7ZH5MqbqOr2LbV",
-        "displayText": "InspiringPhilosophy - The Reliability of the Gospels",
-        "icon": "playlist.svg"
-      }
-    ]
-  },
-  {
-    "_id": "synoptic_gospels",
-    "name": "The Destruction of the Temple of Jerusalem",
+    "solomonLink": "topics/paul_letters",
     "type": "topic",
     "shortDescription": "Dives into the reliability and truth of Matthew, Mark, and Luke",
     "longDescription": "The Synoptic Gospels (Matthew, Mark, and Luke) are 1st century accounts that describe the life and ministry of Jesus of Nazareth. Some skeptical scholars question the truthfullness of the synoptics, largely from presuppositions about the Resurrection being false. But do their claims have any merit? Are there contradictions in the Synoptic Gospels? Were they really written by Matthew, Mark, and Luke?",
@@ -291,9 +273,10 @@
   {
     "_id": "trinity",
     "name": "The Trinity",
+    "solomonLink": "topics/trinity",
     "type": "topic",
-    "shortDescription": "Dives into the reliability and truth of Matthew, Mark, and Luke",
-    "longDescription": "The Synoptic Gospels (Matthew, Mark, and Luke) are 1st century accounts that describe the life and ministry of Jesus of Nazareth. Some skeptical scholars question the truthfullness of the synoptics, largely from presuppositions about the Resurrection being false. But do their claims have any merit? Are there contradictions in the Synoptic Gospels? Were they really written by Matthew, Mark, and Luke?",
+    "shortDescription": "The Trinity is the true God in the form of three, co-equal persons.",
+    "longDescription": "The Trinity is the true God in the form of three, co-equal persons: the Father, the Son, and the Holy Spirit. It cannot be explained by human metaphors or worldly aspects, and each person of the Trinity is eternal, 100% God, and have different functions in the Bible. But, what exactly is the Trinity? Is it possible to wrap our heads around the nature of God?",
     "controls": ["open_page"],
     "badges": [
       "topic",
@@ -301,7 +284,6 @@
       "scholarly_article",
       "article",
       "book",
-      "apologetics",
       "theology"
     ],
     "links": [

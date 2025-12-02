@@ -1,3 +1,4 @@
+import { trinity } from "@database/mockTopics";
 import {
   AccountStatus,
   Controls,
@@ -18,7 +19,7 @@ export const resurrectionOfJesus: ResourceInfo = {
   type: ResourceType.TOPIC,
   shortDescription: "Did Jesus really rise from the dead?",
   favorite: true,
-  solomon_link: "topics/resurrection",
+  solomonLink: "topics/resurrection",
   controls: [Controls.OPEN_PAGE],
   badges: [
     "topic",
@@ -325,6 +326,184 @@ export const apologeticsSidebar: SidebarLink[] = [
   },
 ];
 
+export const gotQuestions: ResourceInfo = {
+  _id: "got_questions",
+  name: "GotQuestions.org",
+  image: "got_questions.png",
+  mainLink: "https://www.gotquestions.org",
+  type: ResourceType.MINISTRY,
+  shortDescription: "Website housing Bible commentaries and explainers.",
+  controls: [Controls.EXTERNAL_LINK],
+  badges: ["website", "theology", "commentary"],
+};
+export const williamLaneCraig: ResourceInfo = {
+  _id: "william_lane_craig",
+  name: "William Lane Craig",
+  image: "william_lane_craig.png",
+  type: ResourceType.SCHOLAR,
+  shortDescription:
+    "Reformed Theologian focusing on apologetics, debates, and more",
+  controls: [Controls.FULLSCREEN],
+  badges: ["video", "website", "apologetics", "theology"],
+  mediaType: [],
+  links: [],
+};
+export const ntWright: ResourceInfo = {
+  _id: "nt_wright",
+  name: "N.T. Wright",
+  image: "nt_wright.png",
+  type: ResourceType.SCHOLAR,
+  shortDescription: "[BIO HERE]",
+  controls: [Controls.FULLSCREEN],
+  badges: ["website", "book", "apologetics", "theology"],
+  links: [],
+};
+export const csLewis: ResourceInfo = {
+  _id: "cs_lewis",
+  name: "C.S. Lewis",
+  image: "cs_lewis.png",
+  type: ResourceType.SCHOLAR,
+  shortDescription: "[BIO HERE]",
+  controls: [Controls.FULLSCREEN],
+  badges: ["website", "debate", "book", "apologetics", "theology"],
+  links: [],
+};
+export const gavinOrtlund: ResourceInfo = {
+  _id: "gavin_ortlund",
+  name: "Truth Unites with Gavin Ortlund",
+  image: "truth_unites.png",
+  type: ResourceType.CREATOR,
+  shortDescription:
+    "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
+  longDescription:
+    "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
+  favorite: true,
+  controls: [Controls.FULLSCREEN, Controls.DROPDOWN],
+  recentContent: [
+    {
+      _id: "go_v1",
+      title: "Did Jesus Descend into Hell?",
+      description:
+        "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
+      thumbnail: "go_v1.png",
+      badges: ["question"],
+      link: "",
+    },
+    {
+      _id: "go_v2",
+      title: "Should Christians use Profanity?",
+      description:
+        "In this video, Gavin Ortlund explores what it means that Jesus ‘descended to hell’.",
+      thumbnail: "go_v2.png",
+      badges: ["question"],
+      link: "",
+    },
+    {
+      _id: "go_v3",
+      title: "Craig and Ortlund Clash on the Eucharist",
+      description:
+        "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
+      thumbnail: "go_v3.png",
+      badges: ["theology"],
+      link: "",
+    },
+  ],
+  recommendedContent: [
+    {
+      _id: "go_v2",
+      title: "Should Christians use Profanity?",
+      description:
+        "In this video, Gavin Ortlund explores what it means that Jesus ‘descended to hell’.",
+      thumbnail: "go_v2.png",
+      badges: ["question"],
+      link: "",
+    },
+    {
+      _id: "go_v1",
+      title: "Did Jesus Descend into Hell?",
+      description:
+        "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
+      thumbnail: "go_v1.png",
+      badges: ["question"],
+      link: "",
+    },
+    {
+      _id: "go_v3",
+      title: "Craig and Ortlund Clash on the Eucharist",
+      description:
+        "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
+      thumbnail: "go_v3.png",
+      badges: ["theology"],
+      link: "",
+    },
+  ],
+  badges: ["video", "podcast", "website", "apologetics", "theology"],
+  mediaType: [],
+  links: [
+    {
+      platform: "YouTube",
+      link: "https://www.youtube.com/@TruthUnites",
+      displayText: "youtube/truthunites",
+      icon: "youtube.svg",
+      priority: true,
+    },
+    {
+      platform: "Personal Website",
+      link: "https://truthunites.org",
+      icon: "website.svg",
+      displayText: "truthunites.org",
+    },
+    {
+      platform: "X",
+      link: "twitter.com/gavinortlund",
+      icon: "x.svg",
+      displayText: "x/gavinortlund",
+    },
+    {
+      platform: "Instagram",
+      link: "instagram.com/truth.unites",
+      icon: "instagram.svg",
+      displayText: "instagram/truth.unites",
+    },
+    {
+      platform: "Books",
+      link: "truthunites.org/mypublications",
+      icon: "closed_book.svg",
+      displayText: "truthunites.org/mypublications",
+    },
+    {
+      platform: "Spotify",
+      link: "",
+      icon: "spotify.svg",
+      displayText: "spotify/truth-unites",
+    },
+    {
+      platform: "Apple Podcasts",
+      link: "",
+      icon: "applepodcasts.svg",
+      displayText: "apple-podcasts/truth-unites",
+    },
+    {
+      platform: "Patreon",
+      link: "",
+      icon: "patreon.svg",
+      displayText: "patreon/truthunites",
+    },
+    {
+      platform: "Donate",
+      link: "",
+      icon: "youtube.svg",
+      displayText: "donations",
+    },
+    {
+      platform: "Facebook",
+      link: "facebook.com/TruthUnitesPage",
+      icon: "facebook.svg",
+      displayText: "facebook/TruthUnitesPage",
+    },
+  ],
+};
+
 /**
  * Mock data to be used on the dashboard for a single row of cards.
  */
@@ -332,19 +511,7 @@ const dashboardRowData1: RowData = {
   _id: "apologetics_beginners",
   name: "Apologetics for Beginners",
   content: [
-    {
-      _id: "william_lane_craig",
-      name: "William Lane Craig",
-      image: "william_lane_craig.png",
-      type: ResourceType.SCHOLAR,
-      shortDescription:
-        "Reformed Theologian focusing on apologetics, debates, and more",
-      favorite: false,
-      controls: [Controls.FULLSCREEN],
-      badges: ["video", "website", "apologetics", "theology"],
-      mediaType: [],
-      links: [],
-    },
+    williamLaneCraig,
     {
       _id: "mike_winger",
       name: "Mike Winger",
@@ -376,141 +543,7 @@ const dashboardRowData2: RowData = {
   _id: "theology_intro",
   name: "Introduction to Theology",
   content: [
-    {
-      _id: "gavin_ortlund",
-      name: "Truth Unites with Gavin Ortlund",
-      image: "truth_unites.png",
-      type: ResourceType.CREATOR,
-      shortDescription:
-        "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
-      longDescription:
-        "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
-      favorite: true,
-      controls: [Controls.FULLSCREEN, Controls.DROPDOWN],
-      recentContent: [
-        {
-          _id: "go_v1",
-          title: "Did Jesus Descend into Hell?",
-          description:
-            "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
-          thumbnail: "go_v1.png",
-          badges: ["question"],
-          link: "",
-        },
-        {
-          _id: "go_v2",
-          title: "Should Christians use Profanity?",
-          description:
-            "In this video, Gavin Ortlund explores what it means that Jesus ‘descended to hell’.",
-          thumbnail: "go_v2.png",
-          badges: ["question"],
-          link: "",
-        },
-        {
-          _id: "go_v3",
-          title: "Craig and Ortlund Clash on the Eucharist",
-          description:
-            "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
-          thumbnail: "go_v3.png",
-          badges: ["theology"],
-          link: "",
-        },
-      ],
-      recommendedContent: [
-        {
-          _id: "go_v2",
-          title: "Should Christians use Profanity?",
-          description:
-            "In this video, Gavin Ortlund explores what it means that Jesus ‘descended to hell’.",
-          thumbnail: "go_v2.png",
-          badges: ["question"],
-          link: "",
-        },
-        {
-          _id: "go_v1",
-          title: "Did Jesus Descend into Hell?",
-          description:
-            "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
-          thumbnail: "go_v1.png",
-          badges: ["question"],
-          link: "",
-        },
-        {
-          _id: "go_v3",
-          title: "Craig and Ortlund Clash on the Eucharist",
-          description:
-            "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
-          thumbnail: "go_v3.png",
-          badges: ["theology"],
-          link: "",
-        },
-      ],
-      badges: ["video", "podcast", "website", "apologetics", "theology"],
-      mediaType: [],
-      links: [
-        {
-          platform: "YouTube",
-          link: "https://www.youtube.com/@TruthUnites",
-          displayText: "youtube/truthunites",
-          icon: "youtube.svg",
-          priority: true,
-        },
-        {
-          platform: "Personal Website",
-          link: "https://truthunites.org",
-          icon: "website.svg",
-          displayText: "truthunites.org",
-        },
-        {
-          platform: "X",
-          link: "twitter.com/gavinortlund",
-          icon: "x.svg",
-          displayText: "x/gavinortlund",
-        },
-        {
-          platform: "Instagram",
-          link: "instagram.com/truth.unites",
-          icon: "instagram.svg",
-          displayText: "instagram/truth.unites",
-        },
-        {
-          platform: "Books",
-          link: "truthunites.org/mypublications",
-          icon: "closed_book.svg",
-          displayText: "truthunites.org/mypublications",
-        },
-        {
-          platform: "Spotify",
-          link: "",
-          icon: "spotify.svg",
-          displayText: "spotify/truth-unites",
-        },
-        {
-          platform: "Apple Podcasts",
-          link: "",
-          icon: "applepodcasts.svg",
-          displayText: "apple-podcasts/truth-unites",
-        },
-        {
-          platform: "Patreon",
-          link: "",
-          icon: "patreon.svg",
-          displayText: "patreon/truthunites",
-        },
-        {
-          platform: "Donate",
-          link: "",
-          icon: "youtube.svg",
-          displayText: "donations",
-        },
-        {
-          platform: "Facebook",
-          link: "facebook.com/TruthUnitesPage",
-          icon: "facebook.svg",
-          displayText: "facebook/TruthUnitesPage",
-        },
-      ],
-    },
+    gavinOrtlund,
     {
       _id: "john_lennox",
       name: "John Lennox",
@@ -524,28 +557,7 @@ const dashboardRowData2: RowData = {
       mediaType: [],
       links: [],
     },
-    {
-      _id: "trinity_explained",
-      name: "What is the Trinity?",
-      image: "trinity.png",
-      type: ResourceType.QUESTION,
-      shortDescription:
-        "Discusses the true nature of God, in the form of three co-equal persons in the Trinity",
-      favorite: true,
-      controls: [Controls.FULLSCREEN],
-      badges: [
-        "topic",
-        "question",
-        "video",
-        "scholarly_article",
-        "article",
-        "documentary",
-        "book",
-        "theology",
-      ],
-      mediaType: [],
-      links: [],
-    },
+    trinity,
   ],
   type: RowType.CARD,
 };
@@ -553,29 +565,7 @@ const dashboardRowData3: RowData = {
   _id: "topics_new_believers",
   name: "Topics for New Believers",
   content: [
-    {
-      _id: "jesus_resurrection",
-      name: "The Resurrection of Jesus",
-      image: "resurrection.png",
-      type: ResourceType.TOPIC,
-      shortDescription: "Did Jesus really rise from the dead?",
-      favorite: true,
-      controls: [Controls.OPEN_PAGE],
-      badges: [
-        "topic",
-        "question",
-        "video",
-        "website",
-        "scholarly_article",
-        "article",
-        "documentary",
-        "book",
-        "apologetics",
-        "theology",
-      ],
-      mediaType: [],
-      links: [],
-    },
+    resurrectionOfJesus,
     {
       _id: "gospels_reliability",
       name: "The Reliability of the Gospels",
@@ -605,6 +595,38 @@ const dashboardRowData3: RowData = {
   ],
   type: RowType.CARD,
 };
+const dashboardRowData4: RowData = {
+  _id: "bible_commentary",
+  name: "High-Level Bible Commentary",
+  content: [
+    gotQuestions,
+    {
+      _id: "got_uq",
+      name: "Mike Winger",
+      image: "bible_thinker.png",
+      type: ResourceType.CREATOR,
+      shortDescription: '"Think Biblically About Everything"',
+      favorite: false,
+      controls: [Controls.FULLSCREEN],
+      badges: ["video", "podcast", "apologetics", "theology"],
+      mediaType: [],
+      links: [],
+    },
+    resurrectionOfJesus,
+    {
+      _id: "inspiring_philosophy",
+      name: "Michael Jones",
+      image: "inspiring_philosophy.png",
+      type: ResourceType.CREATOR,
+      shortDescription: '"Helping You Grow Your Faith"',
+      favorite: false,
+      controls: [Controls.FULLSCREEN, Controls.DROPDOWN],
+      badges: ["video", "podcast", "apologetics", "theology"],
+      links: [],
+    },
+  ],
+  type: RowType.CARD,
+};
 
 const apologeticsRowData1: RowData = {
   _id: "apologetics_row1",
@@ -615,7 +637,7 @@ const apologeticsRowData1: RowData = {
       type: ResourceType.TOPIC,
       shortDescription: "Arguments to support the existence of God",
       badges: [],
-      solomon_link: "topics/existence_of_god",
+      solomonLink: "topics/existence_of_god",
       mediaType: [],
       links: [
         {
@@ -793,9 +815,15 @@ const apologeticsRowData3: RowData = {
 
 export const loggedOutDashboardData: DashboardData = {
   accountStatus: AccountStatus.GUEST,
-  rows: [dashboardRowData1, dashboardRowData2, dashboardRowData3],
+  rows: [
+    dashboardRowData2,
+    dashboardRowData4,
+    dashboardRowData1,
+    dashboardRowData3,
+  ],
 };
 export const loggedOutApologeticsData: PageData = {
+  _id: "apologetics_page",
   title: "Apologetics",
   pageType: PageType.APOLOGETICS,
   accountStatus: AccountStatus.GUEST,

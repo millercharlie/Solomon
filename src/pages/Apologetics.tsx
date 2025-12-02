@@ -5,7 +5,7 @@ import {
 import { AccountStatus, PageType } from "@libs/Types";
 import StandardPage from "@pages/StandardPage";
 
-const Apologetics: React.FC<any> = () => {
+const Apologetics: React.FC = () => {
   return (
     <StandardPage
       data={{

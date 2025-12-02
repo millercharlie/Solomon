@@ -2,7 +2,7 @@ import { commentaryData } from "@database/commentaryData";
 import { AccountStatus, PageType } from "@libs/Types";
 import StandardPage from "@pages/StandardPage";
 
-const BibleCommentary: React.FC<any> = () => {
+const BibleCommentary: React.FC = () => {
   return (
     <StandardPage
       data={{

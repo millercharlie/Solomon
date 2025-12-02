@@ -19,7 +19,7 @@ const StyledIcon = styled(Icon)`
   right: 30px;
 `;
 
-const NotFound: React.FC<any> = () => {
+const NotFound: React.FC = () => {
   return (
     <PageTemplate pageType={PageType.NOTFOUND}>
       <Container>

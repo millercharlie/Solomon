@@ -11,7 +11,7 @@ const Container = styled.div`
   gap: 6px;
   z-index: 2;
 `;
-const ActionButton = styled(MediumIcon)<{ active?: boolean }>`
+const ActionButton = styled(MediumIcon)<{ active?: boolean; rotate?: number }>`
   width: fit-content;
   height: fit-content;
   display: flex;
@@ -24,12 +24,14 @@ const ActionButton = styled(MediumIcon)<{ active?: boolean }>`
   border-radius: 50%;
   overflow: visible;
   cursor: pointer;
-  transform: ${({ active }) => (active ? "rotate(180deg)" : undefined)};
+  transform: ${({ active }) => (active ? "rotate(180deg)" : undefined)}
+    ${({ rotate }) => rotate && `rotate(${rotate}deg)`};
   :hover {
     transform: ${({ active }) => (active ? "rotate(180deg)" : undefined)}
       scale(110%);
   }
 `;
+
 const LargeActionButton = styled(LargeIcon)<{ active?: boolean }>`
   display: flex;
   justify-content: center;
@@ -99,11 +101,13 @@ const ControlButtons: React.FC<{
             return large ? (
               <></>
             ) : (
-              <ActionButton
-                src={dropdownArrow}
-                onClick={() => setDropdownActive(!dropdownActive)}
-                active={dropdownActive}
-              />
+              resource.recentContent && ( // TODO: This is temporary until all data is filled(
+                <ActionButton
+                  src={dropdownArrow}
+                  onClick={() => setDropdownActive(!dropdownActive)}
+                  active={dropdownActive}
+                />
+              )
             );
           case Controls.FULLSCREEN:
             return large ? (
@@ -113,27 +117,45 @@ const ControlButtons: React.FC<{
                 onClick={() => setSelectedResource(null)}
               />
             ) : (
-              <ActionButton
-                src="/src/assets/arrows/expand_arrows.svg"
-                hover={true}
-                onClick={() => {
-                  resource
-                    ? setSelectedResource(resource)
-                    : setSelectedResource(null); // TODO: This doesn't work
-                }}
-              />
+              (resource.recentContent || resource.recommendedContent) && ( // TODO: This is temporary until all data is filled(
+                <ActionButton
+                  src="/src/assets/arrows/expand_arrows.svg"
+                  hover={true}
+                  onClick={() =>
+                    resource
+                      ? setSelectedResource(resource)
+                      : setSelectedResource(null)
+                  }
+                />
+              )
             );
           case Controls.OPEN_PAGE:
             return large ? (
               <></>
             ) : (
-              <a href={resource.solomon_link}>
-                <ActionButton
-                  src="/src/assets/arrows/up_down_arrow.svg"
-                  hover={true}
-                  style={{ transform: "rotate(45deg)" }} // TODO: This appears to screw up the hover for some reason
-                />
-              </a>
+              resource.solomonLink && ( // TODO: This is temporary until all data is filled
+                <a href={resource.solomonLink}>
+                  <ActionButton
+                    src="/src/assets/arrows/up_down_arrow.svg"
+                    hover={true}
+                    rotate={45}
+                  />
+                </a>
+              )
+            );
+          case Controls.EXTERNAL_LINK:
+            return large ? (
+              <></>
+            ) : (
+              resource.mainLink && ( // TODO: This is temporary until all data is filled
+                <a href={resource.mainLink}>
+                  <ActionButton
+                    src="/src/assets/arrows/up_down_arrow.svg"
+                    hover={true}
+                    rotate={45}
+                  />
+                </a>
+              )
             );
         }
       })}

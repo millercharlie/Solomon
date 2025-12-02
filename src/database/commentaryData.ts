@@ -160,7 +160,7 @@ const row2: RowData = {
       type: ResourceType.TOPIC,
       badges: [],
       links: [],
-      solomon_link: "topics/old_testament",
+      solomonLink: "topics/old_testament",
       controls: [Controls.OPEN_PAGE],
     },
     {
@@ -174,7 +174,7 @@ const row2: RowData = {
       type: ResourceType.TOPIC,
       badges: [],
       links: [],
-      solomon_link: "topics/new_testament",
+      solomonLink: "topics/new_testament",
       controls: [Controls.OPEN_PAGE],
     },
     {
@@ -186,7 +186,7 @@ const row2: RowData = {
       type: ResourceType.TOPIC,
       badges: [],
       links: [],
-      solomon_link: "topics/gospels",
+      solomonLink: "topics/gospels",
       controls: [Controls.OPEN_PAGE],
     },
   ],
