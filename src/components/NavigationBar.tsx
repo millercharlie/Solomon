@@ -121,7 +121,7 @@ export const NavigationBar: React.FC<{
           <StyledLink to="/">
             <NavItem theme={theme}>
               <LogoImage
-                src="/src/assets/logos/logo.svg"
+                src="../assets/logos/logo.svg"
                 width={32}
                 height={32}
               />
@@ -145,8 +145,8 @@ export const NavigationBar: React.FC<{
         <Icon
           src={
             theme._id === Theme.DARK
-              ? "/src/assets/icons/sun.svg" // TODO: There may be a better way to do this rather than hardcoding the path
-              : "/src/assets/icons/moon.svg"
+              ? "../assets/icons/sun.svg" // TODO: There may be a better way to do this rather than hardcoding the path
+              : "../assets/icons/moon.svg"
           }
           hover={true}
           width={24}
@@ -156,7 +156,7 @@ export const NavigationBar: React.FC<{
         <Button text="Log In" theme={theme} />
         {mobile && (
           <DarkModeToggle
-            src="/src/assets/icons/hamburger_menu.svg"
+            src="../assets/icons/hamburger_menu.svg"
             hover={true}
             width={24}
             height={24}

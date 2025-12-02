@@ -60,7 +60,7 @@ const Link: React.FC<{ item: ResourceLink }> = ({ item }) => {
           : item.displayText}
       </Typography.SidebarLink>
       {item.link !== undefined && item.link !== null && item.link !== "" && (
-        <Icon src="/src/assets/arrows/squarrow.svg" />
+        <Icon src="../assets/arrows/squarrow.svg" />
       )}
     </Container>
   );

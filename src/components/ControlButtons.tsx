@@ -89,8 +89,8 @@ const ControlButtons: React.FC<{
         <FavoritedStar
           src={
             favorite
-              ? "/src/assets/icons/favorited.png"
-              : "/src/assets/icons/not_favorited.png"
+              ? "../assets/icons/favorited.png"
+              : "../assets/icons/not_favorited.png"
           }
           large={large}
         />
@@ -112,14 +112,14 @@ const ControlButtons: React.FC<{
           case Controls.FULLSCREEN:
             return large ? (
               <LargeActionButton
-                src="/src/assets/arrows/collapse.svg"
+                src="../assets/arrows/collapse.svg"
                 hover={true}
                 onClick={() => setSelectedResource(null)}
               />
             ) : (
               (resource.recentContent || resource.recommendedContent) && ( // TODO: This is temporary until all data is filled(
                 <ActionButton
-                  src="/src/assets/arrows/expand_arrows.svg"
+                  src="../assets/arrows/expand_arrows.svg"
                   hover={true}
                   onClick={() =>
                     resource
@@ -136,7 +136,7 @@ const ControlButtons: React.FC<{
               resource.solomonLink && ( // TODO: This is temporary until all data is filled
                 <a href={resource.solomonLink}>
                   <ActionButton
-                    src="/src/assets/arrows/up_down_arrow.svg"
+                    src="../assets/arrows/up_down_arrow.svg"
                     hover={true}
                     rotate={45}
                   />
@@ -150,7 +150,7 @@ const ControlButtons: React.FC<{
               resource.mainLink && ( // TODO: This is temporary until all data is filled
                 <a href={resource.mainLink}>
                   <ActionButton
-                    src="/src/assets/arrows/up_down_arrow.svg"
+                    src="../assets/arrows/up_down_arrow.svg"
                     hover={true}
                     rotate={45}
                   />
