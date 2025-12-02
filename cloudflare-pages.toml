@@ -1,0 +1,9 @@
+[[headers]]
+for = "/assets/*.svg"
+[headers.values]
+Content-Type = "image/svg+xml"
+
+[[headers]]
+for = "/assets/*.json"
+[headers.values]
+Content-Type = "application/json"
