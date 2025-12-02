@@ -3,504 +3,125 @@
     "_id": "gavin_ortlund",
     "name": "Truth Unites with Gavin Ortlund",
     "type": "creator",
+    "mainLink": "https://truthunites.org/about-gavin-ortlund/",
     "shortDescription": "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
     "longDescription": "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
     "favorite": true,
     "controls": ["fullscreen", "dropdown"],
-    "recentContent": [
-      {
-        "_id": "go_v1",
-        "title": "Did Jesus Descend into Hell?",
-        "description": "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
-        "thumbnail": "go_v1.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v2",
-        "title": "Should Christians use Profanity?",
-        "description": "In this video, Gavin Ortlund explores what it means that Jesus 'descended to hell'.",
-        "thumbnail": "go_v2.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v3",
-        "title": "Craig and Ortlund Clash on the Eucharist",
-        "description": "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
-        "thumbnail": "go_v3.png",
-        "badges": ["theology"],
-        "link": ""
-      }
-    ],
-    "recommendedContent": [
-      {
-        "_id": "go_v2",
-        "title": "Should Christians use Profanity?",
-        "description": "In this video, Gavin Ortlund explores what it means that Jesus 'descended to hell'.",
-        "thumbnail": "go_v2.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v1",
-        "title": "Did Jesus Descend into Hell?",
-        "description": "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
-        "thumbnail": "go_v1.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v3",
-        "title": "Craig and Ortlund Clash on the Eucharist",
-        "description": "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
-        "thumbnail": "go_v3.png",
-        "badges": ["theology"],
-        "link": ""
-      }
-    ],
-    "badges": ["video", "podcast", "website", "apologetics", "theology"],
+    "badges": ["video", "podcast", "website", "apologetics", "theology"]
+  },
+  {
+    "_id": "got_questions",
+    "name": "GotQuestions.org",
+    "image": "got_questions.png",
+    "mainLink": "https://www.gotquestions.org",
+    "type": "ministry",
+    "shortDescription": "Website housing Bible commentaries and explainers.",
+    "controls": ["external_link"],
+    "badges": ["website", "theology", "commentary"]
+  },
+  {
+    "_id": "william_lane_craig",
+    "name": "William Lane Craig",
+    "image": "william_lane_craig.png",
+    "mainLink": "https://www.reasonablefaith.org/william-lane-craig",
+    "type": "scholar",
+    "shortDescription": "Reformed Theologian focusing on apologetics, debates, and more",
+    "controls": ["fullscreen"],
+    "badges": ["video", "website", "apologetics", "theology"],
     "mediaType": [],
-    "links": [
-      {
-        "platform": "YouTube",
-        "link": "https://www.youtube.com/@TruthUnites",
-        "displayText": "youtube/truthunites",
-        "icon": "youtube.svg",
-        "priority": true
-      },
-      {
-        "platform": "Personal Website",
-        "link": "https://truthunites.org",
-        "icon": "website.svg",
-        "displayText": "truthunites.org"
-      },
-      {
-        "platform": "X",
-        "link": "twitter.com/gavinortlund",
-        "icon": "x.svg",
-        "displayText": "x/gavinortlund"
-      },
-      {
-        "platform": "Instagram",
-        "link": "instagram.com/truth.unites",
-        "icon": "instagram.svg",
-        "displayText": "instagram/truth.unites"
-      },
-      {
-        "platform": "Books",
-        "link": "truthunites.org/mypublications",
-        "icon": "closed_book.svg",
-        "displayText": "truthunites.org/mypublications"
-      },
-      {
-        "platform": "Spotify",
-        "link": "",
-        "icon": "spotify.svg",
-        "displayText": "spotify/truth-unites"
-      },
-      {
-        "platform": "Apple Podcasts",
-        "link": "",
-        "icon": "applepodcasts.svg",
-        "displayText": "apple-podcasts/truth-unites"
-      },
-      {
-        "platform": "Patreon",
-        "link": "",
-        "icon": "patreon.svg",
-        "displayText": "patreon/truthunites"
-      },
-      {
-        "platform": "Donate",
-        "link": "",
-        "icon": "youtube.svg",
-        "displayText": "donations"
-      },
-      {
-        "platform": "Facebook",
-        "link": "facebook.com/TruthUnitesPage",
-        "icon": "facebook.svg",
-        "displayText": "facebook/TruthUnitesPage"
-      }
-    ]
+    "links": []
+  },
+  {
+    "_id": "martin_luther",
+    "name": "Martin Luther",
+    "image": "martin_luther.png",
+    "type": "scholar",
+    "shortDescription": "German priest responsible for the Protestant Reformation",
+    "controls": ["fullscreen"],
+    "badges": ["theology", "historical_figure"],
+    "mediaType": []
+  },
+  {
+    "_id": "nt_wright",
+    "name": "N.T. Wright",
+    "image": "nt_wright.png",
+    "mainLink": "https://theascentleader.org/n-t-wright/",
+    "type": "scholar",
+    "shortDescription": "Nicholas Thomas (N.T.) Wright is a New Testament scholar and Anglican bishop",
+    "controls": ["fullscreen"],
+    "badges": ["website", "book", "apologetics", "theology", "church"],
+    "links": []
+  },
+  {
+    "_id": "cs_lewis",
+    "name": "C.S. Lewis",
+    "image": "cs_lewis.png",
+    "mainLink": "https://www.cslewis.com/us/",
+    "type": "scholar",
+    "shortDescription": "Clive Staples (C.S.) Lewis was a British scholar and Anglican theologian",
+    "controls": ["fullscreen"],
+    "badges": ["website", "debate", "book", "apologetics", "theology"]
+  },
+  {
+    "_id": "john_lennox",
+    "name": "John Lennox",
+    "image": "john_lennox.png",
+    "mainLink": "https://www.johnlennox.org/",
+    "type": "scholar",
+    "shortDescription": "Northern Irish theologian known for his public debates with Atheists",
+    "controls": ["fullscreen", "dropdown"],
+    "badges": ["video", "book", "theology", "apologetics"]
   },
   {
     "_id": "mike_winger",
-    "name": "BibleThinker - Mike Winger",
+    "name": "Mike Winger",
+    "image": "bible_thinker.png",
+    "mainLink": "https://www.biblethinker.org",
     "type": "creator",
-    "shortDescription": "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
-    "longDescription": "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
-    "favorite": true,
-    "controls": ["fullscreen", "dropdown"],
-    "recentContent": [
-      {
-        "_id": "go_v1",
-        "title": "Did Jesus Descend into Hell?",
-        "description": "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
-        "thumbnail": "go_v1.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v2",
-        "title": "Should Christians use Profanity?",
-        "description": "In this video, Gavin Ortlund explores what it means that Jesus 'descended to hell'.",
-        "thumbnail": "go_v2.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v3",
-        "title": "Craig and Ortlund Clash on the Eucharist",
-        "description": "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
-        "thumbnail": "go_v3.png",
-        "badges": ["theology"],
-        "link": ""
-      }
-    ],
-    "recommendedContent": [
-      {
-        "_id": "go_v2",
-        "title": "Should Christians use Profanity?",
-        "description": "In this video, Gavin Ortlund explores what it means that Jesus 'descended to hell'.",
-        "thumbnail": "go_v2.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v1",
-        "title": "Did Jesus Descend into Hell?",
-        "description": "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
-        "thumbnail": "go_v1.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v3",
-        "title": "Craig and Ortlund Clash on the Eucharist",
-        "description": "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
-        "thumbnail": "go_v3.png",
-        "badges": ["theology"],
-        "link": ""
-      }
-    ],
-    "badges": ["video", "podcast", "website", "apologetics", "theology"],
-    "mediaType": [],
-    "links": [
-      {
-        "platform": "YouTube",
-        "link": "https://www.youtube.com/@TruthUnites",
-        "displayText": "youtube/truthunites",
-        "icon": "youtube.svg",
-        "priority": true
-      },
-      {
-        "platform": "Personal Website",
-        "link": "https://truthunites.org",
-        "icon": "website.svg",
-        "displayText": "truthunites.org"
-      },
-      {
-        "platform": "X",
-        "link": "twitter.com/gavinortlund",
-        "icon": "x.svg",
-        "displayText": "x/gavinortlund"
-      },
-      {
-        "platform": "Instagram",
-        "link": "instagram.com/truth.unites",
-        "icon": "instagram.svg",
-        "displayText": "instagram/truth.unites"
-      },
-      {
-        "platform": "Books",
-        "link": "truthunites.org/mypublications",
-        "icon": "closed_book.svg",
-        "displayText": "truthunites.org/mypublications"
-      },
-      {
-        "platform": "Spotify",
-        "link": "",
-        "icon": "spotify.svg",
-        "displayText": "spotify/truth-unites"
-      },
-      {
-        "platform": "Apple Podcasts",
-        "link": "",
-        "icon": "applepodcasts.svg",
-        "displayText": "apple-podcasts/truth-unites"
-      },
-      {
-        "platform": "Patreon",
-        "link": "",
-        "icon": "patreon.svg",
-        "displayText": "patreon/truthunites"
-      },
-      {
-        "platform": "Donate",
-        "link": "",
-        "icon": "youtube.svg",
-        "displayText": "donations"
-      },
-      {
-        "platform": "Facebook",
-        "link": "facebook.com/TruthUnitesPage",
-        "icon": "facebook.svg",
-        "displayText": "facebook/TruthUnitesPage"
-      }
-    ]
+    "shortDescription": "\"Think Biblically About Everything\"",
+    "controls": ["fullscreen"],
+    "badges": ["video", "podcast", "apologetics", "theology"]
   },
   {
-    "_id": "wes_huff",
+    "_id": "wesley_huff",
     "name": "Wesley (Wes) Huff",
+    "image": "wesley_huff.png",
+    "mainLink": "https://www.wesleyhuff.com/",
     "type": "creator",
-    "shortDescription": "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
-    "longDescription": "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
-    "favorite": true,
+    "shortDescription": "Teach. Reach. Encourage. Equip.",
     "controls": ["fullscreen", "dropdown"],
-    "recentContent": [
-      {
-        "_id": "go_v1",
-        "title": "Did Jesus Descend into Hell?",
-        "description": "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
-        "thumbnail": "go_v1.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v2",
-        "title": "Should Christians use Profanity?",
-        "description": "In this video, Gavin Ortlund explores what it means that Jesus 'descended to hell'.",
-        "thumbnail": "go_v2.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v3",
-        "title": "Craig and Ortlund Clash on the Eucharist",
-        "description": "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
-        "thumbnail": "go_v3.png",
-        "badges": ["theology"],
-        "link": ""
-      }
-    ],
-    "recommendedContent": [
-      {
-        "_id": "go_v2",
-        "title": "Should Christians use Profanity?",
-        "description": "In this video, Gavin Ortlund explores what it means that Jesus 'descended to hell'.",
-        "thumbnail": "go_v2.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v1",
-        "title": "Did Jesus Descend into Hell?",
-        "description": "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
-        "thumbnail": "go_v1.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v3",
-        "title": "Craig and Ortlund Clash on the Eucharist",
-        "description": "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
-        "thumbnail": "go_v3.png",
-        "badges": ["theology"],
-        "link": ""
-      }
-    ],
-    "badges": ["video", "podcast", "website", "apologetics", "theology"],
-    "mediaType": [],
-    "links": [
-      {
-        "platform": "YouTube",
-        "link": "https://www.youtube.com/@TruthUnites",
-        "displayText": "youtube/truthunites",
-        "icon": "youtube.svg",
-        "priority": true
-      },
-      {
-        "platform": "Personal Website",
-        "link": "https://truthunites.org",
-        "icon": "website.svg",
-        "displayText": "truthunites.org"
-      },
-      {
-        "platform": "X",
-        "link": "twitter.com/gavinortlund",
-        "icon": "x.svg",
-        "displayText": "x/gavinortlund"
-      },
-      {
-        "platform": "Instagram",
-        "link": "instagram.com/truth.unites",
-        "icon": "instagram.svg",
-        "displayText": "instagram/truth.unites"
-      },
-      {
-        "platform": "Books",
-        "link": "truthunites.org/mypublications",
-        "icon": "closed_book.svg",
-        "displayText": "truthunites.org/mypublications"
-      },
-      {
-        "platform": "Spotify",
-        "link": "",
-        "icon": "spotify.svg",
-        "displayText": "spotify/truth-unites"
-      },
-      {
-        "platform": "Apple Podcasts",
-        "link": "",
-        "icon": "applepodcasts.svg",
-        "displayText": "apple-podcasts/truth-unites"
-      },
-      {
-        "platform": "Patreon",
-        "link": "",
-        "icon": "patreon.svg",
-        "displayText": "patreon/truthunites"
-      },
-      {
-        "platform": "Donate",
-        "link": "",
-        "icon": "youtube.svg",
-        "displayText": "donations"
-      },
-      {
-        "platform": "Facebook",
-        "link": "facebook.com/TruthUnitesPage",
-        "icon": "facebook.svg",
-        "displayText": "facebook/TruthUnitesPage"
-      }
-    ]
+    "badges": ["video", "podcast", "apologetics", "theology"]
+  },
+  {
+    "_id": "inspiring_philosophy",
+    "name": "Michael Jones - InspiringPhilosophy",
+    "image": "inspiring_philosophy.png",
+    "mainLink": "https://www.inspiringphilosophy.com/",
+    "type": "creator",
+    "shortDescription": "\"Helping You Grow Your Faith\"",
+    "longDescription": "InspiringPhilosophy is a non-profit Christian organization that brings high-quality content on apologetics, theology, and commentary. The team's mission is to spread the Gospel by proving its truth, and they do this in numerous ways. InspiringPhilosophy's content ranges from rebuttals to Muslim apologists to finding historical evidence for certain Biblical accounts, like the conquest of Caanan.",
+    "controls": ["fullscreen", "dropdown"],
+    "badges": ["video", "podcast", "apologetics", "theology"]
+  },
+  {
+    "_id": "bible_project",
+    "name": "BibleProject",
+    "image": "bible_project.png",
+    "mainLink": "https://bibleproject.com/",
+    "type": "creator",
+    "shortDescription": "\"Watch, Read, Listen, and Learn.\"",
+    "longDescription": "BibleProject is a crowdfunded, non-profit organization that creates high-quality, free resources for Christians. These include commentaries on specific Bible books, podcasts, and more.",
+    "controls": ["fullscreen", "dropdown"]
   },
   {
     "_id": "trent_horn",
     "name": "Council of Trent - Trent Horn",
+    "mainLink": "https://www.catholic.com/audio/cot",
     "type": "creator",
     "shortDescription": "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
     "longDescription": "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
     "favorite": true,
-    "controls": ["fullscreen", "dropdown"],
-    "recentContent": [
-      {
-        "_id": "go_v1",
-        "title": "Did Jesus Descend into Hell?",
-        "description": "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
-        "thumbnail": "go_v1.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v2",
-        "title": "Should Christians use Profanity?",
-        "description": "In this video, Gavin Ortlund explores what it means that Jesus 'descended to hell'.",
-        "thumbnail": "go_v2.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v3",
-        "title": "Craig and Ortlund Clash on the Eucharist",
-        "description": "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
-        "thumbnail": "go_v3.png",
-        "badges": ["theology"],
-        "link": ""
-      }
-    ],
-    "recommendedContent": [
-      {
-        "_id": "go_v2",
-        "title": "Should Christians use Profanity?",
-        "description": "In this video, Gavin Ortlund explores what it means that Jesus 'descended to hell'.",
-        "thumbnail": "go_v2.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v1",
-        "title": "Did Jesus Descend into Hell?",
-        "description": "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
-        "thumbnail": "go_v1.png",
-        "badges": ["question"],
-        "link": ""
-      },
-      {
-        "_id": "go_v3",
-        "title": "Craig and Ortlund Clash on the Eucharist",
-        "description": "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
-        "thumbnail": "go_v3.png",
-        "badges": ["theology"],
-        "link": ""
-      }
-    ],
-    "badges": ["video", "podcast", "website", "apologetics", "theology"],
-    "mediaType": [],
-    "links": [
-      {
-        "platform": "YouTube",
-        "link": "https://www.youtube.com/@TruthUnites",
-        "displayText": "youtube/truthunites",
-        "icon": "youtube.svg",
-        "priority": true
-      },
-      {
-        "platform": "Personal Website",
-        "link": "https://truthunites.org",
-        "icon": "website.svg",
-        "displayText": "truthunites.org"
-      },
-      {
-        "platform": "X",
-        "link": "twitter.com/gavinortlund",
-        "icon": "x.svg",
-        "displayText": "x/gavinortlund"
-      },
-      {
-        "platform": "Instagram",
-        "link": "instagram.com/truth.unites",
-        "icon": "instagram.svg",
-        "displayText": "instagram/truth.unites"
-      },
-      {
-        "platform": "Books",
-        "link": "truthunites.org/mypublications",
-        "icon": "closed_book.svg",
-        "displayText": "truthunites.org/mypublications"
-      },
-      {
-        "platform": "Spotify",
-        "link": "",
-        "icon": "spotify.svg",
-        "displayText": "spotify/truth-unites"
-      },
-      {
-        "platform": "Apple Podcasts",
-        "link": "",
-        "icon": "applepodcasts.svg",
-        "displayText": "apple-podcasts/truth-unites"
-      },
-      {
-        "platform": "Patreon",
-        "link": "",
-        "icon": "patreon.svg",
-        "displayText": "patreon/truthunites"
-      },
-      {
-        "platform": "Donate",
-        "link": "",
-        "icon": "youtube.svg",
-        "displayText": "donations"
-      },
-      {
-        "platform": "Facebook",
-        "link": "facebook.com/TruthUnitesPage",
-        "icon": "facebook.svg",
-        "displayText": "facebook/TruthUnitesPage"
-      }
-    ]
+    "controls": ["fullscreen", "dropdown"]
   }
 ]

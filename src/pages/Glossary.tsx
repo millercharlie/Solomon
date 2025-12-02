@@ -27,6 +27,16 @@ const Heading = styled.div`
 const Content = styled.div`
   width: 100%;
 `;
+const SourcesContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`;
+const TopicsContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`;
 
 const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 
@@ -72,49 +82,50 @@ const Glossary: React.FC = () => {
           </Typography.LargeParagraph>
         </Heading>
         <Content>
-          {alphabet.map((letter) => {
-            const sources = findAllSourcesFromLetter(letter);
-            return (
-              <div id={letter}>
-                {sources.map((resource: ResourceInfo) => (
-                  <div id="all-links">
-                    <Typography.RowHeading style={{ paddingBottom: 10 }}>
-                      {letter}
-                    </Typography.RowHeading>
-                    <Link
-                      item={{
-                        platform: resource.type,
-                        link: resource.links![0].link, // TODO: This needds to be modified to support an onClick() for the expanded card
-                        displayText: resource.name,
-                        icon: resource.type,
-                      }}
-                    />
-                  </div>
-                ))}
-              </div>
-            );
-          })}
+          <SourcesContainer>
+            {alphabet.map((letter) => {
+              const sources = findAllSourcesFromLetter(letter);
+              if (sources.length === 0) {
+                return;
+              }
+
+              return (
+                <div id={letter}>
+                  <Typography.RowHeading style={{ paddingBottom: 10 }}>
+                    {letter}
+                  </Typography.RowHeading>
+                  {sources.map((resource: ResourceInfo) => (
+                    <div id="all-links">
+                      <Link
+                        item={{
+                          platform: resource.type,
+                          link: resource.mainLink ? resource.mainLink : "", // TODO: This needs to be modified to support an onClick() for the expanded card
+                          displayText: resource.name,
+                          icon: resource.type,
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
+          </SourcesContainer>
           <HorizontalRow color={theme.secondaryRow} />
           <Typography.RowHeading style={{ paddingBottom: 10 }}>
             All Topics
           </Typography.RowHeading>
-          {alphabet.map((letter) => {
-            const topicsByLetter = findAllTopicsFromLetter(letter);
-            return (
-              <div id={letter}>
-                {topicsByLetter.map((topic: ResourceInfo) => (
-                  <Link
-                    item={{
-                      platform: topic.type,
-                      link: topic.links![0].link,
-                      displayText: topic.name,
-                      icon: topic.type,
-                    }}
-                  />
-                ))}
-              </div>
-            );
-          })}
+          <TopicsContainer>
+            {topics.map((topic: ResourceInfo) => (
+              <Link
+                item={{
+                  platform: topic.type,
+                  link: topic.links![0].link,
+                  displayText: topic.name,
+                  icon: topic.type,
+                }}
+              />
+            ))}
+          </TopicsContainer>
         </Content>
       </ContentBackground>
       <ResourceModal

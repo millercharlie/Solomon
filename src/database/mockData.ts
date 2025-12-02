@@ -36,6 +36,43 @@ export const resurrectionOfJesus: ResourceInfo = {
   mediaType: [],
   links: [],
 };
+export const stars: ResourceInfo = {
+  _id: "stars",
+  name: "The Stars?",
+  image: "night_sky.png",
+  type: ResourceType.QUESTION,
+  shortDescription:
+    "Christianity has a complex view of the stars. But what are they actually?",
+  controls: [Controls.OPEN_PAGE],
+  badges: ["topic", "scholarly_article", "video"],
+  links: [
+    {
+      platform: "YouTube",
+      link: "https://youtu.be/pey9uQna2U4?si=wglaf82oubdjxetw",
+      displayText: "Gavin Ortlund \u2013 A Christian View of Stars",
+    },
+  ],
+};
+export const eden: ResourceInfo = {
+  _id: "garden_of_eden",
+  name: "The Garden of Eden",
+  image: "eden.png",
+  type: ResourceType.TOPIC,
+  shortDescription:
+    "The Garden of Eden is found in Genesis, described as a perfect oasis where God and mankind were in perfect communion together. But, what was the nature of this garden? Where was it?",
+  controls: [Controls.OPEN_PAGE],
+  badges: ["topic", "question", "video"],
+};
+export const creation = {
+  _id: "creation",
+  name: "The Creation",
+  image: "creation.png",
+  type: ResourceType.TOPIC,
+  shortDescription:
+    "\"And God said, 'let there be light. And there was light'\" - Genesis 1:1",
+  controls: [Controls.OPEN_PAGE],
+  badges: ["topic", "question", "video"],
+};
 export const oldTestament: ResourceInfo = {
   _id: "old_testament",
   image: "old_testament.png",
@@ -53,7 +90,6 @@ export const oldTestament: ResourceInfo = {
     "apologetics",
     "commentary",
   ],
-  solomonLink: "topics/old_testament",
   controls: [Controls.OPEN_PAGE],
 };
 export const newTestament: ResourceInfo = {
@@ -73,7 +109,6 @@ export const newTestament: ResourceInfo = {
     "apologetics",
     "commentary",
   ],
-  solomonLink: "topics/new_testament",
   controls: [Controls.OPEN_PAGE],
 };
 export const gospels: ResourceInfo = {
@@ -95,6 +130,24 @@ export const paulineLetters: ResourceInfo = {
     "Paul the Apostle wrote 13 letters in the Bible. Most are to various churches around the Roman Empire, but some are to personal companions.",
   type: ResourceType.TOPIC,
   badges: ["topic", "video", "scholarly_article", "book"],
+  controls: [Controls.OPEN_PAGE],
+};
+export const existenceOfGod: ResourceInfo = {
+  _id: "god_existence",
+  name: "The Existence of God",
+  image: "god_existence.png",
+  shortDescription:
+    "The idea of God is not a new one in human history, but is it true? Does God actually exist?",
+  type: ResourceType.TOPIC,
+  badges: [
+    "topic",
+    "video",
+    "scholarly_article",
+    "book",
+    "documentary",
+    "theology",
+    "apologetics",
+  ],
   controls: [Controls.OPEN_PAGE],
 };
 
@@ -180,6 +233,24 @@ export const mikeWinger: ResourceInfo = {
   badges: ["video", "podcast", "apologetics", "theology"],
   mediaType: [],
   links: [],
+};
+export const wesHuff: ResourceInfo = {
+  _id: "wesley_huff",
+  name: "Wesley (Wes) Huff",
+  image: "wesley_huff.png",
+  type: ResourceType.CREATOR,
+  shortDescription: "Teach. Reach. Encourage. Equip.",
+  favorite: false,
+  controls: [Controls.FULLSCREEN, Controls.DROPDOWN],
+  badges: ["video", "podcast", "apologetics", "theology"],
+  mediaType: [],
+  links: [
+    {
+      platform: "website",
+      link: "Teach. Reach. Encourage. Equip",
+      displayText: "Personal Website",
+    },
+  ],
 };
 export const inspiringPhilosophy: ResourceInfo = {
   _id: "inspiring_philosophy",
@@ -862,7 +933,7 @@ const dashboardRowData1: RowData = {
 const dashboardRowData4: RowData = {
   _id: "topics_new_believers",
   name: "Topics for New Believers",
-  content: [resurrectionOfJesus, gospels, oldTestament],
+  content: [resurrectionOfJesus, gospels, oldTestament, paulineLetters],
   type: RowType.CARD,
 };
 const dashboardRowData2: RowData = {
@@ -946,8 +1017,8 @@ const apologeticsRowData1: RowData = {
       ],
     },
     {
-      _id: "browse_by_topic",
-      name: "Browse by Topic",
+      _id: "popular_topics",
+      name: "Popular Topics",
       type: ResourceType.TOPIC,
       shortDescription: "",
       favorite: false,
@@ -968,13 +1039,13 @@ const apologeticsRowData1: RowData = {
         },
         {
           platform: "Solomon",
-          link: "topics/gospels_reliability",
+          link: "",
           displayText: "The Reliability of the Gospels",
           icon: "topic.svg",
         },
         {
           platform: "Solomon",
-          link: "topics/existence_of_god",
+          link: "",
           displayText: "The Existence of God",
           icon: "topic.svg",
         },
@@ -986,74 +1057,62 @@ const apologeticsRowData1: RowData = {
         },
       ],
     },
+    {
+      _id: "recently_added",
+      name: "Recently Added",
+      type: ResourceType.TOPIC,
+      shortDescription: "",
+      favorite: false,
+      badges: [],
+      mediaType: [],
+      links: [
+        {
+          platform: "Solomon",
+          link: "topics/resurrection",
+          displayText: "The Resurrection of Jesus",
+          icon: "topic.svg",
+        },
+        {
+          platform: "Solomon",
+          link: "",
+          displayText: "Was Paul the Apostle a Roman spy?",
+          icon: "question.svg",
+        },
+        {
+          platform: "YouTube",
+          link: "https://youtu.be/WSKBGdv07nQ?si=i-ECrhdh3AjAJJWl",
+          displayText:
+            "InspiringPhilosophy \u2013 The Truth about the Council of Nicaea",
+          icon: "youtube.svg",
+        },
+        {
+          platform: "YouTube",
+          link: "https://youtu.be/d-aVQ8MELeg?si=pSbKB_7I55HiWWFc",
+          displayText:
+            "InspiringPhilosophy \u2013 The Trinity in Ancient Jewish Books",
+          icon: "youtube.svg",
+        },
+        {
+          platform: "YouTube",
+          link: "https://youtu.be/yO4-cSNIUAg?si=lHEg9eyarAtWBVJn",
+          displayText:
+            "Gavin Ortlund \u2013 Divine Hiddenness: A Christian Response",
+        },
+      ],
+    },
   ],
   type: RowType.LIST,
 };
 const apologeticsRowData2: RowData = {
   _id: "apologetics_row2",
   name: "Notable Apologists",
-  content: [
-    {
-      _id: "william_lane_craig",
-      name: "William Lane Craig",
-      type: ResourceType.SCHOLAR,
-      shortDescription:
-        "Reformed Theologian focusing on apologetics, debates, and more",
-      favorite: false,
-      controls: [Controls.FULLSCREEN],
-      badges: ["video", "website", "apologetics", "theology"],
-      mediaType: [],
-      links: [],
-    },
-    {
-      _id: "mike_winger",
-      name: "Mike Winger",
-      type: ResourceType.CREATOR,
-      shortDescription: "Think Biblically About Everything",
-      favorite: false,
-      controls: [Controls.FULLSCREEN, Controls.DROPDOWN],
-      badges: ["video", "podcast", "apologetics", "theology"],
-      mediaType: [],
-      links: [],
-    },
-    {
-      _id: "wesley_huff",
-      name: "Wesley (Wes) Huff",
-      type: ResourceType.CREATOR,
-      shortDescription: "Teach. Reach. Encourage. Equip.",
-      favorite: false,
-      controls: [Controls.FULLSCREEN, Controls.DROPDOWN],
-      badges: ["video", "podcast", "apologetics", "theology"],
-      mediaType: [],
-      links: [
-        {
-          platform: "website",
-          link: "Teach. Reach. Encourage. Equip",
-          displayText: "Personal Website",
-        },
-      ],
-    },
-  ],
+  content: [williamLaneCraig, johnLennox, csLewis, wesHuff],
   type: RowType.CARD,
 };
 const apologeticsRowData3: RowData = {
   _id: "apologetics_row3",
   name: "Suggested Topics",
-  content: [
-    resurrectionOfJesus,
-    {
-      _id: "gospels_reliability",
-      name: "The Reliability of the Gospels",
-      type: ResourceType.TOPIC,
-      shortDescription:
-        "Discusses the reliability of the Gospel accounts according to Matthew, Mark, Luke, and John",
-      favorite: false,
-      controls: [Controls.OPEN_PAGE],
-      badges: ["topic", "video", "scholarly_article", "book", "apologetics"],
-      mediaType: [],
-      links: [],
-    },
-  ],
+  content: [resurrectionOfJesus, gospels, existenceOfGod, eden],
   type: RowType.CARD,
 };
 

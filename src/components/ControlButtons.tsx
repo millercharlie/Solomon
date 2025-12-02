@@ -88,8 +88,8 @@ const ControlButtons: React.FC<{
         <FavoritedStar
           src={
             favorite
-              ? "../assets/icons/favorited.png"
-              : "../assets/icons/not_favorited.png"
+              ? "/assets/icons/favorited.png"
+              : "/assets/icons/not_favorited.png"
           }
           large={large}
         />
@@ -102,7 +102,7 @@ const ControlButtons: React.FC<{
             ) : (
               resource.recentContent && ( // TODO: This is temporary until all data is filled(
                 <ActionButton
-                  src="../assets/arrows/up_down_arrow.svg"
+                  src="/assets/arrows/up_down_arrow.svg"
                   onClick={() => setDropdownActive(!dropdownActive)}
                   active={dropdownActive}
                 />
@@ -111,14 +111,14 @@ const ControlButtons: React.FC<{
           case Controls.FULLSCREEN:
             return large ? (
               <LargeActionButton
-                src="../assets/arrows/collapse.svg"
+                src="/assets/arrows/collapse.svg"
                 hover={true}
                 onClick={() => setSelectedResource(null)}
               />
             ) : (
               (resource.recentContent || resource.recommendedContent) && ( // TODO: This is temporary until all data is filled(
                 <ActionButton
-                  src="../assets/arrows/expand_arrows.svg"
+                  src="/assets/arrows/expand_arrows.svg"
                   hover={true}
                   onClick={() =>
                     resource
@@ -135,7 +135,7 @@ const ControlButtons: React.FC<{
               resource.solomonLink && ( // TODO: This is temporary until all data is filled
                 <a href={resource.solomonLink}>
                   <ActionButton
-                    src="../assets/arrows/up_down_arrow.svg"
+                    src="/assets/arrows/up_down_arrow.svg"
                     hover={true}
                     rotate={45}
                   />
@@ -149,7 +149,7 @@ const ControlButtons: React.FC<{
               resource.mainLink && ( // TODO: This is temporary until all data is filled
                 <a href={resource.mainLink}>
                   <ActionButton
-                    src="../assets/arrows/up_down_arrow.svg"
+                    src="/assets/arrows/up_down_arrow.svg"
                     hover={true}
                     rotate={45}
                   />

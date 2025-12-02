@@ -1,14 +1,15 @@
 import {
+  creation,
   csLewis,
+  eden,
   gavinOrtlund,
   martinLuther,
   ntWright,
-  resurrectionOfJesus,
+  stars,
 } from "@database/mockData";
 import { trinity } from "@database/mockTopics";
 import {
   AccountStatus,
-  Controls,
   PageType,
   ResourceType,
   RowType,
@@ -146,32 +147,7 @@ const row1: RowData = {
 const row2: RowData = {
   _id: "theology_row1",
   name: "Introduction to Theology",
-  content: [
-    trinity,
-    resurrectionOfJesus,
-    {
-      _id: "garden_of_eden",
-      name: "The Garden of Eden",
-      image: "eden.png",
-      type: ResourceType.TOPIC,
-      shortDescription:
-        "The Garden of Eden is found in Genesis, described as a perfect oasis where God and mankind were in perfect communion together. But, what was the nature of this garden? Where was it?",
-      controls: [Controls.OPEN_PAGE],
-      badges: ["topic", "question", "video"],
-      links: [],
-    },
-    {
-      _id: "creation",
-      name: "The Creation",
-      image: "creation.png",
-      type: ResourceType.TOPIC,
-      shortDescription:
-        "\"And God said, 'let there be light. And there was light'\" - Genesis 1:1",
-      controls: [Controls.OPEN_PAGE],
-      badges: ["topic", "question", "video"],
-      links: [],
-    },
-  ],
+  content: [trinity, stars, eden, creation],
   type: RowType.CARD,
 };
 

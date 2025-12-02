@@ -120,11 +120,7 @@ export const NavigationBar: React.FC<{
         <NavLinksContainer>
           <StyledLink to="/">
             <NavItem theme={theme}>
-              <LogoImage
-                src="../assets/logos/logo.svg"
-                width={32}
-                height={32}
-              />
+              <LogoImage src="/assets/logos/logo.svg" width={32} height={32} />
             </NavItem>
           </StyledLink>
           {!mobile &&
@@ -145,8 +141,8 @@ export const NavigationBar: React.FC<{
         <Icon
           src={
             theme._id === Theme.DARK
-              ? "../assets/icons/sun.svg" // TODO: There may be a better way to do this rather than hardcoding the path
-              : "../assets/icons/moon.svg"
+              ? "/assets/icons/sun.svg" // TODO: There may be a better way to do this rather than hardcoding the path
+              : "/assets/icons/moon.svg"
           }
           hover={true}
           width={24}
