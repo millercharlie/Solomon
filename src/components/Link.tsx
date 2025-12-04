@@ -29,8 +29,8 @@ const Link: React.FC<{ item: ResourceLink }> = ({ item }) => {
       {item.icon && (
         <svg color={theme.text} width={11} height={11}>
           <use
-            xlinkHref={`../assets/icons/platforms/${item.icon}`}
-            href={`../assets/icons/platforms/${item.icon}`}
+            xlinkHref={`/assets/icons/platforms/${item.icon}`}
+            href={`/assets/icons/platforms/${item.icon}`}
             width={11}
             height={11}
           ></use>
@@ -60,7 +60,7 @@ const Link: React.FC<{ item: ResourceLink }> = ({ item }) => {
           : item.displayText}
       </Typography.SidebarLink>
       {item.link !== undefined && item.link !== null && item.link !== "" && (
-        <Icon src="../assets/arrows/squarrow.svg" />
+        <Icon src="/assets/arrows/squarrow.svg" />
       )}
     </Container>
   );

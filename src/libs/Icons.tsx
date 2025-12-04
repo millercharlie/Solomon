@@ -174,7 +174,7 @@ export const IconWithTooltip: React.FC<{
     <Container onClick={onClick}>
       <Tooltip text={text} visible={visible} />
       <LargeIcon
-        src={`../assets/icons/${icon}`}
+        src={`/assets/icons/${icon}`}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
       />

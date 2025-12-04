@@ -48,7 +48,7 @@ const Badge: React.FC<{ id: string }> = ({ id }) => {
   // TODO: Badge icon should not have default cursor
   return (
     <Container backgroundColor={backgroundColor} textColor={textColor}>
-      <Icon src={`../assets/icons/${icon}`} hover={false} />
+      <Icon src={`/assets/icons/${icon}`} hover={false} />
       <BadgeText>{text}</BadgeText>
     </Container>
   );

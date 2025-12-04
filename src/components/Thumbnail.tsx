@@ -48,7 +48,7 @@ const Thumbnail: React.FC<{
       </div>
       <a href={link}>
         <ThumbnailImage
-          src={`../assets/mocks/${image}`}
+          src={`/assets/mocks/${image}`}
           alt="thumbnail"
           large={large}
         />

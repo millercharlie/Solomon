@@ -18,7 +18,7 @@ const Background = styled.div<{
   width: 100%;
   height: 100%;
   background-image: ${({ pageType }) =>
-    `url(../assets/gradients/${gradientMap[pageType]}.svg)`};
+    `url(/assets/gradients/${gradientMap[pageType]}.svg)`};
   background-size: ${({ mobile }) => (mobile ? "150vh" : "150%")};
   background-attachment: fixed;
   background-position: center;

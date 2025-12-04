@@ -157,7 +157,7 @@ export const NavigationBar: React.FC<{
         }
         {mobile && (
           <DarkModeToggle
-            src="../assets/icons/hamburger_menu.svg"
+            src="/assets/icons/hamburger_menu.svg"
             hover={true}
             width={24}
             height={24}

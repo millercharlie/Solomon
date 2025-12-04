@@ -28,7 +28,7 @@ const NotFound: React.FC = () => {
           It appears this page cannot be found. Please try another link!
         </Typography.Description>
         <StyledIcon
-          src="../assets/logos/logogram_colored.svg"
+          src="/assets/logos/logogram_colored.svg"
           width={200}
           height={75}
           hover={false}

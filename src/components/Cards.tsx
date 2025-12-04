@@ -113,7 +113,7 @@ export const ClassDemoCard: React.FC<{
         <MainContent>
           <a href={resource.solomonLink}>
             <StyledImage
-              src={`../assets/images/${resource.image}`}
+              src={`/assets/images/${resource.image}`}
               alt={resource._id}
             />
           </a>
