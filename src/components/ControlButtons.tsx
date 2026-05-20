@@ -36,9 +36,7 @@ const LargeActionButton = styled(LargeIcon)<{ active?: boolean }>`
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color: rgba(256, 256, 256, 0.5);
   filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
-  border-radius: 50%;
   overflow: visible;
   cursor: pointer;
   transform: ${({ active }) => (active ? "rotate(180deg)" : undefined)};

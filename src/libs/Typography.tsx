@@ -18,6 +18,14 @@ export const Subtitle = styled.h3`
   margin-bottom: 0;
 `;
 
+export const ResourceTitle = styled.h1`
+  font-family: "roca", sans-serif;
+  font-size: 35px;
+  font-weight: 700;
+  font-style: normal;
+  margin-top: 0;
+`;
+
 export const Description = styled.h2<{ fontSize?: string; italic?: boolean }>`
   font-family: "fira-sans", "avenir", sans-serif;
   font-size: ${({ fontSize }) => fontSize ?? `20pt`};

@@ -4,8 +4,9 @@ import * as Typography from "@libs/Typography";
 
 const ThumbnailContainer = styled.div`
   width: 100%;
-  max-width: 500px;
+  /* max-width: 500px; */
   display: flex;
+  gap: 20px;
   justify-content: space-between;
   align-items: center;
 `;

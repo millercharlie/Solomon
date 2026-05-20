@@ -98,14 +98,14 @@ export const ClassDemoCard: React.FC<{
 
   const { theme } = React.useContext(ThemeContext);
 
-  const icon = React.useMemo(() => {
-    const curIcon = resourceIcons.find(
-      (item) => resource.type === (item.type as unknown as ResourceType)
-    );
-    if (!curIcon) {
-      throw new Error("Resource Icon Not Found");
-    } else return curIcon.icon;
-  }, [resource.type]);
+  // const icon = React.useMemo(() => {
+  //   const curIcon = resourceIcons.find(
+  //     (item) => resource.type === (item.type as unknown as ResourceType)
+  //   );
+  //   if (!curIcon) {
+  //     throw new Error("Resource Icon Not Found");
+  //   } else return curIcon.icon;
+  // }, [resource.type]);
 
   return (
     <ClassDemoContainer id={resource._id} doubleWidth={resource.doubleWidth}>
@@ -187,7 +187,7 @@ export const Card: React.FC<{
   }, [resource]);
   const icon = React.useMemo(() => {
     const curIcon = resourceIcons.find(
-      (item) => resource.type === (item.type as unknown as ResourceType)
+      (item) => resource.type === (item.type as unknown as ResourceType),
     );
     if (!curIcon) {
       throw new Error("Resource Icon Not Found"); // TODO: This should maybe fail quietly and display some sort of placeholder
@@ -240,7 +240,7 @@ export const Card: React.FC<{
           {resource.recentContent.map(
             (
               contentItem, // Horizontal Row
-              index
+              index,
             ) => (
               <>
                 <Thumbnail
@@ -254,7 +254,7 @@ export const Card: React.FC<{
                   <HorizontalRow color={theme.secondaryRow} />
                 )}
               </>
-            )
+            ),
           )}
         </div>
       )}

@@ -259,7 +259,7 @@ export const inspiringPhilosophy: ResourceInfo = {
   type: ResourceType.CREATOR,
   shortDescription: '"Helping You Grow Your Faith"',
   longDescription:
-    "InspiringPhilosophy is a non-profit Christian organization that brings high-quality content on apologetics, theology, and commentary. The team's mission is to spread the Gospel by proving its truth, and they do this in numerous ways. InspiringPhilosophy's content ranges from rebuttals to Muslim apologists to finding historical evidence for certain Biblical accounts, like the conquest of Caanan.",
+    "InspiringPhilosophy is a non-profit Christian organization that brings high-quality content on apologetics, theology, and commentary. The team's mission is to spread the Gospel by proving its truth, and they do this in numerous ways. InspiringPhilosophy's content ranges from rebuttals to Muslim apologists to finding historical evidence for certain Biblical accounts, like the conquest of Caanan.\n\nThe team participates in debates with atheists, muslims, and other Christians.",
   controls: [Controls.FULLSCREEN, Controls.DROPDOWN],
   badges: ["video", "podcast", "apologetics", "theology"],
   recentContent: [

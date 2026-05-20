@@ -28,16 +28,17 @@ const Background = styled.div<{ visible: boolean; theme: ColorTheme }>`
 const Container = styled.div<{ backgroundColor: string; theme: ColorTheme }>`
   width: 80%;
   min-height: 70%;
+  height: 80%;
   max-height: 85%;
   overflow-y: scroll;
-  height: fit-content;
+  /* height: fit-content; */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: ${({ backgroundColor }) =>
     backgroundColor}; // TODO: This should not be hardcoded
-  border-radius: 30px;
+  border-radius: 20px;
   outline: 5px solid ${({ theme }) => theme.text};
   padding: 30px;
 
@@ -67,7 +68,7 @@ const Modal: React.FC<{
   const { theme } = React.useContext(ThemeContext);
   const translucentBackgroundColor = React.useMemo(() => {
     const rgbColor = hexToRGB(backgroundColor ?? "#717171");
-    return `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.20)`;
+    return `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.60)`;
   }, [backgroundColor]);
 
   React.useEffect(() => {
