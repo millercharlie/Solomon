@@ -6,6 +6,7 @@
   ],
   "compilerOptions": {
     "baseUrl": "src",
+    "types": ["vite/client"],
     "paths": {
       "@libs/*": ["libs/*"],
       "@pages/*": ["pages/*"],

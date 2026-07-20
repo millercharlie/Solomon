@@ -34,11 +34,12 @@ export const Description = styled.h2<{ fontSize?: string; italic?: boolean }>`
   white-space: pre-line;
 `;
 
-export const RowHeading = styled.h2`
+export const RowHeading = styled.h2<{ noMargin?: boolean }>`
   font-family: "fira-sans", "avenir", sans-serif;
   font-size: 20px;
   font-weight: 500;
   font-style: italic;
+  margin-bottom: ${({ noMargin }) => (noMargin ? 0 : undefined)};
 `;
 
 export const NavigationLink = styled.p`

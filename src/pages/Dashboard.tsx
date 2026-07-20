@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
 import logogram from "@assets/logos/logogram.svg";
 import { sidebarData } from "@database/mockData";
+// import axios from "axios";
 import Sidebar from "@components/Sidebar";
 
 import { ClassDemoCard } from "@components/Cards";
@@ -68,8 +69,17 @@ const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
   const [selectedResource, setSelectedResource] =
     React.useState<ResourceInfo | null>(null);
 
+  // const [newData, setNewData] = React.useState(null);
+
+  // React.useEffect(() => {
+  //   axios
+  //     .get(`${import.meta.env.VITE_API_URI}/resources`)
+  //     .then((res) => setNewData(res.data))
+  //     .catch((e) => console.error(e));
+  // }, []);
+
   const [sidebarOpen, setSidebarOpen] = React.useState<boolean>(
-    window.localStorage.getItem(sidebarKey) === "true" ? true : false
+    window.localStorage.getItem(sidebarKey) === "true" ? true : false,
   );
   return (
     <PageTemplate pageType={PageType.DASHBOARD}>
@@ -81,6 +91,9 @@ const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
                 Welcome to
               </Typography.RowHeading>
               <Logogram src={logogram} width={300} height={130} hover={false} />
+              {/* <Typography.Paragraph>
+                {JSON.stringify(newData)}
+              </Typography.Paragraph> */}
             </TitleContainer>
             <Typography.LargeParagraph id="description">
               Solomon is a convenient platform with resources on apologetics,
@@ -106,14 +119,14 @@ const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
                   {row.content.slice(0, sidebarOpen ? 3 : 4).map(
                     (
                       item, // TODO: This needs to be more dynamic - only the cards can fit on the page should be displayed
-                      j
+                      j,
                     ) => (
                       <ClassDemoCard
                         resource={item}
                         key={j}
                         setSelectedResource={setSelectedResource}
                       />
-                    )
+                    ),
                   )}
                 </CardRow>
               </Row>

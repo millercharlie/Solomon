@@ -135,6 +135,7 @@ export enum PageType {
   COMMENTARY = "commentary",
   TOPIC = "topic",
   GLOSSARY = "glossary",
+  ABOUT = "about",
   NOTFOUND = "404",
 }
 export enum Theme {
