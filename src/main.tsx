@@ -13,6 +13,7 @@ import BibleCommentary from "@pages/BibleCommentary.tsx";
 import Glossary from "@pages/Glossary.tsx";
 import Topic from "@pages/Topic.tsx";
 import NotFound from "@pages/404Page.tsx";
+import AboutPage from "@pages/About.tsx";
 
 const router = createBrowserRouter([
   {
@@ -57,10 +58,14 @@ const router = createBrowserRouter([
     path: "/topics/:topicName",
     element: <Topic />,
   },
+  {
+    path: "/about",
+    element: <AboutPage />,
+  },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );

@@ -34,6 +34,11 @@ const links: { id: string; pretty: string; link: string }[] = [
     link: "/apologetics",
   },
   {
+    id: "about",
+    pretty: "About",
+    link: "/about",
+  },
+  {
     id: "glossary",
     pretty: "Glossary/Index",
     link: "/glossary",
@@ -96,7 +101,7 @@ export const NavigationBar: React.FC<{
   const { width } = useViewportSize();
 
   const [mobile, setMobile] = React.useState<boolean>(
-    width <= breakpoints.md && width !== 0
+    width <= breakpoints.md && width !== 0,
   );
   const [dropdownOpen, setDropdownOpen] = React.useState<boolean>(false);
 
