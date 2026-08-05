@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
 
-import { ClassDemoCard } from "@components/Cards";
+import { Card } from "@components/Cards";
 import { RowType, type PageData, type ResourceInfo } from "@libs/Types";
 import * as theme from "@libs/globals";
 import React from "react";
@@ -70,7 +70,7 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
   const [selectedResource, setSelectedResource] =
     React.useState<ResourceInfo | null>(null);
   const [sidebarOpen, setSidebarOpen] = React.useState<boolean>(
-    window.localStorage.getItem(sidebarKey) === "true" ? true : false
+    window.localStorage.getItem(sidebarKey) === "true" ? true : false,
   );
 
   React.useEffect(() => {
@@ -103,14 +103,14 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
                       {row.content.map(
                         (
                           item, // TODO: This needs to be more dynamic - only the cards can fit on the page should be displayed
-                          j
+                          j,
                         ) => (
-                          <ClassDemoCard
+                          <Card
                             resource={item}
                             key={j}
                             setSelectedResource={setSelectedResource}
                           />
-                        )
+                        ),
                       )}
                     </CardRow>
                   ) : (
@@ -118,9 +118,9 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
                       {row.content.map((item) => (
                         <div
                           id="all-links"
-                          style={{
-                            gridColumn: item.doubleWidth ? "span 2" : "span 1",
-                          }}
+                          // style={{
+                          //   gridColumn: item.doubleWidth ? "span 2" : "span 1",
+                          // }}
                         >
                           <Typography.RowHeading style={{ marginBottom: 0 }}>
                             {item.name}
@@ -128,7 +128,7 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
                           <Typography.Paragraph
                             style={{ marginTop: 5, marginBottom: 10 }}
                           >
-                            {item.shortDescription}
+                            {item.shortDesc}
                           </Typography.Paragraph>
                           {item.links!.map((item) => (
                             <Link item={item} />

@@ -20,7 +20,7 @@ const row1: RowData = {
     {
       _id: "daniel",
       name: "Daniel",
-      shortDescription:
+      shortDesc:
         "Contains remarkable accounts in the life of the prophet Daniel.",
       type: ResourceType.TOPIC,
       badges: [],
@@ -66,7 +66,7 @@ const row1: RowData = {
       _id: "matthew",
       name: "The Gospel According to Matthew",
       type: ResourceType.TOPIC,
-      shortDescription:
+      shortDesc:
         "Matthew's recount of the life, ministry, and resurrection of Jesus of Nazareth.",
       badges: [],
       links: [
@@ -111,7 +111,7 @@ const row1: RowData = {
       _id: "first_samuel",
       name: "1 Samuel",
       type: ResourceType.TOPIC,
-      shortDescription:
+      shortDesc:
         "Chronicles the story of Israel and Judah united under various kings",
       badges: [],
       links: [
@@ -156,7 +156,7 @@ const row1: RowData = {
       _id: "book_of_romans",
       name: "Romans",
       type: ResourceType.TOPIC,
-      shortDescription:
+      shortDesc:
         "Paul's letter to the church in Rome preaching Salvation through Jesus Christ alone",
       badges: [],
       links: [
@@ -215,7 +215,7 @@ const row3: RowData = {
       _id: "resources",
       name: "Bible Commentary Websites",
       type: ResourceType.TOPIC,
-      shortDescription: "Excellent websites with Bible commentary",
+      shortDesc: "Excellent websites with Bible commentary",
       badges: [],
       links: [
         {
@@ -254,7 +254,7 @@ const row3: RowData = {
       _id: "study_bibles",
       name: "Study Bibles",
       type: ResourceType.TOPIC,
-      shortDescription:
+      shortDesc:
         "Study Bibles typically contain commentary in addition to all the standard content that can be found. Below, study Bibles are listed for various versions.",
       badges: [],
       links: [
@@ -295,7 +295,7 @@ const row3: RowData = {
       name: "Books for New Believers",
       type: ResourceType.TOPIC,
       doubleWidth: true,
-      shortDescription:
+      shortDesc:
         "Are you new to the faith? Check out commentary on some Bible books to help you in your journey!",
       badges: [],
       links: [

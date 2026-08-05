@@ -28,10 +28,10 @@ export const Colors: Record<Theme, ColorTheme> = {
   },
 };
 
-const SearchBarColors = {
-  background: `#FFFFFF`,
-  content: `#9B9B9B`,
-};
+// const SearchBarColors = {
+//   background: `#FFFFFF`,
+//   content: `#9B9B9B`,
+// };
 
 // Screen Breakpoints
 export const breakpoints = { xs: 0, sm: 600, md: 960, lg: 1200 };
@@ -40,9 +40,8 @@ export const dummyResource: ResourceInfo = {
   _id: "",
   name: "",
   type: ResourceType.SCHOLAR,
-  shortDescription: "",
+  shortDesc: "",
   favorite: false,
   badges: [],
-  mediaType: [],
   links: [],
 };

@@ -80,10 +80,9 @@ export const Paragraph = styled.p`
  * Text that appears on all badges.
  */
 export const BadgeText = styled.p`
-  font-family: "fira-sans-condensed", sans-serif;
+  font-family: "fira-sans", sans-serif;
   font-size: 9pt;
-  text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   font-style: normal;
   margin-bottom: 14px; // tODO; This is horrifically janky
 `;

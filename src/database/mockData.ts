@@ -17,9 +17,8 @@ export const resurrectionOfJesus: ResourceInfo = {
   name: "The Resurrection of Jesus",
   image: "resurrection.png",
   type: ResourceType.TOPIC,
-  shortDescription: "Did Jesus really rise from the dead?",
+  shortDesc: "Did Jesus really rise from the dead?",
   favorite: true,
-  solomonLink: "topics/resurrection",
   controls: [Controls.OPEN_PAGE],
   badges: [
     "topic",
@@ -33,18 +32,19 @@ export const resurrectionOfJesus: ResourceInfo = {
     "apologetics",
     "theology",
   ],
-  mediaType: [],
   links: [],
+  color: "#ffffff",
 };
 export const stars: ResourceInfo = {
   _id: "stars",
-  name: "The Stars?",
+  name: "The Stars",
   image: "night_sky.png",
   type: ResourceType.QUESTION,
-  shortDescription:
+  shortDesc:
     "Christianity has a complex view of the stars. But what are they actually?",
   controls: [Controls.OPEN_PAGE],
   badges: ["topic", "scholarly_article", "video"],
+  color: "#7d6e96",
   links: [
     {
       platform: "YouTube",
@@ -58,7 +58,8 @@ export const eden: ResourceInfo = {
   name: "The Garden of Eden",
   image: "eden.png",
   type: ResourceType.TOPIC,
-  shortDescription:
+  color: "#19640f",
+  shortDesc:
     "The Garden of Eden is found in Genesis, described as a perfect oasis where God and mankind were in perfect communion together. But, what was the nature of this garden? Where was it?",
   controls: [Controls.OPEN_PAGE],
   badges: ["topic", "question", "video"],
@@ -68,7 +69,8 @@ export const creation = {
   name: "The Creation",
   image: "creation.png",
   type: ResourceType.TOPIC,
-  shortDescription:
+  color: "#b3b3b3",
+  shortDesc:
     "\"And God said, 'let there be light. And there was light'\" - Genesis 1:1",
   controls: [Controls.OPEN_PAGE],
   badges: ["topic", "question", "video"],
@@ -77,11 +79,12 @@ export const oldTestament: ResourceInfo = {
   _id: "old_testament",
   image: "old_testament.png",
   name: "The Old Testament",
-  shortDescription:
-    "Describes the story of humanity and Israel prior to the birth of Jesus. Begins with the creation of the universe, and follows various figures God calls to prophecy, rule, and judge Israel.",
-  longDescription:
+  shortDesc:
+    "Describes the story of humanity and Israel prior to the birth of Jesus.",
+  longDesc:
     "The Old Testament makes up 82% of the Bible. It begins with the Book of Genesis, which describes how God created the universe and humanity. The Old Testament follows the story of Israel, first through Abraham.",
   type: ResourceType.TOPIC,
+  color: "#ab9266",
   badges: [
     "website",
     "video",
@@ -96,11 +99,12 @@ export const newTestament: ResourceInfo = {
   _id: "new_testament",
   name: "The New Testament",
   image: "new_testament.png",
-  shortDescription:
-    "Follows the life, ministry, death, and resurrection of Jesus. After Jesus's ascension to heaven, the New Testament contains records and writings of the early church.",
-  longDescription:
+  shortDesc:
+    "Follows the life, ministry, death, and resurrection of Jesus in addition to the early Church.",
+  longDesc:
     "The New Testament is best known for the Gospels, which include the good news that Jesus is risen! However, there are many other books in the New Testament too that take place after the ascension of Jesus to heaven. The New Testament follows the journey of the early church, beginning with the book of the Acts of the Apostles and ending with The Revelation of the end of the world.",
   type: ResourceType.TOPIC,
+  color: "#e1b926",
   badges: [
     "website",
     "video",
@@ -115,28 +119,29 @@ export const gospels: ResourceInfo = {
   _id: "gospels",
   name: "The Gospels",
   image: "gospels.png",
-  shortDescription:
-    "The Gospels (Matthew, Mark, Luke, and John) all detail the life, ministry, death, and resurrection of Jesus. Each describes the dual nature of Christ as fully God and fully human.",
+  shortDesc:
+    "The Gospels (Matthew, Mark, Luke, John) all detail the life, ministry, death, and resurrection of Jesus.",
   type: ResourceType.TOPIC,
   badges: ["topic", "video", "scholarly_article", "book", "apologetics"],
-  solomonLink: "topics/gospels",
   controls: [Controls.OPEN_PAGE],
+  color: "#ac2121",
 };
 export const paulineLetters: ResourceInfo = {
   _id: "pauline_letters",
   name: "The Letters of Paul",
   image: "pauline_letters.png",
-  shortDescription:
+  shortDesc:
     "Paul the Apostle wrote 13 letters in the Bible. Most are to various churches around the Roman Empire, but some are to personal companions.",
   type: ResourceType.TOPIC,
   badges: ["topic", "video", "scholarly_article", "book"],
   controls: [Controls.OPEN_PAGE],
+  color: "#505050",
 };
 export const existenceOfGod: ResourceInfo = {
   _id: "god_existence",
   name: "The Existence of God",
   image: "god_existence.png",
-  shortDescription:
+  shortDesc:
     "The idea of God is not a new one in human history, but is it true? Does God actually exist?",
   type: ResourceType.TOPIC,
   badges: [
@@ -161,89 +166,90 @@ export const gotQuestions: ResourceInfo = {
   _id: "got_questions",
   name: "GotQuestions.org",
   image: "got_questions.png",
-  mainLink: "https://www.gotquestions.org",
   type: ResourceType.MINISTRY,
-  shortDescription: "Website housing Bible commentaries and explainers.",
+  shortDesc: "Website housing Bible commentaries and explainers.",
   controls: [Controls.EXTERNAL_LINK],
   badges: ["website", "theology", "commentary"],
+  color: "#4e9bd4",
 };
 export const williamLaneCraig: ResourceInfo = {
   _id: "william_lane_craig",
   name: "William Lane Craig",
   image: "william_lane_craig.png",
   type: ResourceType.SCHOLAR,
-  shortDescription:
-    "Reformed Theologian focusing on apologetics, debates, and more",
+  shortDesc: "Reformed Theologian focusing on apologetics, debates, and more",
   controls: [Controls.FULLSCREEN],
   badges: ["video", "website", "apologetics", "theology"],
-  mediaType: [],
   links: [],
+  color: "#00679a",
 };
 export const martinLuther: ResourceInfo = {
   _id: "martin_luther",
   name: "Martin Luther",
   image: "martin_luther.png",
   type: ResourceType.SCHOLAR,
-  shortDescription: "German priest responsible for the Protestant Reformation",
+  shortDesc: "German priest responsible for the Protestant Reformation",
   controls: [Controls.FULLSCREEN],
   badges: ["theology", "historical_figure"],
-  mediaType: [],
+  color: "#a59375",
 };
 export const ntWright: ResourceInfo = {
   _id: "nt_wright",
   name: "N.T. Wright",
   image: "nt_wright.png",
   type: ResourceType.SCHOLAR,
-  shortDescription:
+  shortDesc:
     "Nicholas Thomas (N.T.) Wright is a New Testament scholar and Anglican bishop",
   controls: [Controls.FULLSCREEN],
   badges: ["website", "book", "apologetics", "theology", "church"],
   links: [],
+  color: "#6599ed",
 };
 export const csLewis: ResourceInfo = {
   _id: "cs_lewis",
   name: "C.S. Lewis",
   image: "cs_lewis.png",
   type: ResourceType.SCHOLAR,
-  shortDescription:
+  shortDesc:
     "Clive Staples (C.S.) Lewis was a British scholar and Anglican theologian",
   controls: [Controls.FULLSCREEN],
   badges: ["website", "debate", "book", "apologetics", "theology"],
   links: [],
+  color: "#787878",
 };
 export const johnLennox: ResourceInfo = {
   _id: "john_lennox",
   name: "John Lennox",
   image: "john_lennox.png",
   type: ResourceType.SCHOLAR,
-  shortDescription:
+  shortDesc:
     "Northern Irish theologian known for his public debates with Atheists",
   favorite: false,
   controls: [Controls.FULLSCREEN, Controls.DROPDOWN],
   badges: ["video", "book", "theology", "apologetics"],
+  color: "#3c8d25",
 };
 export const mikeWinger: ResourceInfo = {
   _id: "mike_winger",
   name: "Mike Winger",
   image: "bible_thinker.png",
   type: ResourceType.CREATOR,
-  shortDescription: '"Think Biblically About Everything"',
+  shortDesc: '"Think Biblically About Everything"',
   favorite: false,
   controls: [Controls.FULLSCREEN],
   badges: ["video", "podcast", "apologetics", "theology"],
-  mediaType: [],
   links: [],
+  color: "#f5b100",
 };
 export const wesHuff: ResourceInfo = {
   _id: "wesley_huff",
   name: "Wesley (Wes) Huff",
   image: "wesley_huff.png",
   type: ResourceType.CREATOR,
-  shortDescription: "Teach. Reach. Encourage. Equip.",
+  shortDesc: "Teach. Reach. Encourage. Equip.",
   favorite: false,
   controls: [Controls.FULLSCREEN, Controls.DROPDOWN],
   badges: ["video", "podcast", "apologetics", "theology"],
-  mediaType: [],
   links: [
     {
       platform: "website",
@@ -251,17 +257,19 @@ export const wesHuff: ResourceInfo = {
       displayText: "Personal Website",
     },
   ],
+  color: "#34374d",
 };
 export const inspiringPhilosophy: ResourceInfo = {
   _id: "inspiring_philosophy",
   name: "Michael Jones - InspiringPhilosophy",
   image: "inspiring_philosophy.png",
   type: ResourceType.CREATOR,
-  shortDescription: '"Helping You Grow Your Faith"',
-  longDescription:
+  shortDesc: '"Helping You Grow Your Faith"',
+  longDesc:
     "InspiringPhilosophy is a non-profit Christian organization that brings high-quality content on apologetics, theology, and commentary. The team's mission is to spread the Gospel by proving its truth, and they do this in numerous ways. InspiringPhilosophy's content ranges from rebuttals to Muslim apologists to finding historical evidence for certain Biblical accounts, like the conquest of Caanan.\n\nThe team participates in debates with atheists, muslims, and other Christians.",
   controls: [Controls.FULLSCREEN, Controls.DROPDOWN],
   badges: ["video", "podcast", "apologetics", "theology"],
+  color: "#070c0a",
   recentContent: [
     {
       _id: "ip_v1",
@@ -371,12 +379,12 @@ export const gavinOrtlund: ResourceInfo = {
   name: "Truth Unites with Gavin Ortlund",
   image: "truth_unites.png",
   type: ResourceType.CREATOR,
-  shortDescription:
-    "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
-  longDescription:
+  shortDesc: "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
+  longDesc:
     "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
   favorite: true,
   controls: [Controls.FULLSCREEN, Controls.DROPDOWN],
+  color: "#104b88",
   recentContent: [
     {
       _id: "go_v1",
@@ -436,7 +444,6 @@ export const gavinOrtlund: ResourceInfo = {
     },
   ],
   badges: ["video", "podcast", "website", "apologetics", "theology"],
-  mediaType: [],
   links: [
     {
       platform: "YouTube",
@@ -507,10 +514,11 @@ export const bibleProject: ResourceInfo = {
   name: "BibleProject",
   image: "bible_project.png",
   type: ResourceType.CREATOR,
-  shortDescription: '"Watch, Read, Listen, and Learn."',
-  longDescription:
+  shortDesc: '"Watch, Read, Listen, and Learn."',
+  longDesc:
     "BibleProject is a crowdfunded, non-profit organization that creates high-quality, free resources for Christians. These include commentaries on specific Bible books, podcasts, and more.",
   controls: [Controls.FULLSCREEN, Controls.DROPDOWN],
+  color: "#8adcf3",
   recentContent: [
     {
       _id: "bp_v1",
@@ -572,7 +580,6 @@ export const bibleProject: ResourceInfo = {
     },
   ],
   badges: ["video", "podcast", "website", "apologetics", "theology"],
-  mediaType: [],
   links: [
     {
       platform: "YouTube",
@@ -950,10 +957,9 @@ const apologeticsRowData1: RowData = {
       _id: "God_existence",
       name: "The Existence of God",
       type: ResourceType.TOPIC,
-      shortDescription: "Arguments to support the existence of God",
+      shortDesc: "Arguments to support the existence of God",
       badges: [],
-      solomonLink: "topics/existence_of_god",
-      mediaType: [],
+
       links: [
         {
           platform: "YouTube",
@@ -985,10 +991,10 @@ const apologeticsRowData1: RowData = {
       _id: "Jesus_of_nazareth",
       name: "Jesus of Nazereth",
       type: ResourceType.TOPIC,
-      shortDescription: "Is Jesus who He claimed to be?",
+      shortDesc: "Is Jesus who He claimed to be?",
       favorite: false,
       badges: [],
-      mediaType: [],
+
       links: [
         {
           platform: "Solomon",
@@ -1020,10 +1026,10 @@ const apologeticsRowData1: RowData = {
       _id: "popular_topics",
       name: "Popular Topics",
       type: ResourceType.TOPIC,
-      shortDescription: "",
+      shortDesc: "",
       favorite: false,
       badges: [],
-      mediaType: [],
+
       links: [
         {
           platform: "Solomon",
@@ -1061,10 +1067,10 @@ const apologeticsRowData1: RowData = {
       _id: "recently_added",
       name: "Recently Added",
       type: ResourceType.TOPIC,
-      shortDescription: "",
+      shortDesc: "",
       favorite: false,
       badges: [],
-      mediaType: [],
+
       links: [
         {
           platform: "Solomon",

@@ -4,8 +4,8 @@
     "name": "Truth Unites with Gavin Ortlund",
     "type": "creator",
     "mainLink": "https://truthunites.org/about-gavin-ortlund/",
-    "shortDescription": "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
-    "longDescription": "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
+    "shortDesc": "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
+    "longDesc": "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
     "favorite": true,
     "controls": ["fullscreen", "dropdown"],
     "badges": ["video", "podcast", "website", "apologetics", "theology"]
@@ -16,7 +16,7 @@
     "image": "got_questions.png",
     "mainLink": "https://www.gotquestions.org",
     "type": "ministry",
-    "shortDescription": "Website housing Bible commentaries and explainers.",
+    "shortDesc": "Website housing Bible commentaries and explainers.",
     "controls": ["external_link"],
     "badges": ["website", "theology", "commentary"]
   },
@@ -26,7 +26,7 @@
     "image": "william_lane_craig.png",
     "mainLink": "https://www.reasonablefaith.org/william-lane-craig",
     "type": "scholar",
-    "shortDescription": "Reformed Theologian focusing on apologetics, debates, and more",
+    "shortDesc": "Reformed Theologian focusing on apologetics, debates, and more",
     "controls": ["fullscreen"],
     "badges": ["video", "website", "apologetics", "theology"],
     "mediaType": [],
@@ -37,7 +37,7 @@
     "name": "Martin Luther",
     "image": "martin_luther.png",
     "type": "scholar",
-    "shortDescription": "German priest responsible for the Protestant Reformation",
+    "shortDesc": "German priest responsible for the Protestant Reformation",
     "controls": ["fullscreen"],
     "badges": ["theology", "historical_figure"],
     "mediaType": []
@@ -48,7 +48,7 @@
     "image": "nt_wright.png",
     "mainLink": "https://theascentleader.org/n-t-wright/",
     "type": "scholar",
-    "shortDescription": "Nicholas Thomas (N.T.) Wright is a New Testament scholar and Anglican bishop",
+    "shortDesc": "Nicholas Thomas (N.T.) Wright is a New Testament scholar and Anglican bishop",
     "controls": ["fullscreen"],
     "badges": ["website", "book", "apologetics", "theology", "church"],
     "links": []
@@ -59,7 +59,7 @@
     "image": "cs_lewis.png",
     "mainLink": "https://www.cslewis.com/us/",
     "type": "scholar",
-    "shortDescription": "Clive Staples (C.S.) Lewis was a British scholar and Anglican theologian",
+    "shortDesc": "Clive Staples (C.S.) Lewis was a British scholar and Anglican theologian",
     "controls": ["fullscreen"],
     "badges": ["website", "debate", "book", "apologetics", "theology"]
   },
@@ -69,7 +69,7 @@
     "image": "john_lennox.png",
     "mainLink": "https://www.johnlennox.org/",
     "type": "scholar",
-    "shortDescription": "Northern Irish theologian known for his public debates with Atheists",
+    "shortDesc": "Northern Irish theologian known for his public debates with Atheists",
     "controls": ["fullscreen", "dropdown"],
     "badges": ["video", "book", "theology", "apologetics"]
   },
@@ -79,7 +79,7 @@
     "image": "bible_thinker.png",
     "mainLink": "https://www.biblethinker.org",
     "type": "creator",
-    "shortDescription": "\"Think Biblically About Everything\"",
+    "shortDesc": "\"Think Biblically About Everything\"",
     "controls": ["fullscreen"],
     "badges": ["video", "podcast", "apologetics", "theology"]
   },
@@ -89,7 +89,7 @@
     "image": "wesley_huff.png",
     "mainLink": "https://www.wesleyhuff.com/",
     "type": "creator",
-    "shortDescription": "Teach. Reach. Encourage. Equip.",
+    "shortDesc": "Teach. Reach. Encourage. Equip.",
     "controls": ["fullscreen", "dropdown"],
     "badges": ["video", "podcast", "apologetics", "theology"]
   },
@@ -99,8 +99,8 @@
     "image": "inspiring_philosophy.png",
     "mainLink": "https://www.inspiringphilosophy.com/",
     "type": "creator",
-    "shortDescription": "\"Helping You Grow Your Faith\"",
-    "longDescription": "InspiringPhilosophy is a non-profit Christian organization that brings high-quality content on apologetics, theology, and commentary. The team's mission is to spread the Gospel by proving its truth, and they do this in numerous ways. InspiringPhilosophy's content ranges from rebuttals to Muslim apologists to finding historical evidence for certain Biblical accounts, like the conquest of Caanan.\n\nThe team participates in debates with atheists, muslims, and other Christians.",
+    "shortDesc": "\"Helping You Grow Your Faith\"",
+    "longDesc": "InspiringPhilosophy is a non-profit Christian organization that brings high-quality content on apologetics, theology, and commentary. The team's mission is to spread the Gospel by proving its truth, and they do this in numerous ways. InspiringPhilosophy's content ranges from rebuttals to Muslim apologists to finding historical evidence for certain Biblical accounts, like the conquest of Caanan.\n\nThe team participates in debates with atheists, muslims, and other Christians.",
     "controls": ["fullscreen", "dropdown"],
     "badges": ["video", "podcast", "apologetics", "theology"]
   },
@@ -110,8 +110,8 @@
     "image": "bible_project.png",
     "mainLink": "https://bibleproject.com/",
     "type": "creator",
-    "shortDescription": "\"Watch, Read, Listen, and Learn.\"",
-    "longDescription": "BibleProject is a crowdfunded, non-profit organization that creates high-quality, free resources for Christians. These include commentaries on specific Bible books, podcasts, and more.",
+    "shortDesc": "\"Watch, Read, Listen, and Learn.\"",
+    "longDesc": "BibleProject is a crowdfunded, non-profit organization that creates high-quality, free resources for Christians. These include commentaries on specific Bible books, podcasts, and more.",
     "controls": ["fullscreen", "dropdown"]
   },
   {
@@ -119,8 +119,8 @@
     "name": "Counsel of Trent - Trent Horn",
     "mainLink": "https://www.catholic.com/audio/cot",
     "type": "creator",
-    "shortDescription": "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
-    "longDescription": "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
+    "shortDesc": "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
+    "longDesc": "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
     "favorite": true,
     "controls": ["fullscreen", "dropdown"]
   }

@@ -4,7 +4,6 @@ import { HorizontalRow } from "@components/HorizontalRow";
 import Link from "@components/Link";
 import Modal from "@components/modals/Modal";
 import Thumbnail from "@components/Thumbnail";
-import { colorMap } from "@database/colorMap";
 import styled from "@emotion/styled";
 import { ThemeContext } from "@libs/Context";
 import { noOp } from "@libs/functions";
@@ -87,7 +86,7 @@ const ResourceModal: React.FC<{
   const [active, setActive] = React.useState<number>(0);
 
   return (
-    <Modal visible={visible} backgroundColor={colorMap[resource.type]}>
+    <Modal visible={visible} backgroundColor={resource.color}>
       <Container>
         <Typography.ResourceTitle style={{ marginBottom: 10 }}>
           {resource.name}
@@ -97,7 +96,7 @@ const ResourceModal: React.FC<{
           italic={true}
           style={{ marginTop: 0, marginBottom: 30 }}
         >
-          {resource.shortDescription}
+          {resource.shortDesc}
         </Typography.Description>
         <Body>
           <TabsContainer>
@@ -119,7 +118,7 @@ const ResourceModal: React.FC<{
           </TabsContainer>
           {active === 0 && (
             <Typography.Description fontSize="14px">
-              {resource.longDescription}
+              {resource.longDesc}
             </Typography.Description>
           )}
           {active > 0 && (
@@ -190,7 +189,7 @@ const ResourceModal: React.FC<{
           </div>
           <BadgeRow>
             {resource.badges?.map((id, index) => (
-              <Badge id={id} key={index} />
+              <Badge _id={id} key={index} themeId={theme._id} />
             ))}
           </BadgeRow>
         </Body>

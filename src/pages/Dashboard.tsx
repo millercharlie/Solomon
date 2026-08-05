@@ -5,7 +5,7 @@ import { sidebarData } from "@database/mockData";
 // import axios from "axios";
 import Sidebar from "@components/Sidebar";
 
-import { ClassDemoCard } from "@components/Cards";
+import { Card } from "@components/Cards";
 import { PageType, type DashboardData, type ResourceInfo } from "@libs/Types";
 import * as theme from "@libs/globals";
 import React from "react";
@@ -121,7 +121,7 @@ const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
                       item, // TODO: This needs to be more dynamic - only the cards can fit on the page should be displayed
                       j,
                     ) => (
-                      <ClassDemoCard
+                      <Card
                         resource={item}
                         key={j}
                         setSelectedResource={setSelectedResource}

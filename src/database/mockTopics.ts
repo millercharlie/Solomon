@@ -12,12 +12,11 @@ import {
 export const trinity: ResourceInfo = {
   _id: "trinity",
   name: "The Trinity",
-  solomonLink: "topics/trinity",
   image: "trinity.png",
   type: ResourceType.TOPIC,
-  shortDescription:
+  shortDesc:
     "Discusses the true nature of God, in the form of three co-equal persons in the Trinity",
-  longDescription:
+  longDesc:
     "The Trinity is the true God in the form of three, co-equal persons: the Father, the Son, and the Holy Spirit. It cannot be explained by human metaphors or worldly aspects, and each person of the Trinity is eternal, 100% God, and have different functions in the Bible. But, what exactly is the Trinity? Is it possible to wrap our heads around the nature of God?",
   controls: [Controls.OPEN_PAGE],
   badges: [
@@ -28,6 +27,7 @@ export const trinity: ResourceInfo = {
     "book",
     "theology",
   ],
+  color: "#d543a9",
   links: [
     {
       platform: "YouTube",

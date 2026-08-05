@@ -71,8 +71,7 @@ const row1: RowData = {
     {
       _id: "christophanies",
       name: "Christophanies",
-      shortDescription:
-        "Studies manifestations of Jesus Christ in the Old Testament.",
+      shortDesc: "Studies manifestations of Jesus Christ in the Old Testament.",
       type: ResourceType.TOPIC,
       badges: [],
       links: [

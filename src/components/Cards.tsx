@@ -1,35 +1,35 @@
-import Badge from "@components/Badge";
 import styled from "@emotion/styled";
 
 import React from "react";
 import { IconWithTooltip } from "@libs/Icons";
 import * as Typography from "@libs/Typography";
 import resourceIcons from "@database/resourceIcons.json";
-import { hexToRGB } from "@libs/functions";
 
 import {
   AccountStatus,
+  Theme,
   type ColorTheme,
   type ResourceInfo,
   type ResourceType,
 } from "@libs/Types";
 import { HorizontalRow } from "@components/HorizontalRow";
 import ControlButtons from "@components/ControlButtons";
-import { colorMap } from "@database/colorMap";
 import { ThemeContext } from "@libs/Context";
 import Thumbnail from "@components/Thumbnail";
+import Badge from "@components/Badge";
 
 const Container = styled.div<{
-  backgroundColor?: string;
+  bColor?: string;
   theme: ColorTheme;
   doubleWidth?: boolean;
 }>`
   /* width: 300px; */
   height: fit-content;
   padding: 10px;
-  outline: 3px solid ${({ theme }) => theme.text};
+  outline: ${({ bColor, theme }) =>
+    theme._id === Theme.DARK ? `2px solid ${bColor}` : undefined};
   border-radius: 10px;
-  background-color: ${({ backgroundColor }) => backgroundColor ?? "#717171"};
+  background-color: ${({ bColor }) => `${bColor}4D`};
   backdrop-filter: blur(40%);
   transition: all 0.2s;
   grid-column: span ${({ doubleWidth }) => (doubleWidth ? "2" : "1")};
@@ -59,27 +59,27 @@ const BadgeRow = styled.div`
   gap: 9px;
 `;
 
-const StyledControls = styled(ControlButtons)`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 4;
-`;
+// const StyledControls = styled(ControlButtons)`
+//   position: absolute;
+//   top: 10px;
+//   right: 10px;
+//   z-index: 4;
+// `;
 
-const ClassDemoContainer = styled.div<{ doubleWidth?: boolean }>`
-  height: fit-content;
-  grid-column: span ${({ doubleWidth }) => (doubleWidth ? "2" : "1")};
-  border-radius: 10px;
-  transition: all 0.2s;
-  :hover {
-    transform: translateY(-10px);
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-  }
-`;
-const StyledImage = styled.img`
-  width: 100%;
-  border-radius: 12px;
-`;
+// const ClassDemoContainer = styled.div<{ doubleWidth?: boolean }>`
+//   height: fit-content;
+//   grid-column: span ${({ doubleWidth }) => (doubleWidth ? "2" : "1")};
+//   border-radius: 10px;
+//   transition: all 0.2s;
+//   :hover {
+//     transform: translateY(-10px);
+//     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+//   }
+// `;
+// const StyledImage = styled.img`
+//   width: 100%;
+//   border-radius: 12px;
+// `;
 
 /**
  * Represents a Card, to be displayed on the Dashboard and various other pages. This card handles its
@@ -88,81 +88,81 @@ const StyledImage = styled.img`
  * @param setSelectedResource sets the current resource that is displayed in the fullscreen modal
  * @returns Card component that can be expanded if clicked
  */
-export const ClassDemoCard: React.FC<{
-  resource: ResourceInfo;
-  setSelectedResource: React.Dispatch<
-    React.SetStateAction<ResourceInfo | null>
-  >;
-}> = ({ resource, setSelectedResource }) => {
-  const [dropdownActive, setDropdownActive] = React.useState<boolean>(false);
+// export const ClassDemoCard: React.FC<{
+//   resource: ResourceInfo;
+//   setSelectedResource: React.Dispatch<
+//     React.SetStateAction<ResourceInfo | null>
+//   >;
+// }> = ({ resource, setSelectedResource }) => {
+//   const [dropdownActive, setDropdownActive] = React.useState<boolean>(false);
 
-  const { theme } = React.useContext(ThemeContext);
+//   const { theme } = React.useContext(ThemeContext);
 
-  // const icon = React.useMemo(() => {
-  //   const curIcon = resourceIcons.find(
-  //     (item) => resource.type === (item.type as unknown as ResourceType)
-  //   );
-  //   if (!curIcon) {
-  //     throw new Error("Resource Icon Not Found");
-  //   } else return curIcon.icon;
-  // }, [resource.type]);
+//   // const icon = React.useMemo(() => {
+//   //   const curIcon = resourceIcons.find(
+//   //     (item) => resource.type === (item.type as unknown as ResourceType)
+//   //   );
+//   //   if (!curIcon) {
+//   //     throw new Error("Resource Icon Not Found");
+//   //   } else return curIcon.icon;
+//   // }, [resource.type]);
 
-  return (
-    <ClassDemoContainer id={resource._id} doubleWidth={resource.doubleWidth}>
-      <VisibleContent>
-        <MainContent>
-          <a href={resource.solomonLink}>
-            <StyledImage
-              src={`/assets/images/${resource.image}`}
-              alt={resource._id}
-            />
-          </a>
-          <Typography.Subtitle style={{ marginTop: 2 }}>
-            {resource.name}
-          </Typography.Subtitle>
-          <Typography.Paragraph style={{ marginTop: 7 }}>
-            {resource.shortDescription}
-          </Typography.Paragraph>
-          <BadgeRow>
-            {resource.badges?.map((id, index) => (
-              <Badge id={id} key={index} />
-            ))}
-          </BadgeRow>
-        </MainContent>
-        {resource.controls && (
-          <StyledControls
-            resource={resource}
-            setSelectedResource={setSelectedResource}
-            dropdownActive={dropdownActive}
-            setDropdownActive={setDropdownActive}
-            accountStatus={AccountStatus.GUEST}
-            controls={resource.controls}
-            favorite={false}
-          />
-        )}
-      </VisibleContent>
-      {dropdownActive && resource.recentContent && (
-        <div id="expanded-content">
-          <Typography.DropdownTitle>Recent Content</Typography.DropdownTitle>
-          {resource.recentContent.map((contentItem, index) => (
-            <>
-              <Thumbnail
-                title={contentItem.title}
-                image={contentItem.thumbnail}
-                link={""}
-                description={contentItem.description}
-                badges={contentItem.badges}
-              />
-              {index < resource.recentContent!.length - 1 && (
-                <HorizontalRow color={theme.secondaryRow} />
-              )}
-            </>
-          ))}
-        </div>
-      )}
-    </ClassDemoContainer>
-  );
-};
+//   return (
+//     <ClassDemoContainer id={resource._id} doubleWidth={resource.doubleWidth}>
+//       <VisibleContent>
+//         <MainContent>
+//           <a href={resource.solomonLink}>
+//             <StyledImage
+//               src={`/assets/images/${resource.image}`}
+//               alt={resource._id}
+//             />
+//           </a>
+//           <Typography.Subtitle style={{ marginTop: 2 }}>
+//             {resource.name}
+//           </Typography.Subtitle>
+//           <Typography.Paragraph style={{ marginTop: 7 }}>
+//             {resource.shortDesc}
+//           </Typography.Paragraph>
+//           <BadgeRow>
+//             {resource.badges?.map((id, index) => (
+//               <Badge id={id} key={index} />
+//             ))}
+//           </BadgeRow>
+//         </MainContent>
+//         {resource.controls && (
+//           <StyledControls
+//             resource={resource}
+//             setSelectedResource={setSelectedResource}
+//             dropdownActive={dropdownActive}
+//             setDropdownActive={setDropdownActive}
+//             accountStatus={AccountStatus.GUEST}
+//             controls={resource.controls}
+//             favorite={false}
+//           />
+//         )}
+//       </VisibleContent>
+//       {dropdownActive && resource.recentContent && (
+//         <div id="expanded-content">
+//           <Typography.DropdownTitle>Recent Content</Typography.DropdownTitle>
+//           {resource.recentContent.map((contentItem, index) => (
+//             <>
+//               <Thumbnail
+//                 title={contentItem.title}
+//                 image={contentItem.thumbnail}
+//                 link={""}
+//                 description={contentItem.description}
+//                 badges={contentItem.badges}
+//               />
+//               {index < resource.recentContent!.length - 1 && (
+//                 <HorizontalRow color={theme.secondaryRow} />
+//               )}
+//             </>
+//           ))}
+//         </div>
+//       )}
+//     </ClassDemoContainer>
+//   );
+// };
 
 // TODO: Likely add a `setFavorite()` state function
 /**
@@ -181,10 +181,6 @@ export const Card: React.FC<{
   const [dropdownActive, setDropdownActive] = React.useState<boolean>(false);
 
   const { theme } = React.useContext(ThemeContext);
-  const translucentBackgroundColor = React.useMemo(() => {
-    const rgbColor = hexToRGB(colorMap[resource.type]);
-    return `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.2)`;
-  }, [resource]);
   const icon = React.useMemo(() => {
     const curIcon = resourceIcons.find(
       (item) => resource.type === (item.type as unknown as ResourceType),
@@ -197,9 +193,9 @@ export const Card: React.FC<{
   return (
     <Container
       id={resource._id}
-      backgroundColor={translucentBackgroundColor}
+      bColor={resource.color || "#72B661"}
       theme={theme}
-      doubleWidth={resource.doubleWidth}
+      // doubleWidth={resource.doubleWidth} TODO: Double-width stuff - likely only very few resources
     >
       <VisibleContent>
         <MainContent>
@@ -213,12 +209,10 @@ export const Card: React.FC<{
             />
             <Typography.Subtitle>{resource.name}</Typography.Subtitle>
           </TitleRow>
-          <Typography.Paragraph>
-            {resource.shortDescription}
-          </Typography.Paragraph>
+          <Typography.Paragraph>{resource.shortDesc}</Typography.Paragraph>
           <BadgeRow>
-            {resource.badges?.map((id, index) => (
-              <Badge id={id} key={index} />
+            {resource.badges?.map((badge, index) => (
+              <Badge _id={badge} key={index} themeId={theme._id} />
             ))}
           </BadgeRow>
         </MainContent>

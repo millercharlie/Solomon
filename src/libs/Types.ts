@@ -7,16 +7,6 @@ export type SidebarLink = {
   items: ResourceLink[];
 };
 
-/**
- * All data required for displaying a badge.
- */
-export type BadgeAttributes = {
-  text: string;
-  icon: string;
-  backgroundColor: string;
-  textColor: string;
-};
-
 export type ResourceIcon = {
   type: ResourceType;
   icon: string;
@@ -59,6 +49,25 @@ type Content = {
   link: string;
 };
 
+export type BadgeTypes =
+  | "platform"
+  | "ministry"
+  | "topic"
+  | "contentType"
+  | "contentTheme";
+export type IBadge = {
+  _id: string;
+  type: BadgeTypes;
+  text: string;
+  icon: string;
+};
+export type BadgeAtts = {
+  type: BadgeTypes;
+  text: string;
+  icon: string;
+  color: string;
+};
+
 /**
  * All data required for displaying a resource.
  */
@@ -66,19 +75,15 @@ export type ResourceInfo = {
   _id: string;
   name: string;
   image?: string;
-  doubleWidth?: boolean;
-  solomonLink?: string;
-  ministry?: string;
-  mainLink?: string; // TODO: Add this functionality with the new "EXTERNAL" Control
+  color?: string;
   type: ResourceType;
-  shortDescription?: string;
-  longDescription?: string;
+  shortDesc?: string;
+  longDesc?: string;
   recentContent?: Content[];
   recommendedContent?: Content[]; // TODO: This will change as more functionality is added (eg: user recommendations)
   favorite?: boolean;
   controls?: Controls[];
   badges: string[];
-  mediaType?: string[]; // TODO: This might not be needed except for topics which can map through them
   links?: ResourceLink[];
 };
 
