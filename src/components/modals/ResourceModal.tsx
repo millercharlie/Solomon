@@ -8,8 +8,9 @@ import styled from "@emotion/styled";
 import { ThemeContext } from "@libs/Context";
 import { noOp } from "@libs/functions";
 import { breakpoints } from "@libs/globals";
-import { AccountStatus, type ResourceInfo } from "@libs/Types";
+import { AccountStatus, type Content, type ResourceInfo } from "@libs/Types";
 import * as Typography from "@libs/Typography";
+import axios from "axios";
 import React from "react";
 
 const Container = styled.div`
@@ -72,6 +73,13 @@ const BadgeRow = styled.div`
   gap: 9px;
 `;
 
+const Photo = styled.img`
+  border-radius: 50%;
+  max-width: 100px;
+  position: absolute;
+  float: left;
+`;
+
 /**
  * Represents a modal for a single resource, such as a historian or non-profit.
  */
@@ -84,9 +92,97 @@ const ResourceModal: React.FC<{
 }> = ({ resource, setSelectedResource, visible }) => {
   const { theme } = React.useContext(ThemeContext);
   const [active, setActive] = React.useState<number>(0);
+  const [pfp, setPfp] = React.useState<string>("");
+  const [recentContent, setRecentContent] = React.useState<Content[]>();
+
+  type APIVideo = {
+    snippet: {
+      title: string;
+      description: string;
+      thumbnails: {
+        high: {
+          width: number;
+          height: number;
+          url: string;
+        };
+      };
+    };
+    contentDetails: {
+      videoId: string;
+    };
+  };
+
+  const youtubeVideoToContent = React.useCallback(
+    (video: APIVideo): Content => {
+      // YouTube native URL
+      const { snippet, contentDetails } = video;
+      const url = `https://www.youtube.com/watch?v=${contentDetails.videoId}`;
+
+      // Shortens the video description to 150 characters
+      const shortenedDesc = `${snippet.description.slice(0, 150)}...`;
+
+      return {
+        _id: contentDetails.videoId,
+        title: snippet.title,
+        description: shortenedDesc,
+        thumbnail: snippet.thumbnails.high.url,
+        link: url,
+      };
+    },
+    [],
+  );
+
+  // TODO: This will all be done in the backend. I do not want the API key in the frontend
+  React.useEffect(() => {
+    const getThumbnail = async () => {
+      const thumbnail = await axios
+        .get(
+          `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&forHandle=${"TruthUnites"}&fields=items(id,snippet(thumbnails(high)))&key=${import.meta.env.VITE_YOUTUBE_API_KEY}`,
+        )
+        .catch((e) => console.error(e));
+
+      // Invariance: Items will only be 1 item long
+      if (thumbnail && thumbnail.data.items[0].snippet.thumbnails.high.url)
+        setPfp(thumbnail.data.items[0].snippet.thumbnails.high.url);
+    };
+    getThumbnail();
+  }, [setPfp]);
+
+  React.useEffect(() => {
+    const getRecentContent = async () => {
+      const playlists = await axios
+        .get(
+          `https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&forHandle=${"TruthUnites"}&fields=items(id,contentDetails(relatedPlaylists))&key=${import.meta.env.VITE_YOUTUBE_API_KEY}`,
+        )
+        .catch((e) => console.error(e));
+
+      if (playlists) {
+        const rc = await axios
+          .get(
+            `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${playlists.data.items[0].contentDetails.relatedPlaylists.uploads}&fields=items(id,snippet(title,description,thumbnails(high)),contentDetails(videoId))&key=${import.meta.env.VITE_YOUTUBE_API_KEY}`,
+          )
+          .catch((e) => console.error(e));
+
+        if (rc) {
+          const recentVideos = rc.data.items.slice(0, 3);
+          const parsedVideos = recentVideos.map((v: APIVideo) =>
+            youtubeVideoToContent(v),
+          );
+
+          setRecentContent(parsedVideos);
+        }
+      }
+    };
+    getRecentContent();
+  }, [youtubeVideoToContent]);
+
+  React.useEffect(() => {
+    console.log(recentContent);
+  }, [recentContent]);
 
   return (
     <Modal visible={visible} backgroundColor={resource.color}>
+      {pfp !== "" && <Photo src={pfp} alt="pfp" referrerPolicy="no-referrer" />}
       <Container>
         <Typography.ResourceTitle style={{ marginBottom: 10 }}>
           {resource.name}
@@ -123,16 +219,15 @@ const ResourceModal: React.FC<{
           )}
           {active > 0 && (
             <ContentContainer>
-              {resource.recentContent && active === 1 && (
+              {recentContent && active === 1 && (
                 <ResourceContent>
-                  {resource.recentContent?.map((item, index) => (
+                  {recentContent?.map((item, index) => (
                     <>
                       <Thumbnail
                         key={index}
                         title={item.title}
-                        image={item.thumbnail}
+                        imageUrl={item.thumbnail}
                         link={item.link}
-                        badges={item.badges}
                         description={item.description}
                         large={true}
                       />
@@ -150,9 +245,8 @@ const ResourceModal: React.FC<{
                       <Thumbnail
                         key={index}
                         title={item.title}
-                        image={item.thumbnail}
+                        imageUrl={item.thumbnail}
                         link={item.link}
-                        badges={item.badges}
                         description={item.description}
                         large={true}
                       />

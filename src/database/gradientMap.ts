@@ -9,4 +9,5 @@ export const gradientMap: Record<PageType, string> = {
   [PageType.GLOSSARY]: "glossary_gradient",
   [PageType.NOTFOUND]: "404_gradient",
   [PageType.ABOUT]: "about_gradient",
+  [PageType.ADD]: "create_gradient",
 };

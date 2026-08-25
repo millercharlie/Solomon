@@ -14,6 +14,7 @@ import Glossary from "@pages/Glossary.tsx";
 import Topic from "@pages/Topic.tsx";
 import NotFound from "@pages/404Page.tsx";
 import AboutPage from "@pages/About.tsx";
+import AddResource from "@pages/AddResource.tsx";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,7 @@ const router = createBrowserRouter([
     path: "/about",
     element: <AboutPage />,
   },
+  { path: "/add-resource", element: <AddResource /> },
 ]);
 
 createRoot(document.getElementById("root")!).render(

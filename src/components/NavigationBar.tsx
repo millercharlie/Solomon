@@ -9,7 +9,7 @@ import { Theme, type ColorTheme } from "@libs/Types";
 import React from "react";
 import { breakpoints, Colors } from "@libs/globals";
 import { Link } from "react-router";
-import Button from "@components/Button";
+import { LinkButton as Button } from "@components/Buttons";
 import { themeKey } from "@libs/Context";
 
 const links: { id: string; pretty: string; link: string }[] = [
