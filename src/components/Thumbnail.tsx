@@ -1,19 +1,16 @@
-import Badge from "@components/Badge";
 import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
 
 const ThumbnailContainer = styled.div`
   width: 100%;
-  /* max-width: 500px; */
   display: flex;
   gap: 20px;
   justify-content: space-between;
-  align-items: center;
 `;
 const ThumbnailImage = styled.img<{ large?: boolean }>`
-  width: ${({ large }) => (large ? `175` : `100`)}px;
+  width: ${({ large }) => (large ? `150` : `100`)}px;
   float: right;
-  height: auto;
+  /* height: auto; */
   border-radius: ${({ large }) => (large ? `8` : `3`)}px;
   cursor: pointer;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
@@ -26,12 +23,11 @@ const ThumbnailImage = styled.img<{ large?: boolean }>`
 
 const Thumbnail: React.FC<{
   title: string;
-  image: string;
+  imageUrl: string;
   link: string;
   description?: string;
-  badges: string[];
   large?: boolean;
-}> = ({ title, image, link, description, badges, large }) => {
+}> = ({ title, imageUrl, link, description, large }) => {
   return (
     <ThumbnailContainer>
       <div id="title/description">
@@ -43,16 +39,9 @@ const Thumbnail: React.FC<{
           <Typography.ThumbnailTitle>{title}</Typography.ThumbnailTitle>
         )}
         {large && <Typography.Paragraph>{description}</Typography.Paragraph>}
-        {badges.map((badge) => (
-          <Badge id={badge} />
-        ))}
       </div>
       <a href={link}>
-        <ThumbnailImage
-          src={`/assets/mocks/${image}`}
-          alt="thumbnail"
-          large={large}
-        />
+        <ThumbnailImage src={imageUrl} alt="thumbnail" large={large} />
       </a>
     </ThumbnailContainer>
   );

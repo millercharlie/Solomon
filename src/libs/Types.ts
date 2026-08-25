@@ -40,12 +40,12 @@ export type ResourceLink = {
   tooltip?: string;
 };
 
-type Content = {
+export type Content = {
   _id: string;
   title: string;
   description?: string;
   thumbnail: string;
-  badges: string[]; // TODO: Maybe make badge type an enum or interface
+  badges?: string[];
   link: string;
 };
 
@@ -62,10 +62,19 @@ export type IBadge = {
   icon: string;
 };
 export type BadgeAtts = {
+  _id: string;
   type: BadgeTypes;
   text: string;
   icon: string;
   color: string;
+};
+
+/**
+ * API to be called. Can only be YouTube for now.
+ */
+type ResourceAPI = {
+  platform: "youtube"; // | 'amazon' | 'tiktok'
+  queryParam: string; // For YouTube, this will be a username
 };
 
 /**
@@ -74,17 +83,19 @@ export type BadgeAtts = {
 export type ResourceInfo = {
   _id: string;
   name: string;
-  image?: string;
+  image?: string; // TODO: This will be removed after the backend/frontend integration is completed
   color?: string;
   type: ResourceType;
   shortDesc?: string;
   longDesc?: string;
   recentContent?: Content[];
-  recommendedContent?: Content[]; // TODO: This will change as more functionality is added (eg: user recommendations)
+  recommendedContent?: Content[]; // Recommended content will be mostly used for historical figures (Martin Luther, Charles Spurgeon, etc.) where no "recent content" would be relevant
   favorite?: boolean;
-  controls?: Controls[];
-  badges: string[];
-  links?: ResourceLink[];
+  controls?: Controls[]; // TODO: Probably remove this. It should be dynamically calculated
+  badges: string[]; // Badges are just _id strings, and are displayed on the frontend
+  links: ResourceLink[]; // All associated links
+  spotlight?: ResourceLink; // Highlighted link that displays on cards
+  api: ResourceAPI;
 };
 
 // TODO: Clean up these types
@@ -142,6 +153,7 @@ export enum PageType {
   GLOSSARY = "glossary",
   ABOUT = "about",
   NOTFOUND = "404",
+  ADD = "add",
 }
 export enum Theme {
   LIGHT = "light",
@@ -158,3 +170,11 @@ export enum ResourceType {
   TOPIC = "topic",
   QUESTION = "question",
 }
+
+// export type Fields = {
+//   resourceName: string;
+//   creatorName?: string;
+//   shortDesc: string;
+//   longDesc: string;
+//   badges?: BadgeAtts[];
+// }

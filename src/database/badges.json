@@ -1,104 +1,104 @@
-{
-  "video": {
+[
+  {
     "_id": "video",
     "text": "Video",
     "icon": "badges/video.svg",
     "type": "contentType"
   },
-  "apologetics": {
+  {
     "_id": "apologetics",
     "text": "Apologetics",
     "icon": "badges/puzzle.svg",
     "type": "contentTheme"
   },
-  "commentary": {
+  {
     "_id": "commentary",
     "text": "Commentary",
     "icon": "message.svg",
     "type": "contentTheme"
   },
-  "scholarly_article": {
+  {
     "_id": "scholarly_article",
     "text": "Scholarly Article",
     "icon": "scholar.svg",
     "type": "contentType"
   },
-  "blog": {
+  {
     "_id": "blog",
     "text": "Blog",
     "icon": "___.svg",
     "type": "platform"
   },
-  "article": {
+  {
     "_id": "article",
     "text": "Article",
     "icon": "badges/article.svg",
     "type": "contentType"
   },
-  "documentary": {
+  {
     "_id": "documentary",
     "text": "Documentary",
     "icon": "badges/video_camera.svg",
     "type": "contentType"
   },
-  "book": {
+  {
     "_id": "book",
     "text": "Book",
     "icon": "badges/closed_book.svg",
     "type": "contentType"
   },
-  "theology": {
+  {
     "_id": "theology",
     "text": "Theology",
     "icon": "badges/comment.svg",
     "type": "contentTheme"
   },
-  "podcast": {
+  {
     "_id": "podcast",
     "text": "Podcast",
     "icon": "badges/mic.svg",
     "type": "contentType"
   },
-  "website": {
+  {
     "_id": "website",
     "text": "Website",
     "icon": "badges/website.svg",
     "type": "platform"
   },
-  "historical_figure": {
+  {
     "_id": "historical_figure",
     "text": "Historical Figure",
     "icon": "account_placeholder.svg",
     "type": "platform"
   },
-  "church": {
+  {
     "_id": "church",
     "text": "Church",
     "icon": "badges/church.svg",
     "type": "ministry"
   },
-  "philosophy": {
+  {
     "_id": "philosophy",
     "text": "Philosophy",
     "icon": "___.svg",
     "type": "contentTheme"
   },
-  "topic": {
+  {
     "_id": "topic",
     "text": "Topic",
     "icon": "topic.svg",
     "type": "topic"
   },
-  "question": {
+  {
     "_id": "question",
     "text": "Question",
     "icon": "question.svg",
     "type": "topic"
   },
-  "debate": {
+  {
     "_id": "debate",
     "text": "Debate",
     "icon": "badges/podium.svg",
     "type": "contentType"
   }
-}
+]

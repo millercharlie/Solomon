@@ -1,13 +1,12 @@
 import { SmallIcon } from "@libs/Icons";
 import styled from "@emotion/styled";
 import { BadgeText } from "@libs/Typography";
-import { Colors } from "@libs/globals";
-import * as badges from "@database/badges.json";
+import badges from "@database/badges.json";
 import React from "react";
 import { type IBadge, type BadgeAtts, Theme } from "@libs/Types";
 import { badgeColorMap } from "@database/colorMap";
 
-const Container = styled.div<{ bColor: string; themeId: string }>`
+const Container = styled.div<{ bColor: string; themeId: Theme }>`
   width: fit-content;
   height: 18px;
   padding-left: 10px;
@@ -29,13 +28,17 @@ const Container = styled.div<{ bColor: string; themeId: string }>`
   }
 `;
 const Icon = styled(SmallIcon)`
-  color: ${Colors.dark.text};
+  color: "#EAEAEA";
   cursor: pointer;
 `;
 
-const Badge: React.FC<{ _id: string; themeId: Theme }> = ({ _id, themeId }) => {
+const Badge: React.FC<{
+  _id: string;
+  themeId: Theme;
+  onClick?: () => void;
+}> = ({ _id, themeId, onClick }) => {
   const { text, icon, color }: BadgeAtts = React.useMemo(() => {
-    const curBadge = badges[_id as keyof typeof badges] as IBadge;
+    const curBadge = badges.find((badge) => badge._id === _id) as IBadge;
     if (!curBadge) {
       throw new Error("Badge Index Failed");
     }
@@ -47,9 +50,9 @@ const Badge: React.FC<{ _id: string; themeId: Theme }> = ({ _id, themeId }) => {
 
   // TODO: Badge icon should not have default cursor
   return (
-    <Container bColor={color} themeId={themeId}>
+    <Container bColor={color} themeId={themeId} onClick={onClick}>
       <Icon src={`/assets/icons/${icon}`} hover={false} />
-      <BadgeText color="#EAEAEA">{text}</BadgeText>
+      <BadgeText>{text}</BadgeText>
     </Container>
   );
 };

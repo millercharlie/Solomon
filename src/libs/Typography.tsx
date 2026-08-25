@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 
 export const Title = styled.h1`
-  font-family: "pinot-grigio-modern", sans-serif;
+  /* font-family: "pinot-grigio-modern", sans-serif; */
+  font-family: "roca", "pinot-grigio-modern", sans-serif;
   font-size: 50px;
   font-weight: 700;
   font-style: normal;
@@ -133,4 +134,27 @@ export const LargeThumbnailTitle = styled.p`
   font-weight: 700;
   font-style: normal;
   line-height: 1.3;
+`;
+
+/**
+ * Caption below images
+ */
+export const Caption = styled.p`
+  font-family: "apparat-semicond", sans-serif;
+  font-size: 10pt;
+  font-weight: 700;
+  font-style: normal;
+  font-variant: all-small-caps;
+  line-height: 100%;
+  margin-top: 0;
+`;
+
+/**
+ * Bullet point
+ */
+export const Bullet = styled.li`
+  font-family: "avenir", sans-serif;
+  font-size: 10pt;
+  font-weight: 400;
+  font-style: normal;
 `;

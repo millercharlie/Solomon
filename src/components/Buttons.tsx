@@ -4,7 +4,7 @@ import type { ColorTheme } from "@libs/Types";
 import { NavigationLink } from "@libs/Typography";
 import type { CSSProperties } from "react";
 
-const StyledButton = styled.button<{ theme: ColorTheme }>`
+export const StyledButton = styled.button<{ theme: ColorTheme }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,7 +27,7 @@ const StyledButton = styled.button<{ theme: ColorTheme }>`
   }
 `;
 
-const Button: React.FC<{
+export const LinkButton: React.FC<{
   text: string;
   link?: string;
   theme: ColorTheme;
@@ -43,5 +43,3 @@ const Button: React.FC<{
     </a>
   );
 };
-
-export default Button;
