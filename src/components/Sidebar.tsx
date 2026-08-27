@@ -1,7 +1,7 @@
 import * as Typography from "@libs/Typography";
 import { MediumIcon as Icon, IconWithTooltip } from "@libs/Icons";
 import styled from "@emotion/styled";
-import type { ResourceLink, SidebarLink } from "@libs/Types";
+import type { ResourceLink, SidebarItem } from "@libs/Types";
 import { HorizontalRow } from "@components/HorizontalRow";
 import Link from "@components/Link";
 import React from "react";
@@ -35,12 +35,12 @@ const ContentContainer = styled.div<{ open: boolean }>`
 const SidebarItem = ({
   title,
   icon,
-  items,
+  content,
   rowColor,
 }: {
   title: string;
   icon: string;
-  items: ResourceLink[];
+  content: ResourceLink[];
   rowColor: string;
 }) => (
   <div>
@@ -50,7 +50,7 @@ const SidebarItem = ({
     </TitleWrapper>
     <HorizontalRow color={rowColor} />
     <UnorderedList>
-      {items.map((item, index) => (
+      {content.map((item, index) => (
         <Link key={`item-${index}`} item={item} />
       ))}
     </UnorderedList>
@@ -58,7 +58,7 @@ const SidebarItem = ({
 );
 
 const Sidebar: React.FC<{
-  contents: SidebarLink[];
+  contents: SidebarItem[];
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ contents, open, setOpen }) => {
@@ -66,8 +66,12 @@ const Sidebar: React.FC<{
   const { width } = useViewportSize();
 
   const [mobile, setMobile] = React.useState<boolean>(
-    width <= breakpoints.md && width !== 0
+    width <= breakpoints.md && width !== 0,
   );
+
+  React.useEffect(() => {
+    console.log(contents);
+  }, [contents]);
 
   React.useEffect(() => {
     if (width <= breakpoints.md && width !== 0) {
@@ -94,7 +98,7 @@ const Sidebar: React.FC<{
           <SidebarItem
             title={content.title}
             icon={content.icon}
-            items={content.items}
+            content={content.content}
             key={index}
             rowColor={theme.primaryRow}
           />

@@ -186,7 +186,10 @@ export const Card: React.FC<{
       (item) => resource.type === (item.type as unknown as ResourceType),
     );
     if (!curIcon) {
-      throw new Error("Resource Icon Not Found"); // TODO: This should maybe fail quietly and display some sort of placeholder
+      const defaultIcon = resourceIcons.find((icon) => icon.type === "person");
+      if (!defaultIcon) {
+        throw new Error("Resource Icon Not Found");
+      } else return defaultIcon;
     } else return curIcon.icon;
   }, [resource.type]);
 

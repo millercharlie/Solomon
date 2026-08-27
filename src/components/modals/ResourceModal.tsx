@@ -133,6 +133,7 @@ const ResourceModal: React.FC<{
   );
 
   // TODO: This will all be done in the backend. I do not want the API key in the frontend
+  // TODO: This is hardcoded to retreive the info for Gavin Ortlund for now until the backend hookup is complete
   React.useEffect(() => {
     const getThumbnail = async () => {
       const thumbnail = await axios
@@ -175,10 +176,6 @@ const ResourceModal: React.FC<{
     };
     getRecentContent();
   }, [youtubeVideoToContent]);
-
-  React.useEffect(() => {
-    console.log(recentContent);
-  }, [recentContent]);
 
   return (
     <Modal visible={visible} backgroundColor={resource.color}>

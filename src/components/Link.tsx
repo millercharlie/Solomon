@@ -36,7 +36,7 @@ const Link: React.FC<{ item: ResourceLink }> = ({ item }) => {
           ></use>
         </svg>
       )}
-      <Typography.SidebarLink
+      <Typography.SidebarItem
         href={item.link}
         target="_blank"
         id="item-text"
@@ -55,10 +55,10 @@ const Link: React.FC<{ item: ResourceLink }> = ({ item }) => {
                   <span style={{ fontStyle: "italic" }}>{phrase} &ndash;</span>
                 ) : (
                   phrase
-                )
+                ),
               )
           : item.displayText}
-      </Typography.SidebarLink>
+      </Typography.SidebarItem>
       {item.link !== undefined && item.link !== null && item.link !== "" && (
         <Icon src="/assets/arrows/squarrow.svg" />
       )}

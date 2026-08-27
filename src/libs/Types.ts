@@ -1,10 +1,11 @@
+// TODO: Change SidebarItem to SidebarItem
 /**
  * Data that makes up a sidebar link
  */
-export type SidebarLink = {
+export type SidebarItem = {
   title: string;
   icon: string;
-  items: ResourceLink[];
+  content: ResourceLink[];
 };
 
 export type ResourceIcon = {
@@ -92,10 +93,10 @@ export type ResourceInfo = {
   recommendedContent?: Content[]; // Recommended content will be mostly used for historical figures (Martin Luther, Charles Spurgeon, etc.) where no "recent content" would be relevant
   favorite?: boolean;
   controls?: Controls[]; // TODO: Probably remove this. It should be dynamically calculated
-  badges: string[]; // Badges are just _id strings, and are displayed on the frontend
+  badges: BadgeTypes[]; // Badges are just _id strings, and are displayed on the frontend
   links: ResourceLink[]; // All associated links
   spotlight?: ResourceLink; // Highlighted link that displays on cards
-  api: ResourceAPI;
+  api?: ResourceAPI;
 };
 
 // TODO: Clean up these types
@@ -120,7 +121,7 @@ export type PageData = {
   description?: string;
   accountStatus: AccountStatus;
   rows: RowData[];
-  sidebar: SidebarLink[];
+  sidebarItems: SidebarItem[];
   needsHelp: boolean;
 };
 
@@ -163,10 +164,11 @@ export enum Theme {
  * Type of resource (ex: "scholar")
  */
 export enum ResourceType {
-  SCHOLAR = "scholar",
-  CREATOR = "creator",
+  // SCHOLAR = "scholar",
+  // CREATOR = "creator",
+  PERSON = "person",
   MINISTRY = "ministry",
-  BOOK = "book",
+  CONTENT = "content",
   TOPIC = "topic",
   QUESTION = "question",
 }

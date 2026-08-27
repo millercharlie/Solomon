@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
 import logogram from "@assets/logos/logogram.svg";
-import { sidebarData } from "@database/mockData";
-// import axios from "axios";
+import axios from "axios";
 import Sidebar from "@components/Sidebar";
 
 import { Card } from "@components/Cards";
-import { PageType, type DashboardData, type ResourceInfo } from "@libs/Types";
+import { type PageData, PageType, type ResourceInfo } from "@libs/Types";
 import * as theme from "@libs/globals";
 import React from "react";
 import ResourceModal from "@components/modals/ResourceModal";
@@ -14,6 +13,7 @@ import { dummyResource } from "@libs/globals";
 import { DefaultIcon } from "@libs/Icons";
 import PageTemplate from "@pages/PageTemplate";
 import { sidebarKey } from "@libs/Context";
+import { SectionPlaceholder } from "@components/Placeholders";
 
 const ContentBackground = styled.div<{ sidebarOpen: boolean }>`
   margin-top: 30px;
@@ -65,18 +65,26 @@ const CardRow = styled.div<{ columns: number }>`
  * Desktop Dashboard when the user is logged out.
  * @returns Desktop Dashboard
  */
-const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
+const Dashboard: React.FC = () => {
   const [selectedResource, setSelectedResource] =
     React.useState<ResourceInfo | null>(null);
+  const [data, setData] = React.useState<PageData>();
 
   // const [newData, setNewData] = React.useState(null);
 
-  // React.useEffect(() => {
-  //   axios
-  //     .get(`${import.meta.env.VITE_API_URI}/resources`)
-  //     .then((res) => setNewData(res.data))
-  //     .catch((e) => console.error(e));
-  // }, []);
+  React.useEffect(() => {
+    const fetchDashboard = async () => {
+      await axios
+        .get(`${import.meta.env.VITE_API_URI}/pages/dashboard`)
+        .then((res) => setData(res.data))
+        .catch((e) => console.error(e));
+    };
+    fetchDashboard();
+  }, []);
+
+  React.useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   const [sidebarOpen, setSidebarOpen] = React.useState<boolean>(
     window.localStorage.getItem(sidebarKey) === "true" ? true : false,
@@ -112,45 +120,47 @@ const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
             </Typography.LargeParagraph>
           </Heading>
           <MainContent>
-            {data.rows.map((row, i) => (
-              <Row key={i}>
-                <Typography.RowHeading>{row.name}</Typography.RowHeading>
-                <CardRow id={row._id} columns={sidebarOpen ? 3 : 4}>
-                  {row.content.slice(0, sidebarOpen ? 3 : 4).map(
-                    (
-                      item, // TODO: This needs to be more dynamic - only the cards can fit on the page should be displayed
-                      j,
-                    ) => (
-                      <Card
-                        resource={item}
-                        key={j}
-                        setSelectedResource={setSelectedResource}
-                      />
-                    ),
-                  )}
-                </CardRow>
-              </Row>
-            ))}
+            {data ? (
+              data.rows.map((row, i) => (
+                <Row key={i}>
+                  <Typography.RowHeading>{row.name}</Typography.RowHeading>
+                  <CardRow id={row._id} columns={sidebarOpen ? 3 : 4}>
+                    {row.content.slice(0, sidebarOpen ? 3 : 4).map(
+                      (
+                        item, // TODO: This needs to be more dynamic - only the cards can fit on the page should be displayed
+                        j,
+                      ) =>
+                        item && (
+                          <Card
+                            resource={item}
+                            key={j}
+                            setSelectedResource={setSelectedResource}
+                          />
+                        ),
+                    )}
+                  </CardRow>
+                </Row>
+              ))
+            ) : (
+              <SectionPlaceholder /* theme={ColorTheme} */ />
+            )}
           </MainContent>
         </Content>
-        <Sidebar
-          contents={sidebarData}
-          open={sidebarOpen}
-          setOpen={setSidebarOpen}
-        />
+        {data && data.sidebarItems && (
+          <Sidebar
+            contents={data.sidebarItems}
+            open={sidebarOpen}
+            setOpen={setSidebarOpen}
+          />
+        )}
       </ContentBackground>
-      {/*
-      <BackgroundGradient
-        src={backgroundGradient}
-        alt="background-gradient"
-        draggable="false"
-      />
-      */}
-      <ResourceModal
-        resource={selectedResource || dummyResource}
-        setSelectedResource={setSelectedResource}
-        visible={selectedResource !== null}
-      />
+      {selectedResource !== null && ( // TODO: This might break but I have no idea
+        <ResourceModal
+          resource={selectedResource || dummyResource}
+          setSelectedResource={setSelectedResource}
+          visible={selectedResource !== null}
+        />
+      )}
     </PageTemplate>
   );
 };
