@@ -1,16 +1,18 @@
 import * as Typography from "@libs/Typography";
 import { MediumIcon as Icon, IconWithTooltip } from "@libs/Icons";
 import styled from "@emotion/styled";
-import type { ResourceLink, SidebarItem } from "@libs/Types";
+import type { IconComponent, ResourceLink, SidebarItem } from "@libs/Types";
 import { HorizontalRow } from "@components/HorizontalRow";
 import Link from "@components/Link";
 import React from "react";
 import { sidebarKey, ThemeContext } from "@libs/Context";
-import { useViewportSize } from "@mantine/hooks";
-import { breakpoints } from "@libs/globals";
+
+import closeSidebar from "@assets/icons/close_sidebar.svg?react";
+import openSidebar from "@assets/icons/open_sidebar.svg?react";
+import { iconMap } from "@database/iconMap";
 
 const Container = styled.div<{ open: boolean }>`
-  width: ${({ open }) => (open ? "100%" : 0)};
+  width: ${({ open }) => (open ? "400px" : `0`)};
   margin-right: 30px;
   display: flex;
   gap: 20px;
@@ -42,20 +44,27 @@ const SidebarItem = ({
   icon: string;
   content: ResourceLink[];
   rowColor: string;
-}) => (
-  <div>
-    <TitleWrapper>
-      <Icon src={`/assets/icons/${icon}`} hover={false} />
-      <Typography.Subtitle id="title-text">{title}</Typography.Subtitle>
-    </TitleWrapper>
-    <HorizontalRow color={rowColor} />
-    <UnorderedList>
-      {content.map((item, index) => (
-        <Link key={`item-${index}`} item={item} />
-      ))}
-    </UnorderedList>
-  </div>
-);
+}) => {
+  const renderedIcon = React.useMemo<IconComponent>(
+    () => iconMap[icon],
+    [icon],
+  );
+
+  return (
+    <div>
+      <TitleWrapper>
+        <Icon icon={renderedIcon} hover={false} />
+        <Typography.Subtitle id="title-text">{title}</Typography.Subtitle>
+      </TitleWrapper>
+      <HorizontalRow color={rowColor} />
+      <UnorderedList>
+        {content.map((item, index) => (
+          <Link key={`item-${index}`} item={item} />
+        ))}
+      </UnorderedList>
+    </div>
+  );
+};
 
 const Sidebar: React.FC<{
   contents: SidebarItem[];
@@ -63,33 +72,16 @@ const Sidebar: React.FC<{
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ contents, open, setOpen }) => {
   const { theme } = React.useContext(ThemeContext);
-  const { width } = useViewportSize();
-
-  const [mobile, setMobile] = React.useState<boolean>(
-    width <= breakpoints.md && width !== 0,
-  );
-
-  React.useEffect(() => {
-    console.log(contents);
-  }, [contents]);
-
-  React.useEffect(() => {
-    if (width <= breakpoints.md && width !== 0) {
-      setMobile(true);
-    } else {
-      setMobile(false);
-    }
-  }, [width]);
 
   const handleClick = React.useCallback(() => {
     window.localStorage.setItem(sidebarKey, !open ? "true" : "false");
     setOpen(!open);
   }, [open, setOpen]);
 
-  return !mobile ? (
+  return (
     <Container open={open}>
       <IconWithTooltip
-        icon={open ? "close_sidebar.svg" : "open_sidebar.svg"}
+        icon={open ? closeSidebar : openSidebar}
         text={`${open ? "Close" : "Open"} Sidebar`}
         onClick={handleClick}
       />
@@ -105,8 +97,6 @@ const Sidebar: React.FC<{
         ))}
       </ContentContainer>
     </Container>
-  ) : (
-    <></>
   );
 };
 

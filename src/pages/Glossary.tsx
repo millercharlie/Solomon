@@ -1,25 +1,32 @@
 import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
 
-import { PageType, type ResourceInfo } from "@libs/Types";
+import {
+  PageType,
+  type GlossaryItem,
+  type GlossaryPage,
+  type ResourceInfo,
+} from "@libs/Types";
 import React from "react";
 import ResourceModal from "@components/modals/ResourceModal";
 import { dummyResource } from "@libs/globals";
 import Link from "@components/Link";
 
-import data from "@database/all_data.json";
-import topics from "@database/all_topics.json";
 import { HorizontalRow } from "@components/HorizontalRow";
 import PageTemplate from "@pages/PageTemplate";
 import { ThemeContext } from "@libs/Context";
+import useSWR from "swr";
+import { fetcher, getResourceLinkById, getTopicLinkById } from "@libs/utils";
+import Spinner from "@components/Spinner";
 
 const ContentBackground = styled.div`
   margin-top: 30px;
   padding-left: 45px;
   padding-right: 45px;
+  padding-bottom: 30px;
   gap: 20px;
   z-index: 1;
-  height: 100vh;
+  min-height: 100vh;
 `;
 const Heading = styled.div`
   width: 100%;
@@ -27,7 +34,7 @@ const Heading = styled.div`
 const Content = styled.div`
   width: 100%;
 `;
-const SourcesContainer = styled.div`
+const ResourcesContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -38,7 +45,7 @@ const TopicsContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
 `;
 
-const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+// TODO: Right now, I'm trying to figure out if each resource should have its own page in addition to a modal. Maybe the modal could appear initially as a stopgap until the user actually views it in fullscreen?
 
 /**
  * Desktop Dashboard when the user is logged out.
@@ -50,81 +57,76 @@ const Glossary: React.FC = () => {
 
   const { theme } = React.useContext(ThemeContext);
 
-  // TODO: `data` here is hardcoded for now, but should eventually use the database
-  const findAllSourcesFromLetter = React.useCallback<
-    (letter: string) => ResourceInfo[]
-  >(
-    (letter) =>
-      data.filter(
-        (item) =>
-          item._id!.charAt(0).toLocaleLowerCase() === letter.toLocaleLowerCase()
-      ) as ResourceInfo[],
-    []
-  );
-  // const findAllTopicsFromLetter = React.useCallback<
-  //   (letter: string) => ResourceInfo[]
-  // >(
-  //   (letter) =>
-  //     topics.filter(
-  //       (item) =>
-  //         item._id!.charAt(0).toLocaleLowerCase() === letter.toLocaleLowerCase()
-  //     ) as ResourceInfo[],
-  //   []
-  // );
+  const { data, isLoading } = useSWR(
+    `${import.meta.env.VITE_API_URI}/pages/glossary`,
+    fetcher,
+  ) as { data: GlossaryPage; isLoading: true };
 
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : data ? (
     <PageTemplate pageType={PageType.GLOSSARY}>
       <ContentBackground>
         <Heading>
           <Typography.Title>Glossary</Typography.Title>
           <Typography.LargeParagraph>
-            All Sources, from A to Z. Topics are in a separate category.
+            All Resources, from A to Z. Topics are in a separate category.
           </Typography.LargeParagraph>
         </Heading>
         <Content>
-          <SourcesContainer>
-            {alphabet.map((letter) => {
-              const sources = findAllSourcesFromLetter(letter);
-              if (sources.length === 0) {
-                return;
-              }
-
+          <ResourcesContainer>
+            {data.data.resources.map((resource) => {
               return (
-                <div id={letter}>
-                  <Typography.RowHeading style={{ paddingBottom: 10 }}>
-                    {letter}
-                  </Typography.RowHeading>
-                  {sources.map((resource: ResourceInfo) => (
-                    <div id="all-links">
-                      <Link
-                        item={{
-                          platform: resource.type,
-                          link: resource.mainLink ? resource.mainLink : "", // TODO: This needs to be modified to support an onClick() for the expanded card
-                          displayText: resource.name,
-                          icon: resource.type,
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
+                resource.content.length > 0 && (
+                  <div id={resource.letter}>
+                    <Typography.RowHeading style={{ paddingBottom: 10 }}>
+                      {resource.letter}
+                    </Typography.RowHeading>
+                    {resource.content.map((t: GlossaryItem) => (
+                      <div id="all-links">
+                        <Link
+                          item={{
+                            platform: t.type || "person",
+                            url: getResourceLinkById(t._id),
+                            displayText: t.pretty,
+                          }}
+                          samePage
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )
               );
             })}
-          </SourcesContainer>
+          </ResourcesContainer>
           <HorizontalRow color={theme.secondaryRow} />
           <Typography.RowHeading style={{ paddingBottom: 10 }}>
             All Topics
           </Typography.RowHeading>
           <TopicsContainer>
-            {topics.map((topic) => (
-              <Link
-                item={{
-                  platform: topic.type,
-                  link: topic.links![0].link,
-                  displayText: topic.name,
-                  icon: topic.type,
-                }}
-              />
-            ))}
+            {data.data.topics.map((topic) => {
+              return (
+                topic.content.length > 0 && (
+                  <div id={topic.letter}>
+                    <Typography.RowHeading style={{ paddingBottom: 10 }}>
+                      {topic.letter}
+                    </Typography.RowHeading>
+                    {topic.content.map((t: GlossaryItem) => (
+                      <div id="all-links">
+                        <Link
+                          item={{
+                            platform: "topic",
+                            url: getTopicLinkById(t._id),
+                            displayText: t.pretty,
+                          }}
+                          samePage
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )
+              );
+            })}
           </TopicsContainer>
         </Content>
       </ContentBackground>
@@ -134,6 +136,8 @@ const Glossary: React.FC = () => {
         visible={selectedResource !== null}
       />
     </PageTemplate>
+  ) : (
+    <p>{`Failed to load.`}</p>
   );
 };
 

@@ -108,7 +108,11 @@ const AboutPage = () => {
       <ContentBackground>
         <Heading>
           <Title>About Solomon</Title>
-          <LogoImage src="/assets/logos/logo.svg" width="200px" height="50px" />
+          <LogoImage
+            src="/assets/logos/logo.svg?react"
+            width="200px"
+            height="50px"
+          />
         </Heading>
         <Content>
           <Text>

@@ -10,7 +10,7 @@ import PageTemplate from "@pages/PageTemplate";
 import axios from "axios";
 import React, { type FormEvent } from "react";
 import allBadgeIds from "../database/badgeIds.json";
-import { findBadgeById } from "@libs/functions";
+import { findBadgeById } from "@libs/utils";
 
 const StyledPageTemplate = styled(PageTemplate)`
   text-align: center;

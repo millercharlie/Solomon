@@ -1,19 +1,8 @@
 import Tooltip from "@components/Tooltip";
 import styled from "@emotion/styled";
 import { ThemeContext } from "@libs/Context";
-import React, {
-  useContext,
-  type CSSProperties,
-  type MouseEventHandler,
-} from "react";
-
-// export const DefaultIcon = styled.img<{ hover?: boolean }>`
-//   cursor: ${({ hover }) => (hover ? "pointer" : "default")};
-//   transition: all 0.2s;
-//   :hover {
-//     transform: ${({ hover }) => (hover ? "scale(110%)" : undefined)};
-//   }
-// `;
+import type { IconComponent } from "@libs/Types";
+import React from "react";
 
 export const StyledSVG = styled.svg<{ hover?: boolean }>`
   flex-shrink: 0;
@@ -24,160 +13,87 @@ export const StyledSVG = styled.svg<{ hover?: boolean }>`
   }
 `;
 
-export const DefaultIcon: React.FC<{
-  src: string;
-  width?: number | string;
-  height?: number | string;
-  onMouseEnter?: MouseEventHandler<SVGSVGElement>;
-  onMouseLeave?: MouseEventHandler<SVGSVGElement>;
-  onClick?: () => void;
-  hover?: boolean;
-  className?: string;
-  style?: CSSProperties;
-}> = ({
-  src,
-  width,
-  height,
-  onMouseEnter,
-  onMouseLeave,
-  onClick,
-  hover = true,
-  className,
-  style,
-}) => {
-  const { theme } = useContext(ThemeContext);
-
+export const DefaultIcon: React.FC<
+  {
+    icon: IconComponent;
+    hover?: boolean;
+  } & React.SVGProps<SVGSVGElement>
+> = ({ icon, hover, ...rest }) => {
+  const { theme } = React.useContext(ThemeContext);
   return (
     <StyledSVG
-      className={className}
+      as={icon}
+      {...rest}
       color={theme.text}
-      width={width ?? 11}
-      height={height ?? 11}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onClick={onClick}
+      width={rest.width ?? 11}
+      height={rest.height ?? 11}
       hover={hover}
-      style={style}
-    >
-      <use xlinkHref={src} href={src} width={width} height={height ?? 11} />
-    </StyledSVG>
+    />
   );
 };
 
-export const AccountCircle: React.FC<{
-  src: string;
-  onMouseEnter?: MouseEventHandler<SVGSVGElement>;
-  onMouseLeave?: MouseEventHandler<SVGSVGElement>;
-  onClick?: () => void;
-}> = ({ src, onMouseEnter, onMouseLeave, onClick }) => (
-  <DefaultIcon
-    src={src}
-    width={32}
-    height={32}
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-    onClick={onClick}
-  />
-);
+// const AccountCircle: React.FC<
+//   {
+//     icon: IconComponent;
+//   } & React.SVGProps<SVGSVGElement>
+// > = ({ icon, ...rest }) => (
+//   <DefaultIcon icon={icon} width={32} height={32} hover={false} {...rest} />
+// );
+
 export const SmallIcon: React.FC<{
-  src: string;
-  onMouseEnter?: MouseEventHandler<SVGSVGElement>;
-  onMouseLeave?: MouseEventHandler<SVGSVGElement>;
-  onClick?: () => void;
+  icon: IconComponent;
   hover?: boolean;
-  className?: string;
-}> = ({ src, onMouseEnter, onMouseLeave, onClick, hover, className }) => (
+}> &
+  React.SVGProps<SVGSVGElement> = ({ icon, hover, ...rest }) => (
   <DefaultIcon
-    src={src}
-    height={8}
-    width={11} // TODO: This is basically the same as the Medium Icon
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-    onClick={onClick}
+    icon={icon}
     hover={hover}
-    className={className}
-  />
-);
-export const MediumIcon: React.FC<{
-  src: string;
-  onMouseEnter?: MouseEventHandler<SVGSVGElement>;
-  onMouseLeave?: MouseEventHandler<SVGSVGElement>;
-  onClick?: () => void;
-  hover?: boolean;
-  className?: string;
-  style?: CSSProperties;
-}> = ({
-  src,
-  onMouseEnter,
-  onMouseLeave,
-  onClick,
-  hover,
-  className,
-  style,
-}) => (
-  <DefaultIcon
-    src={src}
-    height={11}
+    height={8} // TODO: This is basically the same as the Medium Icon
     width={11}
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-    onClick={onClick}
-    hover={hover}
-    className={className}
-    style={style}
-  />
-);
-export const LargeIcon: React.FC<{
-  src: string;
-  onMouseEnter?: MouseEventHandler<SVGSVGElement>;
-  onMouseLeave?: MouseEventHandler<SVGSVGElement>;
-  onClick?: () => void;
-  hover?: boolean;
-  className?: string;
-}> = ({ src, onMouseEnter, onMouseLeave, onClick, hover, className }) => (
-  <DefaultIcon
-    src={src}
-    height={20}
-    width={20}
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-    onClick={onClick}
-    hover={hover}
-    className={className}
+    {...rest}
   />
 );
 
-// export const SmallIcon = styled(DefaultIcon)`
-//   height: 8px;
-//   width: auto;
-// `;
-// export const MediumIcon = styled(DefaultIcon)`
-//   height: 11px;
-//   width: auto;
-// `;
-// export const LargeIcon = styled(DefaultIcon)`
-//   height: 20px;
-// `;
+export const MediumIcon: React.FC<
+  {
+    icon: IconComponent;
+    hover?: boolean;
+  } & React.SVGProps<SVGSVGElement>
+> = ({ icon, hover, ...rest }) => (
+  <DefaultIcon icon={icon} height={11} width={11} hover={hover} {...rest} />
+);
 
-const Container = styled.div`
-  height: 20px;
-  position: relative;
-`;
+export const LargeIcon: React.FC<
+  {
+    icon: IconComponent;
+    hover?: boolean;
+  } & React.SVGProps<SVGSVGElement>
+> = ({ icon, hover, ...rest }) => (
+  <DefaultIcon icon={icon} width={20} height={20} hover={hover} {...rest} />
+);
+
 // TODO: The size here may need to change
-export const IconWithTooltip: React.FC<{
-  icon: string;
-  text: string;
-  onClick?: () => void;
-}> = ({ icon, text, onClick }) => {
+export const IconWithTooltip: React.FC<
+  {
+    icon: IconComponent;
+    text: string;
+    onClick?: () => void;
+  } & React.SVGProps<SVGSVGElement>
+> = ({ icon, text, onClick, ...rest }) => {
   const [visible, setVisible] = React.useState<boolean>(false);
   return (
-    <Container onClick={onClick}>
+    <div
+      onClick={onClick}
+      style={{ height: "20px", position: "relative" }}
+      id="icon_tooltip"
+    >
       <Tooltip text={text} visible={visible} />
       <LargeIcon
-        src={`/assets/icons/${icon}`}
+        icon={icon}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
+        {...rest}
       />
-    </Container>
+    </div>
   );
 };

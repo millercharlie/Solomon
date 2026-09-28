@@ -9,7 +9,7 @@ import {
   type PageData,
   type ResourceInfo,
   type RowData,
-  type SidebarLink,
+  type SidebarItem,
 } from "@libs/Types";
 
 export const resurrectionOfJesus: ResourceInfo = {
@@ -633,7 +633,7 @@ export const bibleProject: ResourceInfo = {
   ],
 };
 
-export const sidebarData: SidebarLink[] = [
+export const sidebarData: SidebarItem[] = [
   {
     title: "Trending Topics",
     icon: "fire.svg",
@@ -798,7 +798,7 @@ export const sidebarData: SidebarLink[] = [
   },
 ];
 
-export const apologeticsSidebar: SidebarLink[] = [
+export const apologeticsSidebar: SidebarItem[] = [
   {
     title: "Trending Topics",
     icon: "fire.svg",

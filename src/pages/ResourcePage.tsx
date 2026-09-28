@@ -1,28 +1,34 @@
-import Badge from "@components/Badge";
-import ControlButtons from "@components/ControlButtons";
-import { HorizontalRow } from "@components/HorizontalRow";
-import Link from "@components/Link";
-import Modal from "@components/modals/Modal";
-import Thumbnail from "@components/Thumbnail";
+import Spinner from "@components/Spinner";
 import styled from "@emotion/styled";
-import { ThemeContext } from "@libs/Context";
-import { noOp } from "@libs/utils";
 import { breakpoints } from "@libs/globals";
 import {
-  Controls,
+  PageType,
   type ColorTheme,
   type Content,
   type ResourceInfo,
   type ResourceLink,
 } from "@libs/Types";
+import { fetcher } from "@libs/utils";
+import React from "react";
+import { useParams } from "react-router";
+import useSWR from "swr";
 import * as Typography from "@libs/Typography";
 import axios from "axios";
-import React from "react";
+import { ThemeContext } from "@libs/Context";
+import { HorizontalRow } from "@components/HorizontalRow";
+import Thumbnail from "@components/Thumbnail";
+import Link from "@components/Link";
+import Badge from "@components/Badge";
+import PageTemplate from "@pages/PageTemplate";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: calc(100vh - 60px);
+  margin-top: 30px;
+  padding-left: 45px;
+  padding-right: 45px;
 `;
 const Body = styled.div`
   width: 70%;
@@ -66,12 +72,6 @@ const Tab = styled.div<{ active?: boolean; theme: ColorTheme }>`
   }
 `;
 
-const LargeControlButtons = styled(ControlButtons)`
-  position: absolute;
-  top: 30px;
-  right: 30px;
-`;
-
 const BadgeRow = styled.div`
   width: 100%;
   display: flex;
@@ -84,18 +84,26 @@ const Photo = styled.img`
   max-width: 100px;
   position: absolute;
   float: left;
+  margin-top: 30px;
+  margin-left: 45px;
 `;
 
+// TODO: Right now, ResourceModal and ResourcePage largely duplicate each other.
 /**
- * Represents a modal for a single resource, such as a historian or non-profit.
+ * Single Resource Page
+ * @returns JSX.Element
  */
-const ResourceModal: React.FC<{
-  resource: ResourceInfo;
-  setSelectedResource: React.Dispatch<
-    React.SetStateAction<ResourceInfo | null>
-  >;
-  visible: boolean;
-}> = ({ resource, setSelectedResource, visible }) => {
+const ResourcePage: React.FC = () => {
+  const params = useParams();
+  const {
+    data: resource,
+    error,
+    isLoading,
+  } = useSWR(
+    `${import.meta.env.VITE_API_URI}/resource/${params.resourceId}`,
+    fetcher,
+  ) as { data: ResourceInfo; error: string; isLoading: boolean };
+
   const { theme } = React.useContext(ThemeContext);
   const [active, setActive] = React.useState<number>(0);
   const [pfp, setPfp] = React.useState<string>("");
@@ -117,6 +125,10 @@ const ResourceModal: React.FC<{
       videoId: string;
     };
   };
+
+  React.useEffect(() => {
+    console.log(resource);
+  }, [resource]);
 
   const youtubeVideoToContent = React.useCallback(
     (video: APIVideo): Content => {
@@ -158,12 +170,12 @@ const ResourceModal: React.FC<{
           setPfp(thumbnail.data.items[0].snippet.thumbnails.high.url);
       }
     };
-    getThumbnail();
-  }, [resource.api?.queryParam, setPfp]);
+    if (resource) getThumbnail();
+  }, [resource, setPfp]);
 
   const priorityLink = React.useMemo((): ResourceLink | undefined => {
-    return resource.links.find((l) => l.priority);
-  }, [resource.links]);
+    return resource && resource.links.find((l) => l.priority);
+  }, [resource]);
 
   React.useEffect(() => {
     const getRecentContent = async () => {
@@ -190,11 +202,13 @@ const ResourceModal: React.FC<{
         }
       }
     };
-    getRecentContent();
-  }, [resource.api?.queryParam, youtubeVideoToContent]);
+    if (resource) getRecentContent();
+  }, [resource, youtubeVideoToContent]);
 
-  return (
-    <Modal visible={visible} backgroundColor={resource.color}>
+  return isLoading ? (
+    <Spinner />
+  ) : resource ? (
+    <PageTemplate pageType={PageType.RESOURCE}>
       {pfp !== "" && <Photo src={pfp} alt="pfp" referrerPolicy="no-referrer" />}
       <Container>
         <Typography.ResourceTitle style={{ marginBottom: 10 }}>
@@ -271,14 +285,6 @@ const ResourceModal: React.FC<{
               )}
             </ContentContainer>
           )}
-          <LargeControlButtons
-            resource={resource}
-            setSelectedResource={setSelectedResource}
-            controls={[Controls.fullscreen]}
-            dropdownActive={false}
-            setDropdownActive={noOp}
-            large={true}
-          />
           {active === 0 && (
             <>
               <div style={{ width: "100%", marginBottom: -7 }}>
@@ -303,8 +309,10 @@ const ResourceModal: React.FC<{
           )}
         </Body>
       </Container>
-    </Modal>
+    </PageTemplate>
+  ) : (
+    <p>{`Failed to load. ${error}`}</p>
   );
 };
 
-export default ResourceModal;
+export default ResourcePage;

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { type ColorTheme, type IBadge } from "@libs/Types";
 import React from "react";
 import Badge from "@components/Badge";
-import { findBadgeById } from "@libs/functions";
+import { findBadgeById } from "@libs/utils";
 
 const Container = styled.div<{ visible?: boolean; theme: ColorTheme }>`
   width: 100%;

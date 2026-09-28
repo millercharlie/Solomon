@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { hexToRGB } from "@libs/functions";
+import { hexToRGB } from "@libs/utils";
 import type { ColorTheme } from "@libs/Types";
 import { NavigationLink } from "@libs/Typography";
 import type { CSSProperties } from "react";

@@ -11,6 +11,12 @@ import { breakpoints, Colors } from "@libs/globals";
 import { Link } from "react-router";
 import { LinkButton as Button } from "@components/Buttons";
 import { themeKey } from "@libs/Context";
+import { isDarkTheme } from "@libs/utils";
+
+import logo from "@assets/logos/logo.svg?react";
+import sun from "@assets/icons/sun.svg?react";
+import moon from "@assets/icons/moon.svg?react";
+import hamburgerMenu from "@assets/icons/hamburger_menu.svg?react";
 
 const links: { id: string; pretty: string; link: string }[] = [
   {
@@ -50,6 +56,7 @@ const Container = styled.div<{ theme: ColorTheme }>`
 `;
 
 const NavContainer = styled.div`
+  height: 60px;
   display: flex;
   padding-left: 30px;
   padding-right: 30px;
@@ -59,6 +66,7 @@ const NavContainer = styled.div`
 `;
 
 const NavLinksContainer = styled.div`
+  height: 100%;
   display: flex;
   align-items: center;
   gap: 30px;
@@ -88,7 +96,7 @@ const DarkModeToggle = styled(Icon)<{ theme: ColorTheme }>`
   transition: all 0.2s;
   :active {
     transform: rotate(
-      ${({ theme }) => (theme._id === Theme.DARK ? 45 : -45)}deg
+      ${({ theme }) => (isDarkTheme(theme._id) ? 45 : -45)}deg
     ); // TODO: Eventually have a dark mode toggle like elanmed.dev
   }
 `;
@@ -106,7 +114,7 @@ export const NavigationBar: React.FC<{
   const [dropdownOpen, setDropdownOpen] = React.useState<boolean>(false);
 
   const handleThemeToggle = React.useCallback(() => {
-    const newTheme = theme._id === Theme.DARK ? Theme.LIGHT : Theme.DARK;
+    const newTheme = isDarkTheme(theme._id) ? Theme.LIGHT : Theme.DARK;
     setTheme(Colors[newTheme]);
     window.localStorage.setItem(themeKey, newTheme);
   }, [setTheme, theme._id]);
@@ -123,9 +131,9 @@ export const NavigationBar: React.FC<{
     <Container theme={theme}>
       <NavContainer>
         <NavLinksContainer>
-          <StyledLink to="/">
-            <NavItem theme={theme}>
-              <LogoImage src="/assets/logos/logo.svg" width={32} height={32} />
+          <StyledLink to="/" style={{ lineHeight: 0, margin: 0 }}>
+            <NavItem theme={theme} style={{ margin: 0 }}>
+              <LogoImage icon={logo} width={32} height={32} hover />
             </NavItem>
           </StyledLink>
           {!mobile &&
@@ -144,11 +152,7 @@ export const NavigationBar: React.FC<{
         </NavLinksContainer>
         <SearchBar />
         <Icon
-          src={
-            theme._id === Theme.DARK
-              ? "/assets/icons/sun.svg" // TODO: There may be a better way to do this rather than hardcoding the path
-              : "/assets/icons/moon.svg"
-          }
+          icon={isDarkTheme(theme._id) ? sun : moon}
           hover={true}
           width={24}
           height={24}
@@ -162,7 +166,7 @@ export const NavigationBar: React.FC<{
         }
         {mobile && (
           <DarkModeToggle
-            src="/assets/icons/hamburger_menu.svg"
+            icon={hamburgerMenu}
             hover={true}
             width={24}
             height={24}

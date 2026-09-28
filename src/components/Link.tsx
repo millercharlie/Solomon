@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
-import type { ResourceLink } from "@libs/Types";
+import type { IconComponent, ResourceLink } from "@libs/Types";
 import * as Typography from "@libs/Typography";
 
-import { MediumIcon as Icon } from "@libs/Icons";
+import { DefaultIcon, MediumIcon as Icon } from "@libs/Icons";
 import React from "react";
-import { ThemeContext } from "@libs/Context";
 import Tooltip from "@components/Tooltip";
+import squarrow from "@assets/arrows/squarrow.svg?react";
+import { platformIconMap } from "@database/iconMap";
 
 const Container = styled.li<{ link?: boolean }>`
   padding-bottom: 5px;
@@ -19,26 +20,25 @@ const Container = styled.li<{ link?: boolean }>`
   }
 `;
 
-const Link: React.FC<{ item: ResourceLink }> = ({ item }) => {
-  const { theme } = React.useContext(ThemeContext);
+const Link: React.FC<{ item: ResourceLink; samePage?: boolean }> = ({
+  item,
+  samePage,
+}) => {
   const [tooltipVisible, setTooltipVisible] = React.useState<boolean>(false);
+
+  const renderedIcon = React.useMemo<IconComponent>(
+    () => platformIconMap[item.platform],
+    [item.platform],
+  );
+
   return (
     <Container
-      link={item.link !== undefined && item.link !== null && item.link !== ""}
+      link={item.url !== undefined && item.url !== null && item.url !== ""}
     >
-      {item.icon && (
-        <svg color={theme.text} width={11} height={11}>
-          <use
-            xlinkHref={`/assets/icons/platforms/${item.icon}`}
-            href={`/assets/icons/platforms/${item.icon}`}
-            width={11}
-            height={11}
-          ></use>
-        </svg>
-      )}
+      {item.platform && renderedIcon && <DefaultIcon icon={renderedIcon} />}
       <Typography.SidebarItem
-        href={item.link}
-        target="_blank"
+        href={item.url}
+        target={samePage ? "_self" : "_blank"}
         id="item-text"
         style={{ position: "relative" }}
         onMouseEnter={() => setTooltipVisible(true)}
@@ -59,8 +59,8 @@ const Link: React.FC<{ item: ResourceLink }> = ({ item }) => {
               )
           : item.displayText}
       </Typography.SidebarItem>
-      {item.link !== undefined && item.link !== null && item.link !== "" && (
-        <Icon src="/assets/arrows/squarrow.svg" />
+      {item.url !== undefined && item.url !== null && item.url !== "" && (
+        <Icon icon={squarrow} />
       )}
     </Container>
   );

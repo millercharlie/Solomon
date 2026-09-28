@@ -1,19 +1,15 @@
 [
   {
-    "type": "scholar",
-    "icon": "scholar.svg"
+    "type": "content",
+    "icon": "open_book.svg"
   },
   {
-    "type": "creator",
+    "type": "person",
     "icon": "account_placeholder.svg"
   },
   {
     "type": "ministry",
     "icon": "church.svg"
-  },
-  {
-    "type": "book",
-    "icon": "open_book.svg"
   },
   {
     "type": "topic",

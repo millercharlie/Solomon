@@ -15,6 +15,8 @@ import Topic from "@pages/Topic.tsx";
 import NotFound from "@pages/404Page.tsx";
 import AboutPage from "@pages/About.tsx";
 import AddResource from "@pages/AddResource.tsx";
+import SolomonThemeProvider from "@pages/SolomonThemeProvider.tsx";
+import ResourcePage from "@pages/ResourcePage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -56,8 +58,12 @@ const router = createBrowserRouter([
     },
   },
   {
-    path: "/topics/:topicName",
+    path: "/topic/:topicName",
     element: <Topic />,
+  },
+  {
+    path: "/resource/:resourceId",
+    element: <ResourcePage />,
   },
   {
     path: "/about",
@@ -68,6 +74,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <SolomonThemeProvider>
+      <RouterProvider router={router} />
+    </SolomonThemeProvider>
   </StrictMode>,
 );

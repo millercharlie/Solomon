@@ -3,10 +3,11 @@ import { DefaultIcon as Icon } from "@libs/Icons";
 import { PageType } from "@libs/Types";
 import * as Typography from "@libs/Typography";
 import PageTemplate from "@pages/PageTemplate";
+import logogram from "@assets/logos/logogram.svg?react";
 
 const Container = styled.div`
   width: 100vw;
-  height: 92vh;
+  height: calc(100vh - 60px);
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
@@ -27,12 +28,7 @@ const NotFound: React.FC = () => {
         <Typography.Description>
           It appears this page cannot be found. Please try another link!
         </Typography.Description>
-        <StyledIcon
-          src="/assets/logos/logogram_colored.svg"
-          width={200}
-          height={75}
-          hover={false}
-        />
+        <StyledIcon icon={logogram} width={200} height={75} hover={false} />
       </Container>
     </PageTemplate>
   );

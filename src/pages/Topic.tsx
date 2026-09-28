@@ -1,39 +1,27 @@
-import { allTopicPages } from "@database/mockTopics";
-import { AccountStatus, PageType } from "@libs/Types";
+import Spinner from "@components/Spinner";
+import { fetcher } from "@libs/utils";
 import StandardPage from "@pages/StandardPage";
 import React from "react";
 import { useParams } from "react-router";
+import useSWR from "swr";
 
 /**
  * Single Topic Page
- * @returns {JSX.Element}
+ * @returns JSX.Element
  */
 const Topic: React.FC = () => {
   const params = useParams();
+  const { data, error, isLoading } = useSWR(
+    `${import.meta.env.VITE_API_URI}/topic/${params.topicName}`,
+    fetcher,
+  );
 
-  const data = React.useMemo(() => {
-    const topic = allTopicPages.find(
-      (topic) => topic.solomonLink === `topics/${params.topicName}` // TODO: Likely switch this to just 'topic/...'
-    );
-    if (!topic) {
-      throw new Error("Topic not found");
-    }
-    return topic;
-  }, [params.topicName]);
-
-  return (
-    <StandardPage
-      data={{
-        _id: data._id,
-        title: data.title,
-        pageType: PageType.TOPIC,
-        description: data.description,
-        accountStatus: AccountStatus.GUEST,
-        rows: data.rows,
-        sidebar: data.sidebar,
-        needsHelp: data.needsHelp,
-      }}
-    />
+  return isLoading ? (
+    <Spinner />
+  ) : data ? (
+    <StandardPage data={data} />
+  ) : (
+    <p>{`Failed to load. ${error}`}</p>
   );
 };
 

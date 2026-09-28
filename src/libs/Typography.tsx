@@ -49,7 +49,7 @@ export const NavigationLink = styled.p`
   font-weight: bold;
   font-style: normal;
 `;
-export const SidebarLink = styled.a`
+export const SidebarItem = styled.a`
   font-family: "fira-sans", "avenir", sans-serif;
   font-size: 12px;
   font-weight: 400;

@@ -1,4 +1,4 @@
-import { noOp } from "@libs/functions";
+import { noOp } from "@libs/utils";
 import React from "react";
 import { type ColorTheme, Theme } from "@libs/Types";
 import { Colors } from "@libs/globals";

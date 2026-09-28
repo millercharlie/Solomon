@@ -14,13 +14,13 @@
   {
     "_id": "commentary",
     "text": "Commentary",
-    "icon": "message.svg",
+    "icon": "badges/message.svg",
     "type": "contentTheme"
   },
   {
     "_id": "scholarly_article",
     "text": "Scholarly Article",
-    "icon": "scholar.svg",
+    "icon": "badges/scholar.svg",
     "type": "contentType"
   },
   {
@@ -78,6 +78,12 @@
     "type": "ministry"
   },
   {
+    "_id": "ministry",
+    "text": "Ministry",
+    "icon": "badges/church.svg",
+    "type": "ministry"
+  },
+  {
     "_id": "philosophy",
     "text": "Philosophy",
     "icon": "___.svg",
@@ -86,13 +92,13 @@
   {
     "_id": "topic",
     "text": "Topic",
-    "icon": "topic.svg",
+    "icon": "badges/topic.svg",
     "type": "topic"
   },
   {
     "_id": "question",
     "text": "Question",
-    "icon": "question.svg",
+    "icon": "badges/question.svg",
     "type": "topic"
   },
   {

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { hexToRGB } from "@libs/functions";
+import { hexToRGB, isDarkTheme } from "@libs/utils";
 import type { ReactNode } from "react";
 import React from "react";
 import { breakpoints } from "@libs/globals";
@@ -39,7 +39,8 @@ const Container = styled.div<{ backgroundColor: string; theme: ColorTheme }>`
   background-color: ${({ backgroundColor }) =>
     backgroundColor}; // TODO: This should not be hardcoded
   border-radius: 20px;
-  outline: 5px solid ${({ theme }) => theme.text};
+  outline: ${({ theme }) =>
+    isDarkTheme(theme._id) ? `5px solid ${theme.text}` : undefined};
   padding: 30px;
 
   @media (max-width: ${breakpoints.md}px) {

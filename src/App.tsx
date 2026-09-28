@@ -1,9 +1,8 @@
 import Dashboard from "@pages/Dashboard";
 import "./App.css";
-import { loggedOutDashboardData } from "@database/mockData";
 
 function App() {
-  return <Dashboard data={loggedOutDashboardData} />;
+  return <Dashboard />;
 }
 
 export default App;

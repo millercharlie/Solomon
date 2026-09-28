@@ -1,22 +1,24 @@
-import { theologyData } from "@database/theologyData";
-import { AccountStatus, PageType } from "@libs/Types";
+import Spinner from "@components/Spinner";
+import { fetcher } from "@libs/utils";
 import StandardPage from "@pages/StandardPage";
+import React from "react";
+import useSWR from "swr";
 
+/**
+ * Theology Page
+ */
 const Theology: React.FC = () => {
-  return (
-    <StandardPage
-      data={{
-        _id: "theology_page",
-        title: "Theology",
-        pageType: PageType.THEOLOGY,
-        description: theologyData.description,
-        accountStatus: AccountStatus.GUEST, // TODO: This will almost certainly be done with context and not a prop
-        rows: theologyData.rows,
-        sidebar: [],
-        needsHelp: true,
-      }}
-    />
+  const { data, error, isLoading } = useSWR(
+    `${import.meta.env.VITE_API_URI}/pages/theology`,
+    fetcher,
+  );
+
+  return isLoading ? (
+    <Spinner />
+  ) : data ? (
+    <StandardPage data={data} />
+  ) : (
+    <p>{`Failed to load. ${error}`}</p>
   );
 };
-
 export default Theology;

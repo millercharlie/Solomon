@@ -3,8 +3,14 @@ import styled from "@emotion/styled";
 import { BadgeText } from "@libs/Typography";
 import badges from "@database/badges.json";
 import React from "react";
-import { type IBadge, type BadgeAtts, Theme } from "@libs/Types";
+import {
+  type IBadge,
+  type BadgeAtts,
+  Theme,
+  type IconComponent,
+} from "@libs/Types";
 import { badgeColorMap } from "@database/colorMap";
+import { badgeIconMap } from "@database/iconMap";
 
 const Container = styled.div<{ bColor: string; themeId: Theme }>`
   width: fit-content;
@@ -19,16 +25,18 @@ const Container = styled.div<{ bColor: string; themeId: Theme }>`
   border: ${({ bColor, themeId }) =>
     themeId === Theme.DARK ? `2px solid ${bColor}` : undefined};
   border-radius: 18px;
-  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
-  cursor: pointer;
+  filter: ${({ themeId }) =>
+    themeId === Theme.DARK
+      ? `drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25))`
+      : undefined};
+  cursor: default; // TODO: pointer once filters work
 
   transition: all 0.2s;
-  :hover {
+  /* :hover {
     transform: scale(105%);
-  }
+  } */
 `;
 const Icon = styled(SmallIcon)`
-  color: "#EAEAEA";
   cursor: pointer;
 `;
 
@@ -37,7 +45,11 @@ const Badge: React.FC<{
   themeId: Theme;
   onClick?: () => void;
 }> = ({ _id, themeId, onClick }) => {
-  const { text, icon, color }: BadgeAtts = React.useMemo(() => {
+  const {
+    text,
+    icon,
+    color: bColor,
+  }: BadgeAtts = React.useMemo<BadgeAtts>(() => {
     const curBadge = badges.find((badge) => badge._id === _id) as IBadge;
     if (!curBadge) {
       throw new Error("Badge Index Failed");
@@ -48,10 +60,14 @@ const Badge: React.FC<{
     };
   }, [_id]);
 
-  // TODO: Badge icon should not have default cursor
+  const renderedIcon = React.useMemo<IconComponent>(
+    () => badgeIconMap[icon],
+    [icon],
+  );
+
   return (
-    <Container bColor={color} themeId={themeId} onClick={onClick}>
-      <Icon src={`/assets/icons/${icon}`} hover={false} />
+    <Container bColor={bColor} themeId={themeId} onClick={onClick}>
+      {renderedIcon !== undefined && <Icon icon={renderedIcon} hover={false} />}
       <BadgeText>{text}</BadgeText>
     </Container>
   );

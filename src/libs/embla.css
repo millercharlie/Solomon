@@ -1,0 +1,45 @@
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  container-type: inline-size;
+  gap: 10px;
+}
+
+.embla {
+  --slide-size: 25%;
+  --slide-spacing: 20px;
+  margin: auto;
+  flex: 1 1 0%;
+  min-width: 0;
+  max-width: 100%;
+
+  @container (width < 900px) {
+    --slide-size: 33.333%;
+  }
+  @media (max-width: 960px) {
+    --slide-size: 50%;
+  }
+  @media (max-width: 600px) {
+    --slide-size: 100%;
+  }
+}
+
+.embla__viewport {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+
+}
+
+.embla__slide {
+  min-width: 0;
+  flex: 0 0 var(--slide-size);
+  padding-left: var(--slide-spacing);
+  box-sizing: border-box;
+}
