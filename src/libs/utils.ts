@@ -52,27 +52,27 @@ export const findControls = (resource: ResourceInfo): Controls[] => {
  */
 export const getLink = (resource: ResourceInfo): string => {
   if (resource.resourceType === ResourceType.BIBLEBOOK)
-    return `${import.meta.env.VITE_FRONTEND_URI}/bible/book/${resource._id}`;
+    return `${import.meta.env.VITE_API_URI}/bible/book/${resource._id}`;
   if (
     resource.resourceType === ResourceType.TOPIC ||
     resource.resourceType === ResourceType.QUESTION
   ) {
-    return `${import.meta.env.VITE_FRONTEND_URI}/topic/${resource._id}`;
+    return `${import.meta.env.VITE_API_URI}/topic/${resource._id}`;
   } // TODO: In the future, maybe a ministry's link could be immediately visible in the card
   else {
-    return `${import.meta.env.VITE_FRONTEND_URI}/resource/${resource._id}`;
+    return `${import.meta.env.VITE_API_URI}/resource/${resource._id}`;
   }
 };
 /**
  * Retrieves an external link for a resource by its ID
  */
 export const getResourceLinkById = (resourceId: string): string =>
-  `${import.meta.env.VITE_FRONTEND_URI}/resource/${resourceId}`;
+  `${import.meta.env.VITE_API_URI}/resource/${resourceId}`;
 /**
  * Retrieves an external link for a topic by its ID
  */
 export const getTopicLinkById = (topicId: string): string =>
-  `${import.meta.env.VITE_FRONTEND_URI}/topic/${topicId}`;
+  `${import.meta.env.VITE_API_URI}/topic/${topicId}`;
 
 /**
  * Fetches data from the backend.
