@@ -18,5 +18,9 @@
   {
     "type": "question",
     "icon": "question.svg"
+  },
+  {
+    "type": "bibleBook",
+    "icon": "bible.svg"
   }
 ]

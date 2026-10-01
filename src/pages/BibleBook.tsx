@@ -6,13 +6,13 @@ import { useParams } from "react-router";
 import useSWR from "swr";
 
 /**
- * Single Topic Page
+ * Single Bible Book Page
  * @returns JSX.Element
  */
-const Topic: React.FC = () => {
+const BibleBook: React.FC = () => {
   const params = useParams();
   const { data, error, isLoading } = useSWR(
-    `${import.meta.env.VITE_API_URI}/topic/${params.topicName}`,
+    `${import.meta.env.VITE_API_URI}/bible/book/${params.bookId}`,
     fetcher,
     {
       revalidateOnFocus: false,
@@ -30,4 +30,4 @@ const Topic: React.FC = () => {
   );
 };
 
-export default Topic;
+export default BibleBook;

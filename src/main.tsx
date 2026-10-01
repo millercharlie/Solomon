@@ -17,6 +17,7 @@ import AboutPage from "@pages/About.tsx";
 import AddResource from "@pages/AddResource.tsx";
 import SolomonThemeProvider from "@pages/SolomonThemeProvider.tsx";
 import ResourcePage from "@pages/ResourcePage.tsx";
+import BibleBook from "@pages/BibleBook.tsx";
 
 const router = createBrowserRouter([
   {
@@ -62,8 +63,16 @@ const router = createBrowserRouter([
     element: <Topic />,
   },
   {
+    path: "/bible/:topicName",
+    element: <Topic />,
+  },
+  {
     path: "/resource/:resourceId",
     element: <ResourcePage />,
+  },
+  {
+    path: "/bible/book/:bookId",
+    element: <BibleBook />,
   },
   {
     path: "/about",

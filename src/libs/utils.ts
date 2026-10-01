@@ -33,8 +33,9 @@ export const isDarkTheme = (themeId: string): boolean => {
 export const findControls = (resource: ResourceInfo): Controls[] => {
   const controls: Controls[] = [];
   if (
-    resource.type === ResourceType.TOPIC ||
-    resource.type === ResourceType.QUESTION
+    resource.resourceType === ResourceType.TOPIC ||
+    resource.resourceType === ResourceType.QUESTION ||
+    resource.resourceType === ResourceType.BIBLEBOOK
   ) {
     controls.push(Controls.open_page);
   } else {
@@ -50,9 +51,11 @@ export const findControls = (resource: ResourceInfo): Controls[] => {
  * Retrieves an external link for a resource if applicable
  */
 export const getLink = (resource: ResourceInfo): string => {
+  if (resource.resourceType === ResourceType.BIBLEBOOK)
+    return `${import.meta.env.VITE_FRONTEND_URI}/bible/book/${resource._id}`;
   if (
-    resource.type === ResourceType.TOPIC ||
-    resource.type === ResourceType.QUESTION
+    resource.resourceType === ResourceType.TOPIC ||
+    resource.resourceType === ResourceType.QUESTION
   ) {
     return `${import.meta.env.VITE_FRONTEND_URI}/topic/${resource._id}`;
   } // TODO: In the future, maybe a ministry's link could be immediately visible in the card
@@ -76,3 +79,10 @@ export const getTopicLinkById = (topicId: string): string =>
  * @returns Promise of data (can vary)
  */
 export const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+
+/**
+ * Fetches data from the backend, with a timeout.
+ * @returns Promise of data (can vary)
+ */
+export const timeoutFetcher = (url: string, timeout: number) =>
+  axios.get(url, { timeout }).then((res) => res.data);

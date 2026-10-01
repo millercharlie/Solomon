@@ -1,21 +1,20 @@
-import { commentaryData } from "@database/commentaryData";
-import { AccountStatus, PageType } from "@libs/Types";
+import Spinner from "@components/Spinner";
+import { fetcher } from "@libs/utils";
 import StandardPage from "@pages/StandardPage";
+import useSWR from "swr";
 
 const BibleCommentary: React.FC = () => {
-  return (
-    <StandardPage
-      data={{
-        _id: "commentary_page",
-        title: "Bible Commentary",
-        pageType: PageType.COMMENTARY,
-        description: commentaryData.description,
-        accountStatus: AccountStatus.GUEST,
-        rows: commentaryData.rows,
-        sidebar: [],
-        needsHelp: true,
-      }}
-    />
+  const { data, error, isLoading } = useSWR(
+    `${import.meta.env.VITE_API_URI}/pages/commentary`,
+    fetcher,
+  );
+
+  return isLoading ? (
+    <Spinner />
+  ) : data ? (
+    <StandardPage data={data} />
+  ) : (
+    <p>{`Failed to load. ${error}`}</p>
   );
 };
 

@@ -69,7 +69,9 @@ const PageTemplate: React.FC<{ pageType: PageType; children: ReactNode }> = ({
     }
   }, [width]);
 
-  return pageType === PageType.RESOURCE || pageType === PageType.TOPIC ? (
+  return pageType === PageType.RESOURCE ||
+    pageType === PageType.TOPIC ||
+    pageType === PageType.BIBLEBOOK ? (
     <ResourceBackground themeId={theme._id}>
       <NavigationBar highlighted={pageType} theme={theme} setTheme={setTheme} />
       {children}

@@ -41,7 +41,7 @@ export const breakpoints = { xs: 0, sm: 600, md: 960, lg: 1200 };
 export const dummyResource: ResourceInfo = {
   _id: "",
   name: "",
-  type: ResourceType.PERSON,
+  resourceType: ResourceType.PERSON,
   shortDesc: "",
   badges: [],
   links: [],

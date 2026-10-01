@@ -156,30 +156,35 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
             <MainContent>
               {data.rows.map((row, i) => (
                 <Row key={i}>
-                  <Typography.RowHeading>{row.name}</Typography.RowHeading>
-                  {row.type === RowType.CARD ? (
-                    <Carousel
-                      row={row}
-                      setSelectedResource={setSelectedResource}
-                      theme={theme}
-                    />
+                  {row.type === RowType.card ? (
+                    <>
+                      <Typography.RowHeading>{row.title}</Typography.RowHeading>
+                      <Carousel
+                        row={row}
+                        setSelectedResource={setSelectedResource}
+                        theme={theme}
+                      />
+                    </>
                   ) : (
                     <ListRow id={row._id}>
-                      {row.content.map((item) => (
-                        <div id="all-links">
-                          <Typography.RowHeading style={{ marginBottom: 0 }}>
-                            {item.name}
-                          </Typography.RowHeading>
-                          <Typography.Paragraph
-                            style={{ marginTop: 5, marginBottom: 10 }}
-                          >
-                            {item.shortDesc}
-                          </Typography.Paragraph>
-                          {item.links!.map((item) => (
-                            <Link item={item} />
-                          ))}
-                        </div>
-                      ))}
+                      {row.content.map((item) => {
+                        console.log(item);
+                        return (
+                          <div id="all-links">
+                            <Typography.RowHeading style={{ marginBottom: 0 }}>
+                              {item.name}
+                            </Typography.RowHeading>
+                            <Typography.Paragraph
+                              style={{ marginTop: 5, marginBottom: 10 }}
+                            >
+                              {item.shortDesc}
+                            </Typography.Paragraph>
+                            {item.links.map((item) => (
+                              <Link item={item} />
+                            ))}
+                          </div>
+                        );
+                      })}
                     </ListRow>
                   )}
                 </Row>

@@ -20,10 +20,11 @@ const Container = styled.li<{ link?: boolean }>`
   }
 `;
 
-const Link: React.FC<{ item: ResourceLink; samePage?: boolean }> = ({
-  item,
-  samePage,
-}) => {
+const Link: React.FC<{
+  item: ResourceLink;
+  samePage?: boolean;
+  noIcon?: boolean;
+}> = ({ item, samePage, noIcon }) => {
   const [tooltipVisible, setTooltipVisible] = React.useState<boolean>(false);
 
   const renderedIcon = React.useMemo<IconComponent>(
@@ -59,9 +60,10 @@ const Link: React.FC<{ item: ResourceLink; samePage?: boolean }> = ({
               )
           : item.displayText}
       </Typography.SidebarItem>
-      {item.url !== undefined && item.url !== null && item.url !== "" && (
-        <Icon icon={squarrow} />
-      )}
+      {item.url !== undefined &&
+        item.url !== null &&
+        item.url !== "" &&
+        !noIcon && <Icon icon={squarrow} />}
     </Container>
   );
 };

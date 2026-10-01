@@ -87,7 +87,7 @@ export type ResourceInfo = {
   name: string;
   creator?: string;
   color?: string;
-  type: ResourceType;
+  resourceType: ResourceType;
   shortDesc?: string;
   longDesc?: string;
   // recommendedContent?: Content[]; // Recommended content will be mostly used for historical figures (Martin Luther, Charles Spurgeon, etc.) where no "recent content" would be relevant
@@ -99,12 +99,18 @@ export type ResourceInfo = {
 
 // TODO: Clean up these types
 
-export type RowData = {
+interface CardRow {
   _id: string;
-  type: RowType;
-  name?: string;
+  title: string;
+  type: RowType.card;
   content: ResourceInfo[];
-};
+}
+interface ListRow {
+  _id: string;
+  type: RowType.list;
+  content: ResourceInfo[];
+}
+export type RowData = CardRow | ListRow;
 
 export interface DashboardData {
   accountStatus: AccountStatus;
@@ -144,8 +150,8 @@ export enum AccountStatus {
   ADMIN,
 }
 export enum RowType {
-  CARD = "card",
-  LIST = "list",
+  card = "card",
+  list = "list",
 }
 export enum PageType {
   DASHBOARD = "dashboard",
@@ -158,6 +164,7 @@ export enum PageType {
   ABOUT = "about",
   NOTFOUND = "404",
   ADD = "add",
+  BIBLEBOOK = "bibleBook",
 }
 export enum Theme {
   LIGHT = "light",
@@ -174,6 +181,7 @@ export enum ResourceType {
   CONTENT = "content",
   TOPIC = "topic",
   QUESTION = "question",
+  BIBLEBOOK = "bibleBook",
 }
 
 export type GlossaryItem = {

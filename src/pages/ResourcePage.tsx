@@ -126,10 +126,6 @@ const ResourcePage: React.FC = () => {
     };
   };
 
-  React.useEffect(() => {
-    console.log(resource);
-  }, [resource]);
-
   const youtubeVideoToContent = React.useCallback(
     (video: APIVideo): Content => {
       // YouTube native URL

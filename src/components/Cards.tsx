@@ -71,7 +71,8 @@ export const Card: React.FC<{
 
   const icon = React.useMemo(() => {
     const curIcon = resourceIcons.find(
-      (item) => resource.type === (item.type as unknown as ResourceType),
+      (item) =>
+        resource.resourceType === (item.type as unknown as ResourceType),
     );
     if (!curIcon) {
       const defaultIcon = resourceIcons.find((icon) => icon.type === "person");
@@ -85,7 +86,7 @@ export const Card: React.FC<{
       const renderedIcon = iconMap[curIcon.icon];
       return renderedIcon;
     }
-  }, [resource.type]);
+  }, [resource.resourceType]);
 
   return (
     <Container
@@ -102,8 +103,10 @@ export const Card: React.FC<{
             <IconWithTooltip
               icon={icon}
               text={
-                String(resource.type).charAt(0).toUpperCase() +
-                String(resource.type).slice(1)
+                resource.resourceType === ResourceType.BIBLEBOOK
+                  ? "Bible Book"
+                  : String(resource.resourceType).charAt(0).toUpperCase() +
+                    String(resource.resourceType).slice(1)
               }
             />
             <Typography.Subtitle>{resource.name}</Typography.Subtitle>
