@@ -45,8 +45,6 @@ const TopicsContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
 `;
 
-// TODO: Right now, I'm trying to figure out if each resource should have its own page in addition to a modal. Maybe the modal could appear initially as a stopgap until the user actually views it in fullscreen?
-
 /**
  * Desktop Dashboard when the user is logged out.
  * @returns Desktop Dashboard
