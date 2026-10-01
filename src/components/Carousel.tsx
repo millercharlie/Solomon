@@ -39,7 +39,7 @@ const Carousel: React.FC<{
     loop: false,
     align: "start",
   });
-  const [scrollSnaps, setScrollSnaps] = React.useState([]);
+  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
   const [selectedSnap, setSelectedSnap] = React.useState<number>(0);
 
   const goToPrev = () => carouselApi?.scrollPrev();

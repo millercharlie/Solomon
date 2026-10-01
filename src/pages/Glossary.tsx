@@ -77,12 +77,12 @@ const Glossary: React.FC = () => {
           <ResourcesContainer>
             {data.data.resources.map((resource) => {
               return (
-                resource.links.length > 0 && (
+                resource.content.length > 0 && (
                   <div id={resource.letter}>
                     <Typography.RowHeading style={{ paddingBottom: 10 }}>
                       {resource.letter}
                     </Typography.RowHeading>
-                    {resource.links.map((t: GlossaryItem) => (
+                    {resource.content.map((t: GlossaryItem) => (
                       <div id="all-links">
                         <Link
                           item={{

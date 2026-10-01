@@ -10,6 +10,7 @@ import {
   Bullet,
 } from "@libs/Typography";
 import { breakpoints } from "@libs/globals";
+import logo from "@assets/logos/logo.svg?react";
 
 const ContentBackground = styled.div`
   text-align: center;
@@ -108,11 +109,7 @@ const AboutPage = () => {
       <ContentBackground>
         <Heading>
           <Title>About Solomon</Title>
-          <LogoImage
-            src="/assets/logos/logo.svg?react"
-            width="200px"
-            height="50px"
-          />
+          <LogoImage icon={logo} width="200px" height="50px" />
         </Heading>
         <Content>
           <Text>
