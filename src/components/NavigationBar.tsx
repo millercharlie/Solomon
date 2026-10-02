@@ -53,6 +53,11 @@ const links: { id: string; pretty: string; link: string }[] = [
 
 const Container = styled.div<{ theme: ColorTheme }>`
   background-color: ${({ theme }) => theme.navBar};
+  backdrop-filter: blur(400px);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
 `;
 
 const NavContainer = styled.div`
