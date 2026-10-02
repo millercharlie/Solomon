@@ -44,6 +44,13 @@ const Background = styled.div<{
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
+
+  ::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+  }
 `;
 
 /**
