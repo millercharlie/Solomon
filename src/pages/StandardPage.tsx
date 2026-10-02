@@ -17,7 +17,7 @@ import PageTemplate from "@pages/PageTemplate";
 import { SidebarContext, sidebarKey, ThemeContext } from "@libs/Context";
 import Carousel from "@components/Carousel";
 import { DefaultIcon } from "@libs/Icons";
-import { useViewportSize } from "@mantine/hooks";
+import useIsMobile from "@hooks/useIsMobile";
 
 const ContentBackground = styled.div<{ sidebarOpen: boolean }>`
   margin-top: 30px;
@@ -37,8 +37,8 @@ const DashboardTitleContainer = styled.div`
   gap: 0px;
 `;
 
-const Content = styled.div`
-  width: calc(100% - 90px);
+const Content = styled.div<{ isMobile: boolean }>`
+  width: ${({ isMobile }) => (isMobile ? "100%" : `calc(100% - 90px)`)};
   min-width: 0;
 `;
 const MainContent = styled.div`
@@ -71,35 +71,23 @@ const ListRow = styled.div`
 const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
   const [selectedResource, setSelectedResource] =
     React.useState<ResourceInfo | null>(null);
-  const { width } = useViewportSize();
 
-  const [mobile, setMobile] = React.useState<boolean>(
-    width <= breakpoints.md && width !== 0,
-  );
-
-  React.useEffect(() => {
-    if (width <= breakpoints.md && width !== 0) {
-      setMobile(true);
-    } else {
-      setMobile(false);
-    }
-  }, [width]);
-
+  const isMobile = useIsMobile();
   const [sidebarOpen, setSidebarOpen] = React.useState<boolean>(
-    window.localStorage.getItem(sidebarKey) === "true" && !mobile
+    window.localStorage.getItem(sidebarKey) === "true" && !isMobile
       ? true
       : false,
   );
   const { theme } = React.useContext(ThemeContext);
 
   React.useEffect(() => {
-    if (mobile) {
+    if (isMobile) {
       setSidebarOpen(false);
     }
     if (!data.sidebarItems || data.sidebarItems.length === 0) {
       setSidebarOpen(false);
     }
-  }, [data.sidebarItems, mobile]);
+  }, [data.sidebarItems, isMobile]);
 
   return (
     <SidebarContext.Provider
@@ -107,7 +95,7 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
     >
       <PageTemplate pageType={data.pageType}>
         <ContentBackground sidebarOpen={sidebarOpen}>
-          <Content>
+          <Content isMobile={isMobile}>
             <Heading>
               {data.pageType === PageType.DASHBOARD ? (
                 <>
@@ -191,7 +179,7 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
               ))}
             </MainContent>
           </Content>
-          {data.sidebarItems && data.sidebarItems.length > 0 && !mobile && (
+          {data.sidebarItems && data.sidebarItems.length > 0 && !isMobile && (
             <Sidebar
               contents={data.sidebarItems}
               open={sidebarOpen}

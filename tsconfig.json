@@ -12,7 +12,8 @@
       "@pages/*": ["pages/*"],
       "@components/*": ["components/*"],
       "@assets/*": ["assets/*"],
-      "@database/*": ["database/*"]
+      "@database/*": ["database/*"],
+      "@hooks/*": ["hooks/*"]
     },
   }
 }

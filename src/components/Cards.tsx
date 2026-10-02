@@ -17,7 +17,7 @@ const Container = styled.div<{
   theme: ColorTheme;
   doubleWidth?: boolean;
 }>`
-  height: fit-content;
+  height: 100%;
   padding: 10px;
   box-sizing: border-box;
   border: ${({ bColor, theme }) =>
@@ -35,6 +35,7 @@ const Container = styled.div<{
 const VisibleContent = styled.div`
   position: relative;
   display: flex;
+  height: 100%;
 `;
 const TitleRow = styled.div`
   display: flex;
@@ -42,10 +43,14 @@ const TitleRow = styled.div`
   gap: 9px;
 `;
 const MainContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   transition: all 0.2s;
   box-sizing: border-box;
 `;
 const BadgeRow = styled.div`
+  margin-top: auto;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
