@@ -48,7 +48,11 @@ export type Content = {
   description?: string;
   thumbnail: string;
   badges?: string[];
-  link: string;
+  url: string;
+};
+export type YouTubeData = {
+  pfp: string;
+  recentContent: Content[];
 };
 
 export type BadgeTypes =

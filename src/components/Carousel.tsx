@@ -76,7 +76,7 @@ const Carousel: React.FC<{
           <div className="embla__viewport" ref={carousel}>
             <div className="embla__container">
               {row.content.map((item, j) => (
-                <div className="embla__slide">
+                <div className="embla__slide" key={j}>
                   <Card
                     resource={item}
                     key={j}

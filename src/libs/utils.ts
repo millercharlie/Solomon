@@ -52,15 +52,15 @@ export const findControls = (resource: ResourceInfo): Controls[] => {
  */
 export const getLink = (resource: ResourceInfo): string => {
   if (resource.resourceType === ResourceType.BIBLEBOOK)
-    return `${import.meta.env.VITE_API_URI}/bible/book/${resource._id}`;
+    return `${import.meta.env.VITE_FRONTEND_URI}/bible/book/${resource._id}`;
   if (
     resource.resourceType === ResourceType.TOPIC ||
     resource.resourceType === ResourceType.QUESTION
   ) {
-    return `${import.meta.env.VITE_API_URI}/topic/${resource._id}`;
+    return `${import.meta.env.VITE_FRONTEND_URI}/topic/${resource._id}`;
   } // TODO: In the future, maybe a ministry's link could be immediately visible in the card
   else {
-    return `${import.meta.env.VITE_API_URI}/resource/${resource._id}`;
+    return `${import.meta.env.VITE_FRONTEND_URI}/resource/${resource._id}`;
   }
 };
 /**

@@ -156,7 +156,6 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
                   ) : (
                     <ListRow id={row._id}>
                       {row.content.map((item) => {
-                        console.log(item);
                         return (
                           <div id="all-links">
                             <Typography.RowHeading style={{ marginBottom: 0 }}>
