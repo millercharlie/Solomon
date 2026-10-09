@@ -1,14 +1,16 @@
 import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
 
-const ThumbnailContainer = styled.div`
+const ThumbnailContainer = styled.div<{ mobile?: boolean }>`
   width: 100%;
   display: flex;
+  flex-direction: ${({ mobile }) => (mobile ? `column` : `row`)};
   gap: 20px;
   justify-content: space-between;
 `;
-const ThumbnailImage = styled.img<{ large?: boolean }>`
-  width: ${({ large }) => (large ? `150` : `100`)}px;
+const ThumbnailImage = styled.img<{ large?: boolean; mobile?: boolean }>`
+  width: ${({ large, mobile }) =>
+    mobile ? `100%` : large ? `150px` : `100px`};
   float: right;
   /* height: auto; */
   border-radius: ${({ large }) => (large ? `8` : `3`)}px;
@@ -27,9 +29,10 @@ const Thumbnail: React.FC<{
   link: string;
   description?: string;
   large?: boolean;
-}> = ({ title, imageUrl, link, description, large }) => {
+  mobile?: boolean;
+}> = ({ title, imageUrl, link, description, large, mobile }) => {
   return (
-    <ThumbnailContainer>
+    <ThumbnailContainer mobile={mobile}>
       <div id="title/description">
         {large ? (
           <Typography.LargeThumbnailTitle>
@@ -41,7 +44,12 @@ const Thumbnail: React.FC<{
         {large && <Typography.Paragraph>{description}</Typography.Paragraph>}
       </div>
       <a href={link}>
-        <ThumbnailImage src={imageUrl} alt="thumbnail" large={large} />
+        <ThumbnailImage
+          src={imageUrl}
+          alt="thumbnail"
+          large={large}
+          mobile={mobile}
+        />
       </a>
     </ThumbnailContainer>
   );

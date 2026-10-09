@@ -26,6 +26,15 @@ export const ResourceTitle = styled.h1`
   font-style: normal;
   margin-top: 0;
 `;
+export const MobileResourceTitle = styled.h1`
+  font-family: "roca", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  font-style: normal;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 115%;
+`;
 
 export const Description = styled.h2<{ fontSize?: string; italic?: boolean }>`
   font-family: "fira-sans", "avenir", sans-serif;

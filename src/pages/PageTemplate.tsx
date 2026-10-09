@@ -59,10 +59,11 @@ const Background = styled.div<{
  * Represents a page template with a navigation bar and gradient.
  * @returns Page Template
  */
-const PageTemplate: React.FC<{ pageType: PageType; children: ReactNode }> = ({
-  pageType,
-  children,
-}) => {
+const PageTemplate: React.FC<{
+  pageType: PageType;
+  noNav?: boolean;
+  children: ReactNode;
+}> = ({ pageType, noNav, children }) => {
   const { width } = useViewportSize();
   const { theme, setTheme } = React.useContext(ThemeContext);
 
@@ -78,20 +79,28 @@ const PageTemplate: React.FC<{ pageType: PageType; children: ReactNode }> = ({
     }
   }, [width]);
 
-  return pageType === PageType.RESOURCE ||
-    pageType === PageType.TOPIC ||
-    pageType === PageType.BIBLEBOOK ? (
+  return pageType === PageType.resource ||
+    pageType === PageType.topic ||
+    pageType === PageType.bibleBook ? (
     <ResourceBackground themeId={theme._id}>
-      <NavigationBar highlighted={pageType} theme={theme} setTheme={setTheme} />
+      {!noNav && (
+        <NavigationBar
+          highlighted={pageType}
+          theme={theme}
+          setTheme={setTheme}
+        />
+      )}
       {children}
     </ResourceBackground>
   ) : (
     <Background theme={theme} pageType={pageType} mobile={mobile}>
-      <NavigationBar // TODO: Likely extrapolate the nav bar into a more general Component - this is fine for now though
-        highlighted={pageType}
-        theme={theme}
-        setTheme={setTheme}
-      />
+      {!noNav && (
+        <NavigationBar
+          highlighted={pageType}
+          theme={theme}
+          setTheme={setTheme}
+        />
+      )}
       {children}
     </Background>
   );

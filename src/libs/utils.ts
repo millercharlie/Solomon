@@ -6,7 +6,7 @@ import {
   type ResourceInfo,
 } from "@libs/Types";
 import badges from "../database/badges.json";
-import axios from "axios";
+import axios, { isAxiosError } from "axios";
 
 export const hexToRGB = (hex: string) => {
   const conversion = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -67,18 +67,39 @@ export const getLink = (resource: ResourceInfo): string => {
  * Retrieves an external link for a resource by its ID
  */
 export const getResourceLinkById = (resourceId: string): string =>
-  `${import.meta.env.VITE_API_URI}/resource/${resourceId}`;
+  `${import.meta.env.VITE_FRONTEND_URI}/resource/${resourceId}`;
 /**
  * Retrieves an external link for a topic by its ID
  */
 export const getTopicLinkById = (topicId: string): string =>
-  `${import.meta.env.VITE_API_URI}/topic/${topicId}`;
+  `${import.meta.env.VITE_FRONTEND_URI}/topic/${topicId}`;
 
 /**
  * Fetches data from the backend.
  * @returns Promise of data (can vary)
  */
-export const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+export const fetcher = async (
+  url: string,
+  attempts: number = 4,
+): Promise<any> => {
+  try {
+    const res = await axios.get(url);
+    return res.data;
+  } catch (e) {
+    if (isAxiosError(e)) {
+      const retry =
+        !e.response ||
+        ([502, 503, 504].includes(e.response.status) && attempts > 1);
+
+      if (retry && attempts > 1) {
+        await new Promise((r) => setTimeout(r, 3000));
+        return fetcher(url, attempts - 1);
+      }
+      throw new Error(e.response?.data?.error || `Request Failed.`);
+    }
+    throw e;
+  }
+};
 
 /**
  * Fetches data from the backend, with a timeout.

@@ -57,7 +57,7 @@ const AddResource: React.FC = () => {
   );
 
   return (
-    <StyledPageTemplate pageType={PageType.ADD}>
+    <StyledPageTemplate pageType={PageType.add}>
       <Title style={{ marginTop: "30px", textAlign: "center" }}>
         Add a Resource
       </Title>

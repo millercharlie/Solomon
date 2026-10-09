@@ -97,7 +97,7 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
         <ContentBackground sidebarOpen={sidebarOpen}>
           <Content isMobile={isMobile}>
             <Heading>
-              {data.pageType === PageType.DASHBOARD ? (
+              {data.pageType === PageType.dashboard ? (
                 <>
                   <DashboardTitleContainer>
                     <Typography.RowHeading style={{ marginBottom: -20 }}>

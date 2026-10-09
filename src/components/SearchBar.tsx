@@ -14,6 +14,7 @@ import { ThemeContext } from "@libs/Context";
 // TODO: Mobile Search should activate when the window is <900px
 
 const SearchContainer = styled.div`
+  position: relative;
   width: 100%;
   height: 28px;
 `;
@@ -21,7 +22,7 @@ const InputContainer = styled.div`
   position: relative;
   width: 100%;
 `;
-const SearchInput = styled.input`
+const SearchInput = styled.input<{ hasData?: boolean }>`
   width: calc(100% - 40px);
   height: 28px;
   padding-left: 30px;
@@ -29,7 +30,7 @@ const SearchInput = styled.input`
   display: flex;
   align-items: center;
   border: none;
-  border-radius: 50px;
+  border-radius: ${({ hasData }) => (hasData ? `10px 10px 0 0` : `10px`)};
 
   background-color: white;
   color: #585858;
@@ -52,15 +53,16 @@ const SearchIcon = styled.img`
 `;
 
 const LinkContainer = styled.div<{ themeId: string }>`
-  display: absolute;
-  top: 0;
+  position: absolute;
+  top: 30px;
+  box-sizing: border-box;
   width: 100%;
   height: 100px;
   overflow-y: scroll;
   padding: 15px;
   border: ${({ themeId }) =>
     isDarkTheme(themeId) ? `2px solid #a2a2a2` : undefined};
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
 
   backdrop-filter: blur(40px);
   background-color: rgba(162, 162, 162, 0.4);
@@ -81,10 +83,11 @@ const SearchBar = () => {
   const [query, setQuery] = React.useState<string>("");
   const { theme } = React.useContext(ThemeContext);
 
-  const { data, error, isLoading } = useSWR(
+  const { data } = useSWR<ResourceLink[]>(
     query ? `${import.meta.env.VITE_API_URI}/search/${query}` : null,
     timeoutFetcher,
-  ) as { data: ResourceLink[]; error: string; isLoading: boolean };
+    { suspense: false, shouldRetryOnError: false },
+  );
 
   return (
     <SearchContainer>
@@ -93,10 +96,11 @@ const SearchBar = () => {
           placeholder="Search..."
           id="search_input"
           onChange={(event) => setQuery(event.target.value)}
+          hasData={!!data && data.length > 0}
         />
         <SearchIcon src={searchIcon} alt="search_icon" />
       </InputContainer>
-      {data && data.length > 0 && !error && !isLoading && (
+      {data && data.length > 0 && (
         <LinkContainer themeId={theme._id}>
           {data.map((link) => (
             <Link item={link} noIcon />

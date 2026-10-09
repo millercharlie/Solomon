@@ -31,6 +31,7 @@ const Container = styled.div<{ backgroundColor: string; theme: ColorTheme }>`
   height: 80%;
   max-height: 85%;
   overflow-y: scroll;
+  overflow-x: hidden;
   /* height: fit-content; */
   position: absolute;
   top: 50%;

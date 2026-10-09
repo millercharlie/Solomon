@@ -3,7 +3,7 @@ import { useViewportSize } from "@mantine/hooks";
 import React from "react";
 
 /**
- * Hook to calculate whether the user is on a mobile device based on screen width
+ * Hook to calculate whether the user is on a mobile device based on screen width.
  */
 const useIsMobile = (): boolean => {
   const { width } = useViewportSize();

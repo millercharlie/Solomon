@@ -17,6 +17,7 @@ import logo from "@assets/logos/logo.svg?react";
 import sun from "@assets/icons/sun.svg?react";
 import moon from "@assets/icons/moon.svg?react";
 import hamburgerMenu from "@assets/icons/hamburger_menu.svg?react";
+import { css, keyframes } from "@emotion/react";
 
 const links: { id: string; pretty: string; link: string }[] = [
   {
@@ -97,12 +98,34 @@ const NavItem = styled(Typography.NavigationLink)<{
     color: ${({ theme }) => theme.secondary};
   }
 `;
-const DarkModeToggle = styled(Icon)<{ theme: ColorTheme }>`
-  transition: all 0.2s;
-  :active {
+
+/**
+ * Animation for the theme toggle.
+ * @param direction true for `left`, false for `right`
+ */
+const spinAnim = (direction: boolean) => keyframes`
+  from {
     transform: rotate(
-      ${({ theme }) => (isDarkTheme(theme._id) ? 45 : -45)}deg
-    ); // TODO: Eventually have a dark mode toggle like elanmed.dev
+      ${direction ? -60 : 60}deg
+    );
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+`;
+const ThemeToggle = styled(Icon)<{ theme: ColorTheme; animate: boolean }>`
+  transition: all 0.2s;
+  user-select: none;
+  ${({ theme, animate }) =>
+    animate &&
+    css`
+      animation: ${spinAnim(isDarkTheme(theme._id))} 0.15s ease-in-out;
+    `}
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
   }
 `;
 
@@ -117,8 +140,10 @@ export const NavigationBar: React.FC<{
     width <= breakpoints.md && width !== 0,
   );
   const [dropdownOpen, setDropdownOpen] = React.useState<boolean>(false);
+  const [animate, setAnimate] = React.useState<boolean>(false);
 
   const handleThemeToggle = React.useCallback(() => {
+    setAnimate(true);
     const newTheme = isDarkTheme(theme._id) ? Theme.LIGHT : Theme.DARK;
     setTheme(Colors[newTheme]);
     window.localStorage.setItem(themeKey, newTheme);
@@ -156,11 +181,13 @@ export const NavigationBar: React.FC<{
             ))}
         </NavLinksContainer>
         <SearchBar />
-        <Icon
+        <ThemeToggle
           icon={isDarkTheme(theme._id) ? sun : moon}
           hover={true}
+          theme={theme}
           width={24}
           height={24}
+          animate={animate}
           onClick={() => handleThemeToggle()}
         />
         {
@@ -170,12 +197,13 @@ export const NavigationBar: React.FC<{
         config is temporary */
         }
         {mobile && (
-          <DarkModeToggle
+          <ThemeToggle
             icon={hamburgerMenu}
             hover={true}
             width={24}
             height={24}
             theme={theme}
+            animate={false}
             onClick={() => setDropdownOpen(!dropdownOpen)}
           />
         )}

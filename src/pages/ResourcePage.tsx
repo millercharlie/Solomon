@@ -4,16 +4,15 @@ import { breakpoints } from "@libs/globals";
 import {
   PageType,
   type ColorTheme,
-  type Content,
   type ResourceInfo,
   type ResourceLink,
+  type YouTubeData,
 } from "@libs/Types";
 import { fetcher } from "@libs/utils";
 import React from "react";
 import { useParams } from "react-router";
 import useSWR from "swr";
 import * as Typography from "@libs/Typography";
-import axios from "axios";
 import { ThemeContext } from "@libs/Context";
 import { HorizontalRow } from "@components/HorizontalRow";
 import Thumbnail from "@components/Thumbnail";
@@ -106,106 +105,26 @@ const ResourcePage: React.FC = () => {
 
   const { theme } = React.useContext(ThemeContext);
   const [active, setActive] = React.useState<number>(0);
-  const [pfp, setPfp] = React.useState<string>("");
-  const [recentContent, setRecentContent] = React.useState<Content[]>();
 
-  type APIVideo = {
-    snippet: {
-      title: string;
-      description: string;
-      thumbnails: {
-        high: {
-          width: number;
-          height: number;
-          url: string;
-        };
-      };
-    };
-    contentDetails: {
-      videoId: string;
-    };
-  };
-
-  const youtubeVideoToContent = React.useCallback(
-    (video: APIVideo): Content => {
-      // YouTube native URL
-      const { snippet, contentDetails } = video;
-      const url = `https://www.youtube.com/watch?v=${contentDetails.videoId}`;
-
-      // Shortens the video description to 150 characters
-      const shortenedDesc = `${snippet.description.slice(0, 150)}...`;
-
-      return {
-        _id: contentDetails.videoId,
-        title: snippet.title,
-        description: shortenedDesc,
-        thumbnail: snippet.thumbnails.high.url,
-        link: url,
-      };
-    },
-    [],
+  const { data } = useSWR<YouTubeData>(
+    resource.api && resource.api?.queryParam
+      ? `${import.meta.env.VITE_API_URI}/youtube/${resource.api.queryParam}`
+      : null,
+    fetcher,
+    { suspense: false, shouldRetryOnError: false },
   );
-
-  React.useEffect(() => {
-    const getThumbnail = async () => {
-      const thumbnail = await axios
-        .get(
-          `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&forHandle=${resource.api?.queryParam}&fields=items(id,snippet(thumbnails(high)))&key=${import.meta.env.VITE_YOUTUBE_API_KEY}`,
-        )
-        .catch((e) => console.error(e));
-
-      // Invariance: Items will only be 1 item long
-      if (thumbnail && thumbnail.data.items[0].snippet.thumbnails.high.url) {
-        const url = thumbnail.data.items[0].snippet.thumbnails.high.url;
-        // Removes this absolutely wild default photo that is returned without a valid username for some reason?
-        if (
-          !url.includes(
-            "dLHdx9gnMUMqdYnrZ26atHPNfJRIn8t8Q-bF_5I3KmpFFVF-TdBE86A96It6yZYsaAre-AUM=s800-c-k-c0x00ffffff-no-rj",
-          )
-        )
-          setPfp(thumbnail.data.items[0].snippet.thumbnails.high.url);
-      }
-    };
-    if (resource) getThumbnail();
-  }, [resource, setPfp]);
 
   const priorityLink = React.useMemo((): ResourceLink | undefined => {
     return resource && resource.links.find((l) => l.priority);
   }, [resource]);
 
-  React.useEffect(() => {
-    const getRecentContent = async () => {
-      const playlists = await axios
-        .get(
-          `https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&forHandle=${resource.api?.queryParam}&fields=items(id,contentDetails(relatedPlaylists))&key=${import.meta.env.VITE_YOUTUBE_API_KEY}`,
-        )
-        .catch((e) => console.error(e));
-
-      if (playlists) {
-        const rc = await axios
-          .get(
-            `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${playlists.data.items[0].contentDetails.relatedPlaylists.uploads}&fields=items(id,snippet(title,description,thumbnails(high)),contentDetails(videoId))&key=${import.meta.env.VITE_YOUTUBE_API_KEY}`,
-          )
-          .catch((e) => console.error(e));
-
-        if (rc) {
-          const recentVideos = rc.data.items.slice(0, 3);
-          const parsedVideos = recentVideos.map((v: APIVideo) =>
-            youtubeVideoToContent(v),
-          );
-
-          setRecentContent(parsedVideos);
-        }
-      }
-    };
-    if (resource) getRecentContent();
-  }, [resource, youtubeVideoToContent]);
-
   return isLoading ? (
     <Spinner />
   ) : resource ? (
-    <PageTemplate pageType={PageType.RESOURCE}>
-      {pfp !== "" && <Photo src={pfp} alt="pfp" referrerPolicy="no-referrer" />}
+    <PageTemplate pageType={PageType.resource}>
+      {data?.pfp && data?.pfp !== "" && (
+        <Photo src={data.pfp} alt="pfp" referrerPolicy="no-referrer" />
+      )}
       <Container>
         <Typography.ResourceTitle style={{ marginBottom: 10 }}>
           {resource.creator
@@ -253,19 +172,19 @@ const ResourcePage: React.FC = () => {
           )}
           {active > 0 && (
             <ContentContainer>
-              {recentContent && active === 1 && (
+              {data?.recentContent && active === 1 && (
                 <ResourceContent>
-                  {recentContent?.map((item, index) => (
+                  {data.recentContent.map((item, index) => (
                     <>
                       <Thumbnail
                         key={index}
                         title={item.title}
                         imageUrl={item.thumbnail}
-                        link={item.link}
+                        link={item.url}
                         description={item.description}
                         large={true}
                       />
-                      {index < recentContent!.length - 1 && (
+                      {index < data.recentContent.length - 1 && (
                         <HorizontalRow color={theme.secondaryRow} />
                       )}
                     </>

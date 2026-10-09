@@ -11,6 +11,7 @@ import {
 } from "@libs/Typography";
 import { breakpoints } from "@libs/globals";
 import logo from "@assets/logos/logo.svg?react";
+import myPfp from "@assets/misc/me.png";
 
 const ContentBackground = styled.div`
   text-align: center;
@@ -96,7 +97,7 @@ const Answer = styled(Paragraph)`
 
 const AboutPage = () => {
   return (
-    <PageTemplate pageType={PageType.ABOUT}>
+    <PageTemplate pageType={PageType.about}>
       <TableOfContents>
         <Anchor href="#intro">Introduction</Anchor>
         <Anchor href="#about-me">About Me</Anchor>
@@ -176,7 +177,7 @@ const AboutPage = () => {
                 </Paragraph>
                 <ImageWithCaption>
                   <img
-                    src="/assets/misc/me.png"
+                    src={myPfp}
                     alt="me"
                     width="100%"
                     style={{ borderRadius: "8px" }}
