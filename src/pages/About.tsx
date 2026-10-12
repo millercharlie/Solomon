@@ -12,6 +12,7 @@ import {
 import { breakpoints } from "@libs/globals";
 import logo from "@assets/logos/logo.svg?react";
 import myPfp from "@assets/misc/me.png";
+import useIsMobile from "@hooks/useIsMobile";
 
 const ContentBackground = styled.div`
   text-align: center;
@@ -19,17 +20,18 @@ const ContentBackground = styled.div`
   width: 100vw;
   min-height: 100vh;
 `;
-const Heading = styled.div`
+const Heading = styled.div<{ mobile: boolean }>`
   width: 100%;
+  margin-top: ${({ mobile }) => (mobile ? "40px" : undefined)};
 `;
 const Content = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
 `;
-const Text = styled.div`
+const Text = styled.div<{ mobile: boolean }>`
   text-align: justify;
-  width: 60vw;
+  width: ${({ mobile }) => (mobile ? `80vw` : `60vw`)};
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -96,6 +98,8 @@ const Answer = styled(Paragraph)`
 `;
 
 const AboutPage = () => {
+  const mobile = useIsMobile();
+
   return (
     <PageTemplate pageType={PageType.about}>
       <TableOfContents>
@@ -108,12 +112,12 @@ const AboutPage = () => {
         <Anchor href="#conclusion">Conclusion</Anchor>
       </TableOfContents>
       <ContentBackground>
-        <Heading>
+        <Heading mobile={mobile}>
           <Title>About Solomon</Title>
           <LogoImage icon={logo} width="200px" height="50px" />
         </Heading>
         <Content>
-          <Text>
+          <Text mobile={mobile}>
             <Section id="intro">
               <RowHeading noMargin>Introduction</RowHeading>
               <Paragraph>
@@ -182,7 +186,7 @@ const AboutPage = () => {
                     width="100%"
                     style={{ borderRadius: "8px" }}
                   />
-                  <Caption>Hello! I'm Charlie</Caption>
+                  <Caption>Hello! I'm Charlie &#128075;</Caption>
                 </ImageWithCaption>
               </ParagraphWithImage>
             </Section>
