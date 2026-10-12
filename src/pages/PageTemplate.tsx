@@ -34,24 +34,25 @@ const Background = styled.div<{
   pageType: PageType;
   mobile: boolean;
 }>`
+  position: relative;
+  isolation: isolate;
   background-color: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.text};
   width: 100%;
-  height: 100%;
-  background-image: ${({ pageType }) =>
-    `url("${gradientUrls[gradientMap[pageType]]}")`};
-  background-size: ${({ mobile }) => (mobile ? "150vh" : "150%")};
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
+  min-height: 100%;
 
-  ::before {
+  &::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -1;
-    width: 100vw;
-    height: 100vh;
+    background-image: ${({ pageType }) =>
+      `url("${gradientUrls[gradientMap[pageType]]}")`};
+    background-size: ${({ mobile }) => (mobile ? "150vh" : "150%")};
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: translateZ(0);
   }
 `;
 
