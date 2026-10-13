@@ -34,7 +34,6 @@ const Background = styled.div<{
   pageType: PageType;
   mobile: boolean;
 }>`
-  position: relative;
   isolation: isolate;
   background-color: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.text};
