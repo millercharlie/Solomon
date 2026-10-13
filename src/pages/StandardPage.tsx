@@ -132,7 +132,9 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
                 </>
               ) : (
                 <>
-                  <Typography.Title>{data.title}</Typography.Title>
+                  <Typography.Title>
+                    {data.longTitle ?? data.title}
+                  </Typography.Title>
                   {data.longDesc && (
                     <Typography.LargeParagraph style={{ textWrap: "wrap" }}>
                       {data.longDesc}
@@ -162,7 +164,12 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
                               {item.name}
                             </Typography.RowHeading>
                             <Typography.Paragraph
-                              style={{ marginTop: 5, marginBottom: 10 }}
+                              style={{
+                                marginTop: 5,
+                                marginBottom: 10,
+                                lineHeight: "115%",
+                                fontStyle: "italic",
+                              }}
                             >
                               {item.shortDesc}
                             </Typography.Paragraph>

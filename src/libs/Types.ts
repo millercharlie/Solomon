@@ -124,7 +124,7 @@ export interface DashboardData {
 export type PageData = {
   _id: string;
   title: string;
-  solomonLink?: string; // TODO: This is likely temporary
+  longTitle?: string;
   pageType: PageType;
   shortDesc?: string;
   color?: string;

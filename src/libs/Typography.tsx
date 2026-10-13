@@ -7,6 +7,7 @@ export const Title = styled.h1`
   font-weight: 700;
   font-style: normal;
   margin-top: 0;
+  line-height: 115%;
 `;
 export const Subtitle = styled.h3`
   font-family: "apparat-semicond", sans-serif;
