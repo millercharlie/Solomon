@@ -148,13 +148,15 @@ const ResourcePage: React.FC = () => {
               >
                 About
               </Tab>
-              <Tab
-                active={active === 1}
-                onClick={() => setActive(1)}
-                theme={theme}
-              >
-                Recent Content
-              </Tab>
+              {data?.recentContent && (
+                <Tab
+                  active={active === 1}
+                  onClick={() => setActive(1)}
+                  theme={theme}
+                >
+                  Recent Content
+                </Tab>
+              )}
               <Tab
                 active={active === 2}
                 onClick={() => setActive(2)}

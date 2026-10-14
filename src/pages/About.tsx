@@ -14,11 +14,12 @@ import logo from "@assets/logos/logo.svg?react";
 import myPfp from "@assets/misc/me.png";
 import useIsMobile from "@hooks/useIsMobile";
 
-const ContentBackground = styled.div`
+const ContentBackground = styled.div<{ mobile: boolean }>`
   text-align: center;
-  margin-top: -120px;
+  margin-top: ${({ mobile }) => (mobile ? `0` : `-200px`)};
   width: 100vw;
   min-height: 100vh;
+  padding-bottom: 100px;
 `;
 const Heading = styled.div<{ mobile: boolean }>`
   width: 100%;
@@ -110,10 +111,11 @@ const AboutPage = () => {
           <Anchor href="#my-beliefs">My Beliefs</Anchor>
           <Anchor href="#q&a">Q&A</Anchor>
           <Anchor href="#future">The Future</Anchor>
+          <Anchor href="#ai">Statement on AI</Anchor>
           <Anchor href="#conclusion">Conclusion</Anchor>
         </TableOfContents>
       )}
-      <ContentBackground>
+      <ContentBackground mobile={mobile}>
         <Heading mobile={mobile}>
           <Title>About Solomon</Title>
           <LogoImage icon={logo} width="200px" height="50px" />
@@ -288,6 +290,47 @@ const AboutPage = () => {
                 It's important to note that I don't have a particular timeline
                 on actually implementing these, but will hopefully chip them off
                 piecemeal.
+              </Paragraph>
+            </Section>
+            <Section id="ai">
+              <RowHeading noMargin>Statement on AI Usage</RowHeading>
+              <Paragraph>
+                I felt compelled to write a statement on my use of AI for this
+                project. While I think AI can be a great tool, it is clear to me
+                that its use has become too prevalent in software, and I really
+                wanted Solomon to feel personal and be actually created by a
+                Christian. The Lord gave me my programming ability, so I wished
+                to turn that gift towards the Kingdom. I truly do believe in the
+                power of learning, and I recognized that vibe-coding or relying
+                heavily on AI or agentic coding would not teach me anything.
+              </Paragraph>
+              <Paragraph>
+                First, absolutely none of the resources and data on Solomon was
+                created by or discovered using AI. I hand-typed every piece of
+                data from scratch, as I believe it is important to have
+                Christians add the data ourselves, no matter how much longer it
+                takes to do so. The brand design, name, and UI was additionally
+                created entirely by me, with no AI tools involved in any step of
+                the process.
+              </Paragraph>
+              <Paragraph>
+                In terms of the actual website, I coded nearly the entire
+                frontend without the use of LLMs at all. I would only consult
+                Claude with minor errors that I had a difficult time fixing, but
+                even then I would always try to solve the problem on my own
+                initially. Prior to Solomon, I had much less backend experience,
+                and as such employed AI more heavily. However, rather than just
+                throwing it a prompt to build me a backend, I really did wish to
+                learn the intricacies of creating one, and so I used AI as more
+                a guide while doing all the coding myself. I would ask questions
+                to Claude and learn what it was teaching me. Consequently, much
+                of the backend was still created by me, but with some AI
+                oversight.
+              </Paragraph>
+              <Paragraph>
+                <b>TLDR;</b> I barely used AI for the entire website, from the
+                resources to the design to the frontend. The backend was created
+                with AI oversight, but with me writing most of the code myself.
               </Paragraph>
             </Section>
             <Section id="conclusion">
