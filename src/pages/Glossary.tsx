@@ -63,7 +63,7 @@ const Glossary: React.FC = () => {
   return isLoading ? (
     <Spinner />
   ) : data ? (
-    <PageTemplate pageType={PageType.glossary}>
+    <PageTemplate pageType={PageType.glossary} color="#8d4fcb">
       <ContentBackground>
         <Heading>
           <Typography.Title>Glossary</Typography.Title>

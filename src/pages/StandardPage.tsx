@@ -93,7 +93,7 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
     <SidebarContext.Provider
       value={{ open: sidebarOpen, setOpen: setSidebarOpen }}
     >
-      <PageTemplate pageType={data.pageType}>
+      <PageTemplate pageType={data.pageType} color={data.color}>
         <ContentBackground sidebarOpen={sidebarOpen}>
           <Content isMobile={isMobile}>
             <Heading>

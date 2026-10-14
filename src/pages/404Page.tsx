@@ -22,7 +22,7 @@ const StyledIcon = styled(Icon)`
 
 const NotFound: React.FC = () => {
   return (
-    <PageTemplate pageType={PageType.error}>
+    <PageTemplate pageType={PageType.error} color="#c01b18">
       <Container>
         <Typography.Title>404: Page Not Found</Typography.Title>
         <Typography.Description>

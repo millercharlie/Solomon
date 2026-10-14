@@ -88,12 +88,13 @@ const StyledLink = styled(Link)`
 const NavItem = styled(Typography.NavigationLink)<{
   highlighted?: boolean;
   theme: ColorTheme;
+  navHighlight?: string;
 }>`
   cursor: pointer;
   text-wrap: nowrap;
   transition: all 0.2s;
-  color: ${({ highlighted, theme }) =>
-    highlighted ? theme.navHighlight : theme.text};
+  color: ${({ highlighted, navHighlight, theme }) =>
+    highlighted ? navHighlight : theme.text};
   :hover {
     color: ${({ theme }) => theme.secondary};
   }
@@ -131,9 +132,10 @@ const ThemeToggle = styled(Icon)<{ theme: ColorTheme; animate: boolean }>`
 
 export const NavigationBar: React.FC<{
   highlighted: string;
+  navHighlight?: string;
   theme: ColorTheme;
   setTheme: React.Dispatch<React.SetStateAction<ColorTheme>>;
-}> = ({ highlighted, theme, setTheme }) => {
+}> = ({ highlighted, navHighlight, theme, setTheme }) => {
   const { width } = useViewportSize();
 
   const [mobile, setMobile] = React.useState<boolean>(
@@ -173,6 +175,7 @@ export const NavigationBar: React.FC<{
                   id={link.id}
                   key={link.id}
                   highlighted={link.id === highlighted}
+                  navHighlight={navHighlight}
                   theme={theme}
                 >
                   {link.pretty}

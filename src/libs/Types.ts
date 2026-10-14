@@ -21,7 +21,6 @@ export type ColorTheme = {
   text: string;
   secondaryText: string;
   navBar: string;
-  navHighlight: string;
   primaryRow: string;
   secondaryRow: string;
 };

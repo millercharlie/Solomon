@@ -61,8 +61,8 @@ const ImageWithCaption = styled.div`
 
 const TableOfContents = styled.div`
   position: sticky;
-  top: 20px;
-  left: 20px;
+  top: 80px;
+  left: 30px;
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -101,16 +101,18 @@ const AboutPage = () => {
   const mobile = useIsMobile();
 
   return (
-    <PageTemplate pageType={PageType.about}>
-      <TableOfContents>
-        <Anchor href="#intro">Introduction</Anchor>
-        <Anchor href="#about-me">About Me</Anchor>
-        <Anchor href="#why-solomon">Why Solomon?</Anchor>
-        <Anchor href="#my-beliefs">My Beliefs</Anchor>
-        <Anchor href="#qAndA">Q&A</Anchor>
-        <Anchor href="#future">The Future</Anchor>
-        <Anchor href="#conclusion">Conclusion</Anchor>
-      </TableOfContents>
+    <PageTemplate pageType={PageType.about} color="#7ac4ce">
+      {!mobile && (
+        <TableOfContents>
+          <Anchor href="#intro">Introduction</Anchor>
+          <Anchor href="#about-me">About Me</Anchor>
+          <Anchor href="#why-solomon">Why Solomon?</Anchor>
+          <Anchor href="#my-beliefs">My Beliefs</Anchor>
+          <Anchor href="#q&a">Q&A</Anchor>
+          <Anchor href="#future">The Future</Anchor>
+          <Anchor href="#conclusion">Conclusion</Anchor>
+        </TableOfContents>
+      )}
       <ContentBackground>
         <Heading mobile={mobile}>
           <Title>About Solomon</Title>
@@ -259,7 +261,7 @@ const AboutPage = () => {
                 questions I posed earlier, which I hope can help you understand
                 Solomon more deeply.
               </Paragraph>
-              <Section id="qAndA">
+              <Section id="q&a">
                 <RowHeading noMargin>Q&A</RowHeading>
                 <QAndA>
                   <QContainer>

@@ -62,8 +62,9 @@ const Background = styled.div<{
 const PageTemplate: React.FC<{
   pageType: PageType;
   noNav?: boolean;
+  color?: string;
   children: ReactNode;
-}> = ({ pageType, noNav, children }) => {
+}> = ({ pageType, noNav, color, children }) => {
   const { width } = useViewportSize();
   const { theme, setTheme } = React.useContext(ThemeContext);
 
@@ -86,6 +87,7 @@ const PageTemplate: React.FC<{
       {!noNav && (
         <NavigationBar
           highlighted={pageType}
+          navHighlight={color}
           theme={theme}
           setTheme={setTheme}
         />
@@ -97,6 +99,7 @@ const PageTemplate: React.FC<{
       {!noNav && (
         <NavigationBar
           highlighted={pageType}
+          navHighlight={color}
           theme={theme}
           setTheme={setTheme}
         />
