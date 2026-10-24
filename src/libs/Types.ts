@@ -14,6 +14,14 @@ export type ResourceIcon = {
   icon: string;
 };
 
+export type DataType =
+  | "topic"
+  | "bible"
+  | "resource"
+  | "page"
+  | "miscLink"
+  | "question";
+
 export type ColorTheme = {
   _id: Theme;
   primary: string;

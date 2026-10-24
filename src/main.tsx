@@ -15,7 +15,7 @@ import Glossary from "@pages/Glossary.tsx";
 import Topic from "@pages/Topic.tsx";
 import NotFound from "@pages/404Page.tsx";
 import AboutPage from "@pages/About.tsx";
-import AddResource from "@pages/AddResource.tsx";
+import AddData from "@pages/AddData.tsx";
 import SolomonThemeProvider from "@pages/SolomonThemeProvider.tsx";
 import ResourcePage from "@pages/ResourcePage.tsx";
 import BibleBook from "@pages/BibleBook.tsx";
@@ -91,8 +91,8 @@ const router = createBrowserRouter([
         element: <AboutPage />,
       },
       {
-        path: "/add-resource",
-        element: <AddResource />,
+        path: "/add-data",
+        element: <AddData />,
       },
     ],
   },

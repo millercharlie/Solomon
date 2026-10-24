@@ -25,6 +25,7 @@ const Input = styled.input`
   background-color: #b7b7b728;
   width: 100%;
   padding: 10px 15px;
+  box-sizing: border-box;
 
   font-family: "avenir", sans-serif;
   font-size: 11pt;
@@ -38,6 +39,7 @@ const Textarea = styled.textarea`
   width: 100%;
   padding: 10px 15px;
   resize: vertical;
+  box-sizing: border-box;
 
   font-family: "avenir", sans-serif;
   font-size: 11pt;
@@ -120,6 +122,7 @@ export const InputWithTitle: React.FC<InputWithTitleProps> = ({
             required={props.required || false}
             maxLength={props.maxLength}
             onChange={(e) => onChange(e)}
+            placeholder={props.placeholder}
             style={{ color: textColor ?? "white" }}
           />
         );
@@ -157,8 +160,16 @@ export const InputWithTitle: React.FC<InputWithTitleProps> = ({
   };
 
   return (
-    <div style={{ width: "100%" }}>
-      <Title style={{ marginBottom: "5px" }}>
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "baseline",
+        gap: "5px",
+      }}
+    >
+      <Title>
         {title} {props.required && <span style={{ color: "red" }}>*</span>}
       </Title>
       {findElement()}

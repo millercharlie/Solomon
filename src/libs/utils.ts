@@ -48,7 +48,14 @@ export const findControls = (resource: ResourceInfo): Controls[] => {
 };
 
 /**
- * Retrieves an external link for a resource if applicable
+ * Capitalizes a given string.
+ */
+export const capitalize = (str: string): string => {
+  return str.slice(0, 1).toUpperCase() + str.slice(1, str.length);
+};
+
+/**
+ * Retrieves an external link for a resource if applicable.
  */
 export const getLink = (resource: ResourceInfo): string => {
   if (resource.resourceType === ResourceType.BIBLEBOOK)
