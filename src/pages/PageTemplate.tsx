@@ -3,10 +3,12 @@ import NavigationBar from "@components/NavigationBar";
 
 import { PageType, Theme, type ColorTheme } from "@libs/Types";
 import React, { type ReactNode } from "react";
-import { ThemeContext } from "@libs/Context";
+import { AnimationContext, ThemeContext } from "@libs/Context";
 import { breakpoints } from "@libs/globals";
 import { gradientMap } from "@database/gradientMap";
 import { useViewportSize } from "@mantine/hooks";
+import { css, keyframes } from "@emotion/react";
+import DashboardHeader from "@components/DashboardHeader";
 
 const gradientModules = import.meta.glob<{ default: string }>(
   "@assets/gradients/*",
@@ -29,10 +31,32 @@ const ResourceBackground = styled.div<{ themeId: string }>`
     themeId === Theme.DARK ? "#372d28" : "#fffbf5"};
   color: ${({ themeId }) => (themeId === Theme.DARK ? "#fffbf5" : "#59473e")};
 `;
+
+const PERSPECTIVE = "900px";
+const TILT = "55deg";
+
+const flatten = keyframes`
+    0% {
+        transform: perspective(${PERSPECTIVE}) rotateX(0deg) scale(200%);
+    }
+    100% {
+        transform: perspective(${PERSPECTIVE}) rotateX(${TILT});
+    }
+`;
+const unflatten = keyframes`
+    0% {
+      transform: perspective(${PERSPECTIVE}) rotateX(${TILT});
+    }
+    100% {
+        transform: perspective(${PERSPECTIVE}) rotateX(0deg) scale(200%);
+    }
+`;
+
 const Background = styled.div<{
   theme: ColorTheme;
   pageType: PageType;
   mobile: boolean;
+  doAnim: boolean;
 }>`
   isolation: isolate;
   background-color: ${({ theme }) => theme.primary};
@@ -42,8 +66,11 @@ const Background = styled.div<{
 
   &::before {
     content: "";
+    transform-origin: ${({ pageType }) =>
+      pageType === PageType.dashboard ? "bottom center" : undefined};
     position: fixed;
     inset: 0;
+
     z-index: -1;
     background-image: ${({ pageType }) =>
       `url("${gradientUrls[gradientMap[pageType]]}")`};
@@ -51,7 +78,20 @@ const Background = styled.div<{
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    transform: translateZ(0);
+    transform: ${({ pageType, doAnim }) =>
+      pageType === PageType.dashboard && doAnim
+        ? `perspective(${PERSPECTIVE}) rotateX(${TILT})`
+        : `translateZ(0)`};
+    animation: ${({ pageType, doAnim }) =>
+      pageType === PageType.dashboard && doAnim
+        ? css`
+            ${flatten} 3s cubic-bezier(0.23, 0.8, 0.47, 1) 1,
+      ${unflatten} linear forwards;
+          `
+        : undefined};
+
+    animation-timeline: auto, scroll(root);
+    animation-range: 1px 800px;
   }
 `;
 
@@ -67,6 +107,7 @@ const PageTemplate: React.FC<{
 }> = ({ pageType, noNav, color, children }) => {
   const { width } = useViewportSize();
   const { theme, setTheme } = React.useContext(ThemeContext);
+  const { doAnim } = React.useContext(AnimationContext);
 
   const [mobile, setMobile] = React.useState<boolean>(
     width <= breakpoints.md && width !== 0,
@@ -95,7 +136,12 @@ const PageTemplate: React.FC<{
       {children}
     </ResourceBackground>
   ) : (
-    <Background theme={theme} pageType={pageType} mobile={mobile}>
+    <Background
+      theme={theme}
+      pageType={pageType}
+      mobile={mobile}
+      doAnim={doAnim}
+    >
       {!noNav && (
         <NavigationBar
           highlighted={pageType}
@@ -104,6 +150,7 @@ const PageTemplate: React.FC<{
           setTheme={setTheme}
         />
       )}
+      {pageType === PageType.dashboard && <DashboardHeader />}
       {children}
     </Background>
   );

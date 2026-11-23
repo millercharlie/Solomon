@@ -29,3 +29,11 @@ export const SidebarContext = React.createContext<{
   open: window.localStorage.getItem(sidebarKey) === "true" ? true : false,
   setOpen: noOp,
 });
+
+export const AnimationContext = React.createContext<{
+  doAnim: boolean;
+  setDoAnim: React.Dispatch<React.SetStateAction<boolean>>;
+}>({
+  doAnim: true,
+  setDoAnim: noOp,
+});

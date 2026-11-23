@@ -49,15 +49,15 @@ const Link: React.FC<{
           <Tooltip text={item.tooltip} visible={tooltipVisible} />
         )}
         {item.displayText.includes("\u2013")
-          ? item.displayText
-              .split("\u2013")
-              .map((phrase, index) =>
-                index === 0 ? (
-                  <span style={{ fontStyle: "italic" }}>{phrase} &ndash;</span>
-                ) : (
-                  phrase
-                ),
-              )
+          ? item.displayText.split("\u2013").map((phrase, index) =>
+              index === 0 ? (
+                <span style={{ fontStyle: "italic" }} key={index}>
+                  {phrase} &ndash;
+                </span>
+              ) : (
+                phrase
+              ),
+            )
           : item.displayText}
       </Typography.SidebarItem>
       {item.url !== undefined &&

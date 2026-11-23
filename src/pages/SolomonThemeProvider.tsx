@@ -1,4 +1,4 @@
-import { ThemeContext, themeKey } from "@libs/Context";
+import { AnimationContext, ThemeContext, themeKey } from "@libs/Context";
 import { Colors } from "@libs/globals";
 import { type ColorTheme, Theme } from "@libs/Types";
 import React, { type ReactNode } from "react";
@@ -15,9 +15,13 @@ const SolomonThemeProvider: React.FC<{ children: ReactNode }> = ({
       ? Colors[Theme.LIGHT]
       : Colors[Theme.DARK],
   );
+  const [doAnim, setDoAnim] = React.useState<boolean>(true);
+
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      {children}
+      <AnimationContext.Provider value={{ doAnim, setDoAnim }}>
+        {children}
+      </AnimationContext.Provider>
     </ThemeContext.Provider>
   );
 };

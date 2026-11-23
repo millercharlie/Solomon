@@ -1,22 +1,20 @@
 import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
-import logogram from "@assets/logos/logogram.svg?react";
 
-import {
-  PageType,
-  RowType,
-  type PageData,
-  type ResourceInfo,
-} from "@libs/Types";
+import { RowType, type PageData, type ResourceInfo } from "@libs/Types";
 import React from "react";
 import ResourceModal from "@components/modals/ResourceModal";
 import { breakpoints, dummyResource } from "@libs/globals";
 import Link from "@components/Link";
 import Sidebar from "@components/Sidebar";
 import PageTemplate from "@pages/PageTemplate";
-import { SidebarContext, sidebarKey, ThemeContext } from "@libs/Context";
+import {
+  AnimationContext,
+  SidebarContext,
+  sidebarKey,
+  ThemeContext,
+} from "@libs/Context";
 import Carousel from "@components/Carousel";
-import { DefaultIcon } from "@libs/Icons";
 import useIsMobile from "@hooks/useIsMobile";
 
 const ContentBackground = styled.div<{ sidebarOpen: boolean }>`
@@ -31,11 +29,6 @@ const ContentBackground = styled.div<{ sidebarOpen: boolean }>`
 const Heading = styled.div`
   width: 100%;
 `;
-const DashboardTitleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-`;
 
 const Content = styled.div<{ isMobile: boolean }>`
   width: ${({ isMobile }) => (isMobile ? "100%" : `calc(100% - 90px)`)};
@@ -46,9 +39,6 @@ const MainContent = styled.div`
 `;
 const Row = styled.div`
   margin-bottom: 30px;
-`;
-const Logogram = styled(DefaultIcon)`
-  width: 300px;
 `;
 
 const ListRow = styled.div`
@@ -79,6 +69,7 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
       : false,
   );
   const { theme } = React.useContext(ThemeContext);
+  const { doAnim } = React.useContext(AnimationContext);
 
   React.useEffect(() => {
     if (isMobile) {
@@ -97,50 +88,15 @@ const StandardPage: React.FC<{ data: PageData }> = ({ data }) => {
         <ContentBackground sidebarOpen={sidebarOpen}>
           <Content isMobile={isMobile}>
             <Heading>
-              {data.pageType === PageType.dashboard ? (
-                <>
-                  <DashboardTitleContainer>
-                    <Typography.RowHeading style={{ marginBottom: -20 }}>
-                      Welcome to
-                    </Typography.RowHeading>
-                    <Logogram
-                      icon={logogram}
-                      width={300}
-                      height={130}
-                      hover={false}
-                    />
-                  </DashboardTitleContainer>
-                  <Typography.LargeParagraph
-                    id="description"
-                    style={{ textWrap: "wrap" }}
-                  >
-                    Solomon is a convenient platform with resources on
-                    apologetics, theology, and Bible commentaries. We hope you
-                    can use this platform to discover new resources, engage with
-                    theologians, and dive deeper into your faith!
-                    <br />
-                    <br />
-                    Below, you will find curated introductory resources to
-                    apologetics and theology, but feel free to explore and find
-                    your own resources!
-                    <br />
-                    <br />
-                    If you wish for additional functionality (such as
-                    recommendations, favorites) be sure to create an account
-                    with us!
-                  </Typography.LargeParagraph>
-                </>
-              ) : (
-                <>
-                  <Typography.Title>
-                    {data.longTitle ?? data.title}
-                  </Typography.Title>
-                  {data.longDesc && (
-                    <Typography.LargeParagraph style={{ textWrap: "wrap" }}>
-                      {data.longDesc}
-                    </Typography.LargeParagraph>
-                  )}
-                </>
+              {doAnim && (
+                <Typography.Title>
+                  {data.longTitle ?? data.title}
+                </Typography.Title>
+              )}
+              {data.longDesc && (
+                <Typography.LargeParagraph style={{ textWrap: "wrap" }}>
+                  {data.longDesc}
+                </Typography.LargeParagraph>
               )}
             </Heading>
             <MainContent>

@@ -23,7 +23,7 @@ import LoadingPage from "@pages/LoadingPage.tsx";
 import ErrorPage from "@pages/ErrorPage.tsx";
 import { SWRConfig } from "swr";
 
-const RootPage = () => (
+export const RootPage = () => (
   <Suspense fallback={<LoadingPage />}>
     <Outlet />
   </Suspense>

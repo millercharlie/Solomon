@@ -58,7 +58,7 @@ const Container = styled.div<{ theme: ColorTheme }>`
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 4;
+  z-index: 5;
 `;
 
 const NavContainer = styled.div`

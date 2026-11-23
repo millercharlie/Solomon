@@ -88,6 +88,7 @@ const ControlButtons: React.FC<{
                   icon={up_down_arrow}
                   onClick={() => setDropdownActive(!dropdownActive)}
                   active={dropdownActive}
+                  key={control}
                 />
               );
             case Controls.fullscreen:
@@ -95,6 +96,7 @@ const ControlButtons: React.FC<{
                 <ActionButton
                   icon={expand_arrows}
                   hover={true}
+                  key={control}
                   onClick={() =>
                     resource
                       ? setSelectedResource(resource)
@@ -105,7 +107,12 @@ const ControlButtons: React.FC<{
             case Controls.open_page:
               return (
                 <a href={link}>
-                  <ActionButton icon={up_down_arrow} hover={true} rotate={45} />
+                  <ActionButton
+                    icon={up_down_arrow}
+                    hover={true}
+                    rotate={45}
+                    key={control}
+                  />
                 </a>
               );
           }
