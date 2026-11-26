@@ -17,16 +17,17 @@ export const DefaultIcon: React.FC<
   {
     icon: IconComponent;
     hover?: boolean;
+    noDimensions?: boolean;
   } & React.SVGProps<SVGSVGElement>
-> = ({ icon, hover, ...rest }) => {
+> = ({ icon, hover, noDimensions, ...rest }) => {
   const { theme } = React.useContext(ThemeContext);
   return (
     <StyledSVG
       as={icon}
       {...rest}
       color={theme.text}
-      width={rest.width ?? 11}
-      height={rest.height ?? 11}
+      width={noDimensions ? undefined : (rest.width ?? 11)}
+      height={noDimensions ? undefined : (rest.height ?? 11)}
       hover={hover}
     />
   );

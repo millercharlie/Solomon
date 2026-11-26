@@ -11,6 +11,7 @@ import pageDown from "@assets/arrows/page_down.svg?react";
 import React from "react";
 import { AnimationContext, ThemeContext } from "@libs/Context";
 import { Theme } from "@libs/Types";
+import { breakpoints } from "@libs/globals";
 
 // Animations
 const fadeIn = keyframes`
@@ -57,10 +58,21 @@ const AnimatedDashboardTitleContainer = styled.div`
     ${fadeIn} 2s ease-in 1s backwards,
     ${parallax} linear both;
   animation-timeline: auto, scroll(root);
+
+  @media (max-width: ${breakpoints.sm}px) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `;
 
 const Logogram = styled(DefaultIcon)`
   width: 350px;
+  margin-top: -35px;
+
+  @media (max-width: ${breakpoints.sm}px) {
+    width: 250px;
+    margin-top: -50px;
+  }
 `;
 
 const Heading = styled.div`
@@ -82,6 +94,10 @@ const Stars = styled.div`
   height: 100%;
   transform-origin: 50% 40vw;
   animation: ${starAnim} 3s forwards;
+
+  @media (max-width: ${breakpoints.sm}px) {
+    animation: ${fadeIn} 3s forwards;
+  }
 `;
 const StarOfBethlehem = styled(DefaultIcon)`
   position: absolute;
@@ -92,8 +108,13 @@ const StarOfBethlehem = styled(DefaultIcon)`
 `;
 const Starfield = styled(DefaultIcon)`
   position: absolute;
-  left: -50vw;
   top: -20vh;
+  width: 120%;
+
+  @media (max-width: ${breakpoints.sm}px) {
+    width: auto;
+    height: 120%;
+  }
 `;
 
 const PageDown = styled.div`
@@ -115,7 +136,13 @@ const DashboardHeader: React.FC = () => {
   const { theme } = React.useContext(ThemeContext);
   const { doAnim, setDoAnim } = React.useContext(AnimationContext);
   const animTimeout = React.useRef<number>(0);
-  const pageHeight = window.innerHeight;
+  const pageHeight = React.useMemo(
+    () =>
+      window.innerWidth < breakpoints.md
+        ? window.outerHeight
+        : window.innerHeight,
+    [],
+  );
 
   // Stops the dashboard animation if the page has dismounted at least once
   React.useEffect(() => {
@@ -134,9 +161,7 @@ const DashboardHeader: React.FC = () => {
   return !doAnim ? (
     <>
       <StandardDashboardTitleContainer>
-        <Typography.RowHeading style={{ marginBottom: -20 }}>
-          Welcome to
-        </Typography.RowHeading>
+        <Typography.RowHeading>Welcome to</Typography.RowHeading>
         <Logogram icon={logogram} width={300} height={130} hover={false} />
       </StandardDashboardTitleContainer>
       <Typography.LargeParagraph
@@ -167,22 +192,18 @@ const DashboardHeader: React.FC = () => {
   ) : (
     <Heading>
       <AnimatedDashboardTitleContainer>
-        <Typography.RowHeading style={{ marginBottom: -20 }}>
-          Welcome to
-        </Typography.RowHeading>
+        <Typography.RowHeading>Welcome to</Typography.RowHeading>
         <Logogram icon={logogram} width={300} height={130} hover={false} />
       </AnimatedDashboardTitleContainer>
       <NightSky>
         <Stars>
           <StarOfBethlehem
             icon={theme._id === Theme.DARK ? star : starDark}
-            width={75}
-            height={99}
+            noDimensions
           />
           <Starfield
             icon={theme._id === Theme.DARK ? starfield : starfieldDark}
-            width={"200vw"}
-            height={"1500px"}
+            noDimensions
           />
         </Stars>
       </NightSky>

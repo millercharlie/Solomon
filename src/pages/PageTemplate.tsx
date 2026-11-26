@@ -70,14 +70,15 @@ const Background = styled.div<{
       pageType === PageType.dashboard ? "bottom center" : undefined};
     position: fixed;
     inset: 0;
-
     z-index: -1;
+
     background-image: ${({ pageType }) =>
       `url("${gradientUrls[gradientMap[pageType]]}")`};
     background-size: ${({ mobile }) => (mobile ? "150vh" : "150%")};
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+
     transform: ${({ pageType, doAnim }) =>
       pageType === PageType.dashboard && doAnim
         ? `perspective(${PERSPECTIVE}) rotateX(${TILT})`
@@ -89,7 +90,6 @@ const Background = styled.div<{
       ${unflatten} linear forwards;
           `
         : undefined};
-
     animation-timeline: auto, scroll(root);
     animation-range: 1px 800px;
   }
